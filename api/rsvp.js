@@ -126,7 +126,7 @@ module.exports = async function handler(req, res) {
   }
 
   // 9. Verificación de credenciales de entorno para Supabase
-  const supabaseUrl = process.env.SUPABASE_URL ? process.env.SUPABASE_URL.trim().replace(/\/+$/, '') : null;
+  let supabaseUrl = process.env.SUPABASE_URL ? process.env.SUPABASE_URL.trim() : null;
   const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY ? process.env.SUPABASE_SERVICE_ROLE_KEY.trim() : null;
 
   if (!supabaseUrl || !supabaseKey) {
@@ -136,6 +136,12 @@ module.exports = async function handler(req, res) {
       error: 'Error interno en la configuración del servidor de confirmaciones. Contacta al organizador.'
     });
   }
+
+  // Normalización defensiva de SUPABASE_URL:
+  // En Supabase existen "Project URL" (https://xyz.supabase.co) y "REST URL" (https://xyz.supabase.co/rest/v1/).
+  // Si en Vercel o en .env se configuró con '/rest/v1' o barras finales '/', se eliminan
+  // para evitar rutas erróneas 404 tipo '/rest/v1/rest/v1/rsvp_registros'.
+  supabaseUrl = supabaseUrl.replace(/\/+$/, '').replace(/\/rest\/v1\/?$/i, '').replace(/\/+$/, '');
 
   const commonHeaders = {
     'apikey': supabaseKey,

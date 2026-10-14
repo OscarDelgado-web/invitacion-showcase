@@ -362,6 +362,24 @@ async function runTests() {
       assert('Actualizó el nombre del asistente', updated.nombre === 'Dra. Carmen V. de González', updated.nombre);
     }
 
+    // 7.3 Resiliencia de configuración: SUPABASE_URL con sufijo accidental /rest/v1/ o barras finales
+    {
+      process.env.SUPABASE_URL = `http://127.0.0.1:${port}/rest/v1/`;
+      const { req, res, getResponse } = createMockHttp({
+        method: 'POST',
+        body: {
+          nombre: 'Lic. Roberto Sánchez',
+          email: 'roberto@retos.edu.sv',
+          asistencia: 'si',
+          notas: 'Confirmación con URL sucia de Supabase'
+        }
+      });
+      await handler(req, res);
+      const result = getResponse();
+      assert('Normaliza SUPABASE_URL con sufijo /rest/v1/ y responde HTTP 200', result.status === 200, result.status);
+      assert('Genera código correcto a pesar de URL con sufijo', /^RETOS-\d{4}-SI$/.test(result.data?.code), result.data?.code);
+    }
+
     // Limpiar variables de prueba y cerrar servidor mock
     delete process.env.SUPABASE_URL;
     delete process.env.SUPABASE_SERVICE_ROLE_KEY;
