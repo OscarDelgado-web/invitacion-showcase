@@ -1,6 +1,6 @@
 /**
  * ==============================================================================
- * RETOS Showcase 2026 — Servidor de Desarrollo Local
+ * RETOS Showcae 2026 - 2nd Edition — Servidor de Desarrollo Local
  * Archivo: dev-server.js
  *
  * Servidor HTTP nativo de Node.js (cero dependencias de npm).
@@ -140,7 +140,7 @@ const server = http.createServer(async (req, res) => {
 
 server.listen(PORT, '127.0.0.1', () => {
   console.log('\n======================================================');
-  console.log(` RETOS Showcase 2026 — Servidor Local Activo`);
+  console.log(` RETOS Showcae 2026 - 2nd Edition — Servidor Local Activo`);
   console.log(` URL: http://127.0.0.1:${PORT}/`);
   console.log(` Endpoint RSVP: http://127.0.0.1:${PORT}/api/rsvp`);
   console.log('======================================================\n');

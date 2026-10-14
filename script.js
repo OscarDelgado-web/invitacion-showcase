@@ -30,8 +30,8 @@
    Zona horaria: America/El_Salvador (UTC-6, sin horario de verano).
    ========================================================================== */
 const EVENT_META = {
-  codigo: "RETOS-SHOWCASE-2026",
-  titulo: "RETOS Showcase 2026",
+  codigo: "RETOS-SHOWCASE-2026 - 2nd Edition",
+  titulo: "RETOS Showcase 2026 - 2nd Edition",
   inicio: "2026-10-30T08:00:00",
   fin: "2026-10-30T12:30:00",
   sede: "Biblioteca RETOS",
@@ -2289,7 +2289,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     // 4. Inicializar enrutador y listeners de navegación
     NavigationEngine.init();
 
-    console.log('%c[ACCESS GRANTED] RETOS Showcase 2026 — Inicialización completa.', 'color:#a0c525; font-weight:bold; font-size:12px;');
+    console.log('%c[ACCESS GRANTED] RETOS Showcase 2026 - 2nd Edition — Inicialización completa.', 'color:#a0c525; font-weight:bold; font-size:12px;');
   } catch (criticalErr) {
     console.error('Error durante la inicialización de la aplicación:', criticalErr);
     try {

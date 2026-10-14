@@ -20,6 +20,10 @@
   --c-cyan-glow: rgba(203, 239, 82, 0.35);
   --c-cyan-dim: rgba(203, 239, 82, 0.12);
 
+  /* Variables específicas para acentos eléctricos y cian */
+  --green-electric: var(--c-green);
+  --cyan-accent: var(--c-cyan);
+
   --c-alert-red: #ff4d6d;
   --c-alert-red-bg: rgba(255, 77, 109, 0.12);
   /* FIX: Definición de variable --c-purple requerida en .objective-card */
@@ -636,26 +640,38 @@ body::before {
 /* ==========================================================================
    ESCENA 01: INITIALIZATION
    ========================================================================== */
+#scene-0 {
+  padding: 8px 20px 20px;
+}
+
+#scene-0 .scene-inner {
+  margin: auto 0;
+}
+
 .init-layout {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 36px;
+  gap: 18px;
   align-items: center;
-  padding: 10px 0;
+  padding: 2px 0;
 }
 
 @media (min-width: 820px) {
+  #scene-0 .hud-meta-bar {
+    margin-bottom: 12px;
+  }
   .init-layout {
-    grid-template-columns: 340px 1fr;
-    gap: 48px;
+    grid-template-columns: 240px 1fr;
+    gap: 30px;
+    padding: 0;
   }
 }
 
 /* Holograma Central */
 .hologram-portal {
   position: relative;
-  width: 260px;
-  height: 260px;
+  width: 210px;
+  height: 210px;
   margin: 0 auto;
   display: flex;
   align-items: center;
@@ -664,8 +680,19 @@ body::before {
 
 @media (min-width: 820px) {
   .hologram-portal {
-    width: 320px;
-    height: 320px;
+    width: 230px;
+    height: 230px;
+  }
+}
+
+@media (min-width: 1200px) and (min-height: 850px) {
+  .hologram-portal {
+    width: 270px;
+    height: 270px;
+  }
+  .init-layout {
+    grid-template-columns: 280px 1fr;
+    gap: 36px;
   }
 }
 
@@ -805,44 +832,45 @@ body::before {
   font-family: var(--f-heading);
   font-size: clamp(2.4rem, 7vw, 4.2rem);
   font-weight: 800;
-  line-height: 1.02;
+  line-height: 1.05;
   letter-spacing: -0.035em;
   color: var(--tx-primary);
-  margin-bottom: 20px;
+  margin-bottom: 6px;
   outline: none;
 }
 
 .hero-tagline {
   font-family: var(--f-heading);
-  font-size: clamp(1.15rem, 2.8vw, 1.55rem);
+  font-size: clamp(0.95rem, 1.8vw, 1.15rem);
   font-weight: 600;
   color: var(--c-cyan);
-  line-height: 1.35;
-  margin-top: -6px;
-  margin-bottom: 20px;
+  line-height: 1.25;
+  margin-top: -2px;
+  margin-bottom: 8px;
   text-shadow: 0 0 12px rgba(0, 229, 255, 0.25);
 }
 
 .hero-description {
-  font-size: 1.05rem;
+  font-size: 0.9rem;
   color: var(--tx-secondary);
-  line-height: 1.65;
+  line-height: 1.45;
   max-width: 54ch;
-  margin-bottom: 32px;
+  margin-bottom: 12px;
 }
 
 .init-cta-group {
   display: flex;
-  flex-wrap: wrap;
-  gap: 14px;
+  justify-content: center;
   align-items: center;
+  margin-top: 18px;
+  width: 100%;
 }
 
 .init-footer-hints {
   display: flex;
   flex-wrap: wrap;
   gap: 18px;
-  margin-top: 36px;
+  margin-top: 14px;
   font-family: var(--f-mono);
   font-size: 0.7rem;
   color: var(--tx-muted);
@@ -859,6 +887,286 @@ body::before {
   height: 5px;
   border-radius: 50%;
   background: var(--c-cyan);
+}
+
+/* ==========================================================================
+   BLOQUE: WHAT TO EXPECT (ESCENA 01)
+   ========================================================================== */
+.what-to-expect-block {
+  width: 100%;
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid var(--b-subtle);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.wte-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.wte-heading-group {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.wte-kicker {
+  font-family: var(--f-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--cyan-accent);
+}
+
+.wte-title {
+  font-family: var(--f-heading);
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--tx-primary);
+  margin: 0;
+}
+
+.wte-subtitle {
+  font-family: var(--f-mono);
+  font-size: 0.76rem;
+  color: var(--tx-muted);
+  letter-spacing: 0.05em;
+}
+
+.wte-header-line {
+  flex-grow: 1;
+  height: 1px;
+  background: linear-gradient(90deg, var(--b-medium), transparent);
+}
+
+/* Grilla de 3 tarjetas: en fila en escritorio, apiladas en móvil */
+.wte-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .wte-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+}
+
+/* Tarjeta estilo HUD "Permiso desbloqueado" */
+.wte-card {
+  position: relative;
+  background: var(--bg-card);
+  border: 1px solid var(--b-subtle);
+  border-radius: 6px;
+  padding: 14px 16px 16px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: transform 0.3s var(--ease-smooth),
+              border-color 0.3s var(--ease-smooth),
+              box-shadow 0.3s var(--ease-smooth);
+  overflow: hidden;
+  /* Estado base para animación escalonada */
+  opacity: 0;
+  transform: translateY(16px);
+  will-change: opacity, transform;
+}
+
+/* Esquinas con detalle tipo HUD */
+.wte-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 9px;
+  height: 9px;
+  border-top: 2px solid var(--cyan-accent);
+  border-left: 2px solid var(--cyan-accent);
+  border-top-left-radius: 2px;
+  pointer-events: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.wte-card::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 9px;
+  height: 9px;
+  border-bottom: 2px solid var(--green-electric);
+  border-right: 2px solid var(--green-electric);
+  border-bottom-right-radius: 2px;
+  pointer-events: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover sutil con elevación y glow */
+.wte-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--b-bright);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.55), 0 0 20px rgba(160, 197, 37, 0.16);
+}
+
+.wte-card:hover::before {
+  box-shadow: 0 0 8px var(--cyan-accent);
+}
+
+.wte-card:hover::after {
+  box-shadow: 0 0 8px var(--green-electric);
+}
+
+/* Cabecera interna de cada tarjeta */
+.wte-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+/* Etiqueta tipo "✔ ACCESS" en cian */
+.wte-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--f-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--cyan-accent);
+  background: rgba(203, 239, 82, 0.1);
+  border: 1px solid var(--b-cyan);
+  padding: 3px 8px;
+  border-radius: 3px;
+  text-transform: uppercase;
+}
+
+/* Contenedor del ícono SVG inline */
+.wte-card-icon {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  background: rgba(203, 239, 82, 0.06);
+  border: 1px solid rgba(203, 239, 82, 0.18);
+  color: var(--cyan-accent);
+  transition: all 0.25s ease;
+  flex-shrink: 0;
+}
+
+.wte-card:hover .wte-card-icon {
+  background: rgba(203, 239, 82, 0.14);
+  border-color: var(--cyan-accent);
+  color: var(--green-electric);
+  box-shadow: 0 0 10px rgba(203, 239, 82, 0.25);
+}
+
+.wte-icon-svg {
+  width: 17px;
+  height: 17px;
+}
+
+/* Título de la tarjeta en verde eléctrico */
+.wte-card-title {
+  font-family: var(--f-heading);
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: var(--green-electric);
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+  margin-bottom: 6px;
+}
+
+/* Descripción en tono claro de bajo contraste */
+.wte-card-desc {
+  font-family: var(--f-body);
+  font-size: 0.82rem;
+  color: var(--tx-secondary);
+  line-height: 1.5;
+  margin: 0;
+  flex-grow: 1;
+}
+
+/* Nota breve debajo de las tres tarjetas */
+.wte-footer-note {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 12px;
+  font-family: var(--f-mono);
+  font-size: 0.76rem;
+  color: var(--tx-muted);
+  letter-spacing: 0.03em;
+  text-align: center;
+}
+
+.wte-note-icon {
+  width: 14px;
+  height: 14px;
+  color: var(--cyan-accent);
+  flex-shrink: 0;
+}
+
+.wte-note-text {
+  color: var(--tx-secondary);
+}
+
+/* ==========================================================================
+   ANIMACIÓN ESCALONADA (fade + translateY, 150 ms entre tarjetas)
+   Activada cuando la escena 01 se muestra (.scene.active)
+   ========================================================================== */
+.scene.active .wte-card {
+  animation: wteCardEntrance 0.5s var(--ease-out-expo) forwards;
+}
+
+.scene.active .wte-card:nth-child(1) {
+  animation-delay: 0.15s;
+}
+
+.scene.active .wte-card:nth-child(2) {
+  animation-delay: 0.30s;
+}
+
+.scene.active .wte-card:nth-child(3) {
+  animation-delay: 0.45s;
+}
+
+@keyframes wteCardEntrance {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Accesibilidad: respeta prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .wte-card,
+  .scene.active .wte-card {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+    transition: none !important;
+  }
 }
 
 /* ==========================================================================

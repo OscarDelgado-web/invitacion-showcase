@@ -2,7 +2,7 @@
   "name": "retos-showcase-2026",
   "version": "1.0.0",
   "private": true,
-  "description": "ACCESS GRANTED — Invitación Web Interactiva del RETOS Showcase 2026",
+  "description": "ACCESS GRANTED — Invitación Web Interactiva del RETOS Showcae 2026 - 2nd Edition",
   "scripts": {
     "dev": "node dev-server.js",
     "vercel:dev": "vercel dev",

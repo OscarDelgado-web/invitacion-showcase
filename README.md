@@ -1,6 +1,6 @@
-# INVITACIÓN WEB INTERACTIVA — ACCESS GRANTED: RETOS SHOWCASE 2026
+# INVITACIÓN WEB INTERACTIVA — ACCESS GRANTED: RETOS Showcae 2026 - 2nd Edition
 
-Una experiencia web inmersiva, cinematográfica y accesible desarrollada para el **RETOS Showcase 2026**, organizado por el **Programa de Inglés • RETOS / FTS**.
+Una experiencia web inmersiva, cinematográfica y accesible desarrollada para el **RETOS Showcae 2026 - 2nd Edition**, organizado por el **Programa de Inglés • RETOS / FTS**.
 
 - **Fecha:** Viernes, 30 de octubre de 2026.
 - **Horario Oficial:** 08:00 — 12:30 hrs (GMT-6).
@@ -171,7 +171,7 @@ La agenda formal cronológica de 22 bloques reside exclusivamente en [`contenido
       "horaInicio": "08:00",
       "horaFin": "08:05",
       "titulo": "Opening Ceremony",
-      "descripcion": "Ceremonia de apertura del RETOS Showcase 2026 y bienvenida a estudiantes e invitados.",
+      "descripcion": "Ceremonia de apertura del RETOS Showcae 2026 - 2nd Edition y bienvenida a estudiantes e invitados.",
       "responsable": "Programa de Inglés RETOS / FTS",
       "estado": "destacado",
       "tipo": "protocolo"

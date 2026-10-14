@@ -6,7 +6,7 @@
       "horaInicio": "08:00",
       "horaFin": "08:05",
       "titulo": "Opening Ceremony",
-      "descripcion": "Ceremonia de apertura del RETOS Showcase 2026 y bienvenida a estudiantes e invitados.",
+      "descripcion": "Ceremonia de apertura del RETOS Showcae 2026 - 2nd Edition y bienvenida a estudiantes e invitados.",
       "responsable": "Estudiantes RETOS",
       "estado": "destacado",
       "tipo": "protocolo"
@@ -60,8 +60,8 @@
       "fecha": "2026-10-30",
       "horaInicio": "08:45",
       "horaFin": "09:00",
-      "titulo": "Ice Breaker: Guess the Word",
-      "descripcion": "Dinámica participativa en inglés para adivinar la palabra.",
+      "titulo": "Ice Breaker: Charades",
+      "descripcion": "Dinámica participativa en inglés para adivinar la palabra con mimica.",
       "responsable": "Estudiantes RETOS",
       "estado": "confirmado",
       "tipo": "networking"
@@ -82,8 +82,8 @@
       "fecha": "2026-10-30",
       "horaInicio": "09:20",
       "horaFin": "09:30",
-      "titulo": "Break",
-      "descripcion": "Receso de la jornada.",
+      "titulo": "Coffe Break",
+      "descripcion": "Pausa dentro la jornada con refrigerio.",
       "responsable": "RETOS / FTS",
       "estado": "confirmado",
       "tipo": "logistica"
@@ -149,7 +149,7 @@
       "horaInicio": "10:35",
       "horaFin": "10:50",
       "titulo": "Ice Breaker: The Queen Says",
-      "descripcion": "Dinámica participativa en inglés: The Queen Says.",
+      "descripcion": "Dinámica participativa en inglés: La Reina Dice.",
       "responsable": "Estudiantes RETOS",
       "estado": "confirmado",
       "tipo": "networking"
@@ -160,7 +160,7 @@
       "horaInicio": "10:50",
       "horaFin": "11:05",
       "titulo": "Role-Play: The PPE Incident",
-      "descripcion": "Simulación en inglés de una situación de seguridad industrial: el incidente del equipo de protección personal (PPE).",
+      "descripcion": "Simulación en inglés de una situación de seguridad industrial: el incidente con el EPP (equipo de protección personal).",
       "responsable": "Estudiantes RETOS",
       "estado": "confirmado",
       "tipo": "debate"
@@ -193,7 +193,7 @@
       "horaInicio": "11:35",
       "horaFin": "11:50",
       "titulo": "Role-Play: Boss vs. Machine",
-      "descripcion": "Simulación en inglés de una situación laboral: el jefe frente a la máquina.",
+      "descripcion": "Simulación en inglés de una situación laboral: el jefe vs la máquina.",
       "responsable": "Estudiantes RETOS",
       "estado": "confirmado",
       "tipo": "debate"
@@ -215,7 +215,7 @@
       "horaInicio": "12:10",
       "horaFin": "12:15",
       "titulo": "RETOS Video",
-      "descripcion": "Video institucional de RETOS.",
+      "descripcion": "Recopilacion de expereciencias estudiantiles del ciclo.",
       "responsable": "RETOS / FTS",
       "estado": "confirmado",
       "tipo": "ponencia"
@@ -237,7 +237,7 @@
       "horaInicio": "12:25",
       "horaFin": "12:30",
       "titulo": "Official Closing",
-      "descripcion": "Clausura oficial del RETOS Showcase 2026.",
+      "descripcion": "Clausura oficial del RETOS Showcae 2026 - 2nd Edition.",
       "responsable": "Estudiantes RETOS",
       "estado": "destacado",
       "tipo": "clausura"
