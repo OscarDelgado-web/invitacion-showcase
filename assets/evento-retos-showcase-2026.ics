@@ -1,0 +1,33 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Instituto RETOS//RETOS Showcase 2026//ES
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VTIMEZONE
+TZID:America/El_Salvador
+LAST-MODIFIED:20260101T000000Z
+TZURL:http://tzurl.org/zoneinfo-outlook/America/El_Salvador
+X-LIC-LOCATION:America/El_Salvador
+BEGIN:STANDARD
+TZNAME:CST
+TZOFFSETFROM:-0600
+TZOFFSETTO:-0600
+DTSTART:19700101T000000
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:1791945569446-ydkiolg@retos.edu.sv
+DTSTAMP:20261014T023929Z
+DTSTART;TZID=America/El_Salvador:20261030T080000
+DTEND;TZID=America/El_Salvador:20261030T123000
+SUMMARY:RETOS Showcase 2026
+DESCRIPTION:RETOS Showcase 2026 — Programa de Inglés RETOS / FTS.\nActividad presencial durante toda la mañana en la Biblioteca de RETOS / FTS.\nSe desarrollará la entrega de certificaciones y demostración de competencias comunicativas.
+LOCATION:Biblioteca Instituto RETOS\, La Libertad\, El Salvador
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-PT24H
+ACTION:DISPLAY
+DESCRIPTION:Recordatorio del evento RETOS Showcase 2026
+END:VALARM
+END:VEVENT
+END:VCALENDAR
