@@ -54,6 +54,7 @@
 
     <!-- Indicador de progreso de 5 pasos dinámicos -->
     <nav class="hud-progress-wrapper" aria-label="Progreso de la experiencia">
+      <!-- Stepper horizontal para pantallas grandes (Desktop) -->
       <ol class="hud-stepper" id="hud-stepper">
         <li class="step-node active" data-step="0" role="button" tabindex="0" aria-label="Escena 1: Bienvenida" data-i18n-attr="aria-label:step1Aria">
           <span class="step-num">01</span>
@@ -76,6 +77,27 @@
           <span class="step-tag" data-i18n="step5">Confirmación</span>
         </li>
       </ol>
+
+      <!-- Botón Hamburguesa para celulares -->
+      <button class="hud-mobile-nav-toggle" id="hud-mobile-nav-toggle" type="button" aria-label="Abrir menú de navegación" aria-expanded="false" aria-controls="hud-mobile-menu">
+        <span class="mobile-toggle-curr" id="mobile-toggle-curr">01</span>
+        <span class="mobile-hamburger-icon" aria-hidden="true">
+          <span class="hbar hbar-1"></span>
+          <span class="hbar hbar-2"></span>
+          <span class="hbar hbar-3"></span>
+        </span>
+      </button>
+
+      <!-- Mini menú desplegable en celular: solo números en un cuadrado -->
+      <div class="hud-mobile-menu" id="hud-mobile-menu" role="menu" aria-label="Navegación de escenas" aria-hidden="true">
+        <div class="mobile-menu-grid">
+          <button type="button" class="step-node mobile-step-square active" data-step="0" role="menuitem" aria-label="Escena 1">01</button>
+          <button type="button" class="step-node mobile-step-square" data-step="1" role="menuitem" aria-label="Escena 2">02</button>
+          <button type="button" class="step-node mobile-step-square" data-step="2" role="menuitem" aria-label="Escena 3">03</button>
+          <button type="button" class="step-node mobile-step-square" data-step="3" role="menuitem" aria-label="Escena 4">04</button>
+          <button type="button" class="step-node mobile-step-square" data-step="4" role="menuitem" aria-label="Escena 5">05</button>
+        </div>
+      </div>
     </nav>
 
     <!-- Controles de cabecera: Audio FX y Ayuda teclado -->
@@ -480,7 +502,7 @@
         <div class="agenda-layout">
           <header class="scene-header">
             <span class="scene-tag-kicker" data-i18n="s4Kicker">04 / PROGRAMA DEL EVENTO</span>
-            <h2 class="scene-title" tabindex="-1" data-i18n="s4Title">Agenda formal y <span class="text-gradient">ejes temáticos</span></h2>
+            <h2 class="scene-title" tabindex="-1" data-i18n="s4Title">Agenda formal y <span class="text-gradient">cronograma</span></h2>
             <p class="scene-lead" data-i18n="s4Lead">Estructura cronológica de la jornada matutina, presentaciones estudiantiles en contextos técnicos, entrega de certificaciones y vinculación institucional.</p>
           </header>
 
@@ -512,80 +534,7 @@
             <!-- Inyectado dinámicamente mediante renderFormalAgenda() -->
           </ol>
 
-          <!-- Ejes Temáticos y Experiencias Clave (fusionada sin alterar contenido) -->
-          <section class="experience-block" style="margin-top: 48px;" aria-label="Ejes temáticos y experiencias clave">
-            <header class="pilares-header">
-              <h3 class="pilares-title" data-i18n="s4PillarsTitle">EJES TEMÁTICOS Y EXPERIENCIAS CLAVE</h3>
-              <div class="pilares-line" aria-hidden="true"></div>
-            </header>
-            <p class="scene-lead" style="margin-bottom: 24px;" data-i18n="s4PillarsLead">Los cuatro ejes que articulan la jornada matutina del RETOS Showcase 2026 - 2nd Edition.</p>
-
-            <div class="activities-grid" id="activities-container">
-              <article class="activity-card" id="eje-1">
-                <div class="act-card-top">
-                  <span class="act-number">EJE -  01</span>
-                  <div class="act-icon" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                      <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/>
-                      <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
-                      <line x1="12" y1="19" x2="12" y2="22"/>
-                    </svg>
-                  </div>
-                </div>
-                <h3 class="act-title">Certificaciones de inglés</h3>
-                <p class="act-desc">Dos momentos de entrega durante la mañana para reconocer el avance de los estudiantes en su ruta de certificación internacional.</p>
-              </article>
-
-              <article class="activity-card" id="eje-2">
-                <div class="act-card-top">
-                  <span class="act-number">EJE - 02</span>
-                  <div class="act-icon" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                      <rect x="4" y="4" width="16" height="16" rx="2" ry="2"/>
-                      <rect x="9" y="9" width="6" height="6"/>
-                      <line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/>
-                      <line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/>
-                      <line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/>
-                      <line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/>
-                    </svg>
-                  </div>
-                </div>
-                <h3 class="act-title">Talento estudiantil</h3>
-                <p class="act-desc">Cuatro carreras (Mecatrónica, Mantenimiento Industrial, Logística, Desarrollo de Software) comunicándose en contextos técnicos.</p>
-              </article>
-
-              <article class="activity-card" id="eje-3">
-                <div class="act-card-top">
-                  <span class="act-number">EJE - 03</span>
-                  <div class="act-icon" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                      <polygon points="12 2 2 7 12 12 22 7 12 2"/>
-                      <polyline points="2 17 12 22 22 17"/>
-                      <polyline points="2 12 12 17 22 12"/>
-                    </svg>
-                  </div>
-                </div>
-                <h3 class="act-title">Vinculación con empresas</h3>
-                <p class="act-desc">Presencia de representantes de EduTech de Guatemala 🇬🇹, Honduras 🇭🇳 y/o Costa Rica 🇨🇷, con el respaldo de Neo.</p>
-              </article>
-
-              <article class="activity-card" id="eje-4">
-                <div class="act-card-top">
-                  <span class="act-number">EJE - 04</span>
-                  <div class="act-icon" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-                      <circle cx="9" cy="7" r="4"/>
-                      <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-                      <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-                    </svg>
-                  </div>
-                </div>
-                <h3 class="act-title">Nuevas alianzas</h3>
-                <p class="act-desc">Visita de Junior Achievement El Salvador para indagar sobre una posible alianza estratégica.</p>
-              </article>
-            </div>
-          </section>
+        
 
           <footer class="scene-nav-actions">
             <button class="btn btn-ghost" data-target="2">

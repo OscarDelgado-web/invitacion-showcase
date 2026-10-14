@@ -2224,16 +2224,24 @@ const NavigationEngine = (() => {
       }
     });
 
-    // 2. Sincronización del stepper
-    stepNodesList.forEach((node, i) => {
-      node.classList.toggle('active', i === currentIndex);
-      node.classList.toggle('completed', i < currentIndex);
-      if (i === currentIndex) {
+    // 2. Sincronización del stepper (desktop y móviles)
+    stepNodesList.forEach((node) => {
+      const stepVal = parseInt(node.dataset.step, 10);
+      const isCurrent = !isNaN(stepVal) ? (stepVal === currentIndex) : false;
+      const isCompleted = !isNaN(stepVal) ? (stepVal < currentIndex) : false;
+      node.classList.toggle('active', isCurrent);
+      node.classList.toggle('completed', isCompleted);
+      if (isCurrent) {
         node.setAttribute('aria-current', 'step');
       } else {
         node.removeAttribute('aria-current');
       }
     });
+
+    const mobileToggleCurr = document.getElementById('mobile-toggle-curr');
+    if (mobileToggleCurr) {
+      mobileToggleCurr.textContent = String(currentIndex + 1).padStart(2, '0');
+    }
 
     // 3. Actualización del HUD inferior
     if (sceneCounterCur) {
@@ -2355,6 +2363,50 @@ const NavigationEngine = (() => {
           const stepVal = stepNode.dataset.step;
           if (stepVal !== undefined) {
             goToScene(parseInt(stepVal, 10));
+            closeMobileNavMenu();
+          }
+        }
+      });
+
+      // Menú móvil desplegable con cuadrados
+      const mobileNavToggle = document.getElementById('hud-mobile-nav-toggle');
+      const mobileNavMenu = document.getElementById('hud-mobile-menu');
+
+      const closeMobileNavMenu = () => {
+        if (mobileNavMenu && mobileNavMenu.classList.contains('is-open')) {
+          mobileNavMenu.classList.remove('is-open');
+          mobileNavMenu.setAttribute('aria-hidden', 'true');
+          if (mobileNavToggle) {
+            mobileNavToggle.classList.remove('is-open');
+            mobileNavToggle.setAttribute('aria-expanded', 'false');
+          }
+        }
+      };
+
+      const toggleMobileNavMenu = () => {
+        if (!mobileNavMenu) return;
+        const willOpen = !mobileNavMenu.classList.contains('is-open');
+        mobileNavMenu.classList.toggle('is-open', willOpen);
+        mobileNavMenu.setAttribute('aria-hidden', willOpen ? 'false' : 'true');
+        if (mobileNavToggle) {
+          mobileNavToggle.classList.toggle('is-open', willOpen);
+          mobileNavToggle.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
+        }
+        SoundEngine.click();
+      };
+
+      if (mobileNavToggle) {
+        mobileNavToggle.addEventListener('click', (e) => {
+          e.stopPropagation();
+          toggleMobileNavMenu();
+        });
+      }
+
+      // Cerrar al hacer clic fuera del menú móvil
+      document.addEventListener('click', (e) => {
+        if (mobileNavMenu && mobileNavMenu.classList.contains('is-open')) {
+          if (!mobileNavMenu.contains(e.target) && !mobileNavToggle.contains(e.target)) {
+            closeMobileNavMenu();
           }
         }
       });
