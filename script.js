@@ -771,7 +771,7 @@ const VerificationModule = (() => {
   const statusIndicator = document.getElementById('verify-status-indicator');
   const grantBanner = document.getElementById('access-grant-banner');
   const btnSkip = document.getElementById('btn-skip-verify');
-  const btnContinue = document.getElementById('btn-continue-verify');
+  const getContinueBtn = () => document.getElementById('btn-confirm-attendance') || document.getElementById('btn-continue-verify');
 
   const clearTimers = () => {
     timers.forEach(t => clearTimeout(t));
@@ -801,6 +801,7 @@ const VerificationModule = (() => {
 
     if (grantBanner) grantBanner.classList.add('show');
     DOM.hide(btnSkip);
+    const btnContinue = getContinueBtn();
     DOM.show(btnContinue);
     if (btnContinue) btnContinue.focus();
 
@@ -821,8 +822,9 @@ const VerificationModule = (() => {
     if (logList) logList.innerHTML = '';
     if (meterFill) meterFill.style.width = '0%';
     if (percentLabel) percentLabel.textContent = '0%';
+    if (statusIndicator) statusIndicator.textContent = 'PROCESANDO...';
     if (grantBanner) grantBanner.classList.remove('show');
-    DOM.hide(btnContinue);
+    DOM.hide(getContinueBtn());
     DOM.show(btnSkip);
 
     const stepDuration = 550;
@@ -862,6 +864,13 @@ const VerificationModule = (() => {
       clearTimers();
       isCompleted = false;
       isRunning = false;
+      if (logList) logList.innerHTML = '';
+      if (meterFill) meterFill.style.width = '0%';
+      if (percentLabel) percentLabel.textContent = '0%';
+      if (statusIndicator) statusIndicator.textContent = 'PROCESANDO...';
+      if (grantBanner) grantBanner.classList.remove('show');
+      DOM.hide(getContinueBtn());
+      DOM.show(btnSkip);
     }
   };
 })();
@@ -1253,20 +1262,25 @@ const QREngine = (() => {
 })();
 
 /* ==========================================================================
-   10. MÓDULO DE FORMULARIO RSVP (ESCENA 08)
-   Lee la configuración exclusivamente de EVENT_META.
+   10. MÓDULO DE FORMULARIO RSVP (ESCENA 05 — 3 PASOS)
+   Paso 1: Formulario -> Paso 2: Verificación visual -> Paso 3: Confirmación final
    ========================================================================== */
 const RSVPModule = (() => {
   const form = document.getElementById('rsvp-form');
+  const step1 = document.getElementById('rsvp-step-1');
+  const step2 = document.getElementById('rsvp-step-2');
+  const step3 = document.getElementById('rsvp-step-3');
+
+  const btnSubmitStep1 = document.getElementById('btn-submit-rsvp');
+  const btnBackToStep1 = document.getElementById('btn-back-to-step1');
+  const btnConfirmAttendance = document.getElementById('btn-confirm-attendance');
   const resultCard = document.getElementById('rsvp-result-card');
-  const btnSubmit = document.getElementById('btn-submit-rsvp');
-  const spinner = btnSubmit ? btnSubmit.querySelector('.btn-spinner') : null;
-  const btnText = btnSubmit ? btnSubmit.querySelector('.btn-text') : null;
 
   const errName = document.getElementById('err-name');
   const errEmail = document.getElementById('err-email');
   const errAttendance = document.getElementById('err-attendance');
 
+  let pendingPayload = null;
   let attendeeData = {
     name: '',
     email: '',
@@ -1418,7 +1432,6 @@ const RSVPModule = (() => {
         throw new Error('La solicitud tardó más de 10 segundos en responder. Por favor, reintenta.');
       }
 
-      // En entorno local (localhost/127.0.0.1) si el endpoint devuelve 404/405/501 o falla red por ser servidor estático (ej. VS Code Live Server, http.server) sin backend serverless activo
       if (isLocalEnvironment() && (err.message.includes('HTTP 404') || err.message.includes('HTTP 405') || err.message.includes('HTTP 501') || err.message.includes('Failed to fetch') || err.message.includes('NetworkError'))) {
         console.warn('[RSVP Local Dev]: Servidor estático local (Live Server / http.server) sin backend serverless activo. Activando simulación demostrativa.');
         return {
@@ -1429,35 +1442,59 @@ const RSVPModule = (() => {
         };
       }
 
-      // En producción: propagar el error sin inventar códigos ni avanzar
       throw err;
     }
   };
 
-  const handleSubmit = async (e) => {
+  // Paso 1: Valida el formulario y avanza al Paso 2 (verificación visual)
+  const handleStep1Submit = (e) => {
     if (e && e.preventDefault) e.preventDefault();
     const payload = validate();
     if (!payload) return;
 
-    // Ocultar banner de error previo si estaba visible
+    pendingPayload = payload;
+    SoundEngine.click();
+
+    DOM.hide(step1);
+    DOM.show(step2);
+    VerificationModule.start();
+  };
+
+  // Paso 2: Volver al Paso 1 para corregir datos
+  const handleBackToStep1 = () => {
+    SoundEngine.click();
+    VerificationModule.reset();
+    DOM.hide(step2);
+    DOM.show(step1);
+  };
+
+  // Paso 2 -> Paso 3: Confirmación definitiva y envío a Supabase / backend
+  const handleConfirmAttendance = async () => {
+    if (!pendingPayload) {
+      handleBackToStep1();
+      return;
+    }
+
     const errorBannerEl = document.getElementById('submission-error-banner');
     if (errorBannerEl) DOM.hide(errorBannerEl);
 
-    // Bloquear botón para evitar doble envío y anunciar estado accesible
-    if (btnSubmit) {
-      btnSubmit.disabled = true;
-      btnSubmit.setAttribute('aria-busy', 'true');
+    const spinner = btnConfirmAttendance ? btnConfirmAttendance.querySelector('.btn-spinner') : null;
+    const btnText = btnConfirmAttendance ? btnConfirmAttendance.querySelector('.btn-text') : null;
+
+    if (btnConfirmAttendance) {
+      btnConfirmAttendance.disabled = true;
+      btnConfirmAttendance.setAttribute('aria-busy', 'true');
     }
     DOM.show(spinner);
-    DOM.safeText(btnText, 'ENVIANDO...');
+    DOM.safeText(btnText, 'CONFIRMANDO...');
 
     try {
-      const result = await submitData(payload);
+      const result = await submitData(pendingPayload);
 
       attendeeData = {
-        name: payload.name,
-        email: payload.email,
-        attendance: payload.attendance,
+        name: pendingPayload.name,
+        email: pendingPayload.email,
+        attendance: pendingPayload.attendance,
         code: result.code
       };
 
@@ -1466,9 +1503,9 @@ const RSVPModule = (() => {
         'no': 'Inasistencia Registrada (Cupo Liberado)'
       };
 
-      DOM.safeText('#res-attendee-name', payload.name);
-      DOM.safeText('#res-attendee-email', payload.email);
-      DOM.safeText('#res-attendee-status', statusLabels[payload.attendance] || payload.attendance);
+      DOM.safeText('#res-attendee-name', pendingPayload.name);
+      DOM.safeText('#res-attendee-email', pendingPayload.email);
+      DOM.safeText('#res-attendee-status', statusLabels[pendingPayload.attendance] || pendingPayload.attendance);
       DOM.safeText('#res-attendee-code', result.code);
 
       const resBadgeEl = document.getElementById('result-badge-text');
@@ -1477,8 +1514,7 @@ const RSVPModule = (() => {
       const qrContainerEl = document.getElementById('result-qr-container');
       const qrWrapperEl = document.getElementById('rsvp-qr-code-wrapper');
 
-      if (payload.attendance === 'si') {
-        // Asistencia confirmada: renderizar código QR vectorial y activar descarga de pase
+      if (pendingPayload.attendance === 'si') {
         if (qrWrapperEl) {
           qrWrapperEl.innerHTML = QREngine.generateSVG(result.code, 168);
         }
@@ -1496,7 +1532,6 @@ const RSVPModule = (() => {
             : `Hemos reservado tu lugar oficial en la Biblioteca RETOS. Guarda o descarga tu pase digital de entrada para presentarlo el día del evento.`;
         }
       } else {
-        // Inasistencia: ocultar contenedor de QR y pase
         if (qrContainerEl) DOM.hide(qrContainerEl);
 
         if (resBadgeEl) {
@@ -1510,21 +1545,22 @@ const RSVPModule = (() => {
         }
       }
 
-      DOM.hide(form);
-      DOM.show(resultCard);
-      if (resultCard) resultCard.focus();
+      if (resultCard) DOM.show(resultCard);
+
+      // Transición a Paso 3 (Pantalla final)
+      DOM.hide(step2);
+      DOM.show(step3);
 
       NavigationEngine.updateClosingPersonalization(attendeeData);
 
       SoundEngine.success();
-      Toast.show('✔ Registro procesado correctamente');
+      Toast.show('✔ Asistencia confirmada con éxito');
 
     } catch (err) {
       console.error("[RSVP Error]:", err);
       SoundEngine.error();
       Toast.show('⚠ Error al procesar confirmación');
 
-      // Mostrar banner de error accesible con opción de reintento
       const errorTextEl = document.getElementById('submission-error-text');
       if (errorTextEl) {
         DOM.safeText(errorTextEl, err.message || 'No se pudo completar el registro. Por favor, reintenta.');
@@ -1535,32 +1571,37 @@ const RSVPModule = (() => {
       }
 
     } finally {
-      if (btnSubmit) {
-        btnSubmit.disabled = false;
-        btnSubmit.removeAttribute('aria-busy');
+      if (btnConfirmAttendance) {
+        btnConfirmAttendance.disabled = false;
+        btnConfirmAttendance.removeAttribute('aria-busy');
       }
       DOM.hide(spinner);
-      DOM.safeText(btnText, 'ENVIAR CONFIRMACIÓN');
+      DOM.safeText(btnText, 'Confirmar asistencia');
     }
   };
 
   const reset = () => {
     if (form) {
       form.reset();
-      DOM.show(form);
     }
-    DOM.hide(resultCard);
     clearErrors();
+    pendingPayload = null;
+    attendeeData = { name: '', email: '', attendance: '', code: '' };
+    VerificationModule.reset();
+
+    if (resultCard) DOM.hide(resultCard);
     const qrContainerEl = document.getElementById('result-qr-container');
     if (qrContainerEl) DOM.hide(qrContainerEl);
     const qrWrapperEl = document.getElementById('rsvp-qr-code-wrapper');
     if (qrWrapperEl) qrWrapperEl.innerHTML = '';
-    attendeeData = { name: '', email: '', attendance: '', code: '' };
+
+    DOM.hide(step2);
+    DOM.hide(step3);
+    DOM.show(step1);
   };
 
   return {
     init: () => {
-      // Configurar visibilidad del aviso de demostración
       const demoNotice = document.getElementById('demo-mode-notice');
       if (demoNotice) {
         if (window.location.protocol === 'file:') {
@@ -1570,17 +1611,24 @@ const RSVPModule = (() => {
         }
       }
 
-      if (form) form.addEventListener('submit', handleSubmit);
+      // Paso 1: Envío de formulario
+      if (form) form.addEventListener('submit', handleStep1Submit);
 
-      // Botón de reintento en el banner de error
+      // Paso 2: Volver a modificar datos
+      if (btnBackToStep1) btnBackToStep1.addEventListener('click', handleBackToStep1);
+
+      // Paso 2: Confirmación definitiva
+      if (btnConfirmAttendance) btnConfirmAttendance.addEventListener('click', handleConfirmAttendance);
+
+      // Reintento en el banner de error
       const btnRetry = document.getElementById('btn-retry-rsvp');
       if (btnRetry) {
         btnRetry.addEventListener('click', () => {
-          handleSubmit({ preventDefault: () => {} });
+          handleConfirmAttendance();
         });
       }
 
-      // Botón de descarga de pase digital de acreditación
+      // Descarga de pase digital
       const btnDownloadPass = document.getElementById('btn-download-pass');
       if (btnDownloadPass) {
         btnDownloadPass.addEventListener('click', () => {
@@ -1590,6 +1638,7 @@ const RSVPModule = (() => {
         });
       }
 
+      // Validación en vivo
       if (form && form.name) {
         form.name.addEventListener('input', () => {
           if (form.name.value.trim().length >= 2) {
@@ -1840,15 +1889,19 @@ const NavigationEngine = (() => {
   let routesMap = {}; // ruta -> índice
 
   const routeDisplayNames = {
-    'init': 'Inicialización',
-    'acceso': 'Verificación de Acceso',
-    'evento': 'Revelación del Evento',
-    'institucion': 'Identidad Institucional',
-    'coordenadas': 'Detalles y Logística',
-    'agenda': 'Agenda Formal',
-    'ejes': 'Ejes Temáticos',
-    'rsvp': 'Confirmación RSVP',
-    'cierre': 'Conclusión'
+    'bienvenida': 'Portada y Bienvenida',
+    'proposito': 'Propósito y Experiencia',
+    'coordenadas': 'Coordenadas y Logística',
+    'programa': 'Programa y Ejes',
+    'rsvp': 'Confirmación de Asistencia',
+    // Alias para enlaces o hash previos
+    'init': 'Portada y Bienvenida',
+    'acceso': 'Portada y Bienvenida',
+    'evento': 'Propósito y Experiencia',
+    'institucion': 'Propósito y Experiencia',
+    'agenda': 'Programa y Ejes',
+    'ejes': 'Programa y Ejes',
+    'cierre': 'Confirmación de Asistencia'
   };
 
   const navBtnBack = document.getElementById('nav-btn-back');
@@ -1899,7 +1952,7 @@ const NavigationEngine = (() => {
 
     currentIndex = targetIndex;
     const activeScene = scenesList[currentIndex];
-    const currentRoute = activeScene ? (activeScene.dataset.route || `scene-${currentIndex}`) : 'init';
+    const currentRoute = activeScene ? (activeScene.dataset.route || `scene-${currentIndex}`) : 'bienvenida';
 
     // 1. Conmutación limpia de escenas
     scenesList.forEach((scene, i) => {
@@ -1948,16 +2001,11 @@ const NavigationEngine = (() => {
       DOM.toggle(navBtnBack, currentIndex > 0);
     }
     if (navBtnNext) {
-      const hideNext = currentIndex === 0 || currentIndex === 1 || currentIndex === total - 1;
+      const hideNext = currentIndex === 0 || currentIndex === total - 1;
       DOM.toggle(navBtnNext, !hideNext);
     }
 
-    // 5. Eventos específicos de escena
-    if (currentIndex === 1) {
-      VerificationModule.start();
-    }
-
-    // 6. Sincronización de Hash en la URL
+    // 5. Sincronización de Hash en la URL
     if (updateHash && window.location.hash !== `#${currentRoute}`) {
       try {
         history.pushState(null, '', `#${currentRoute}`);
@@ -2007,12 +2055,7 @@ const NavigationEngine = (() => {
     }
 
     if (msg) {
-      const closingBase = "Si pueden hacer un espacio de tiempo, nos encantaría que nos acompañen. A los estudiantes les motivará muchísimo su presencia. Quedan cordialmente invitados.";
-      if (displayName) {
-        msg.textContent = `${displayName}, tu acreditación oficial ha quedado registrada en el sistema del evento. Si puedes hacer un espacio de tiempo, nos encantará que nos acompañes. Tu presencia motivará muchísimo a los estudiantes.`;
-      } else {
-        msg.textContent = closingBase;
-      }
+      msg.textContent = "Su presencia es una gran motivación para nuestros estudiantes. Esperamos contar con su valioso acompañamiento.";
     }
   };
 
@@ -2063,7 +2106,7 @@ const NavigationEngine = (() => {
         if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT') return;
 
         if (e.key === 'ArrowRight' || e.key === 'PageDown') {
-          if (currentIndex < scenesList.length - 1 && currentIndex !== 1) {
+          if (currentIndex < scenesList.length - 1) {
             e.preventDefault();
             goToScene('next');
           }
