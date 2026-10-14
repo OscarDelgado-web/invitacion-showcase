@@ -51,248 +51,446 @@ const EVENT_META = {
 const FALLBACK_CONTENT = {
   agenda: [
     {
-      id: "ag-01",
-      fecha: "2026-10-30",
-      horaInicio: "08:00",
-      horaFin: "08:05",
-      titulo: "Opening Ceremony",
-      descripcion: "Ceremonia de apertura del RETOS Showcase 2026 y bienvenida a estudiantes e invitados.",
-      responsable: "Estudiantes RETOS",
-      estado: "destacado",
-      tipo: "protocolo"
+        "id": "ag-01",
+        "fecha": "2026-10-30",
+        "horaInicio": "08:00",
+        "horaFin": "08:05",
+        "titulo": {
+            "es": "Opening Ceremony",
+            "en": "Opening Ceremony"
+        },
+        "descripcion": {
+            "es": "Ceremonia de apertura del RETOS Showcase 2026 - 2nd Edition y bienvenida a estudiantes e invitados.",
+            "en": "Opening ceremony of RETOS Showcase 2026 - 2nd Edition and official welcome to students and guests."
+        },
+        "responsable": {
+            "es": "Estudiantes RETOS",
+            "en": "RETOS Students"
+        },
+        "estado": "destacado",
+        "tipo": "protocolo"
     },
     {
-      id: "ag-02",
-      fecha: "2026-10-30",
-      horaInicio: "08:05",
-      horaFin: "08:10",
-      titulo: "RETOS Brainstorm",
-      descripcion: "Dinámica de lluvia de ideas en inglés para dar inicio a la jornada.",
-      responsable: "Estudiantes RETOS",
-      estado: "confirmado",
-      tipo: "debate"
+        "id": "ag-02",
+        "fecha": "2026-10-30",
+        "horaInicio": "08:05",
+        "horaFin": "08:10",
+        "titulo": {
+            "es": "RETOS Brainstorm",
+            "en": "RETOS Brainstorm"
+        },
+        "descripcion": {
+            "es": "Dinámica de lluvia de ideas en inglés para dar inicio a la jornada.",
+            "en": "Brainstorming session in English to kick off the day's activities."
+        },
+        "responsable": {
+            "es": "Estudiantes RETOS",
+            "en": "RETOS Students"
+        },
+        "estado": "confirmado",
+        "tipo": "debate"
     },
     {
-      id: "ag-03",
-      fecha: "2026-10-30",
-      horaInicio: "08:10",
-      horaFin: "08:25",
-      titulo: "Logistics Project: Ice Cream and Popsicle Producer",
-      descripcion: "Proyecto de Logística presentado en inglés: productor de helados y paletas.",
-      responsable: "Estudiantes de Logística",
-      estado: "confirmado",
-      tipo: "showcase"
+        "id": "ag-03",
+        "fecha": "2026-10-30",
+        "horaInicio": "08:10",
+        "horaFin": "08:25",
+        "titulo": {
+            "es": "Logistics Project: Ice Cream and Popsicle Producer",
+            "en": "Logistics Project: Ice Cream and Popsicle Producer"
+        },
+        "descripcion": {
+            "es": "Proyecto de Logística presentado en inglés: productor de helados y paletas.",
+            "en": "Logistics project presented in English: ice cream and popsicle production chain."
+        },
+        "responsable": {
+            "es": "Estudiantes de Logística",
+            "en": "Logistics Students"
+        },
+        "estado": "confirmado",
+        "tipo": "showcase"
     },
     {
-      id: "ag-04",
-      fecha: "2026-10-30",
-      horaInicio: "08:25",
-      horaFin: "08:40",
-      titulo: "Role-Play: The New Employee",
-      descripcion: "Simulación en inglés de una situación laboral: la llegada de un nuevo empleado.",
-      responsable: "Estudiantes RETOS",
-      estado: "confirmado",
-      tipo: "debate"
+        "id": "ag-04",
+        "fecha": "2026-10-30",
+        "horaInicio": "08:25",
+        "horaFin": "08:40",
+        "titulo": {
+            "es": "Role-Play: The New Employee",
+            "en": "Role-Play: The New Employee"
+        },
+        "descripcion": {
+            "es": "Simulación en inglés de una situación laboral: la llegada de un nuevo empleado.",
+            "en": "Workplace simulation in English: the onboarding of a new employee."
+        },
+        "responsable": {
+            "es": "Estudiantes RETOS",
+            "en": "RETOS Students"
+        },
+        "estado": "confirmado",
+        "tipo": "debate"
     },
     {
-      id: "ag-05",
-      fecha: "2026-10-30",
-      horaInicio: "08:40",
-      horaFin: "08:45",
-      titulo: "NEO Certification Progress Overview",
-      descripcion: "Resumen del avance de los estudiantes en las certificaciones de la plataforma Neo.",
-      responsable: "Neo y Estudiantes RETOS",
-      estado: "confirmado",
-      tipo: "ponencia"
+        "id": "ag-05",
+        "fecha": "2026-10-30",
+        "horaInicio": "08:40",
+        "horaFin": "08:45",
+        "titulo": {
+            "es": "NEO Certification Progress Overview",
+            "en": "NEO Certification Progress Overview"
+        },
+        "descripcion": {
+            "es": "Resumen del avance de los estudiantes en las certificaciones de la plataforma Neo.",
+            "en": "Overview of student advancement in the Neo platform international certifications."
+        },
+        "responsable": {
+            "es": "Neo y Estudiantes RETOS",
+            "en": "Neo & RETOS Students"
+        },
+        "estado": "confirmado",
+        "tipo": "ponencia"
     },
     {
-      id: "ag-06",
-      fecha: "2026-10-30",
-      horaInicio: "08:45",
-      horaFin: "09:00",
-      titulo: "Ice Breaker: Guess the Word",
-      descripcion: "Dinámica participativa en inglés para adivinar la palabra.",
-      responsable: "Estudiantes RETOS",
-      estado: "confirmado",
-      tipo: "networking"
+        "id": "ag-06",
+        "fecha": "2026-10-30",
+        "horaInicio": "08:45",
+        "horaFin": "09:00",
+        "titulo": {
+            "es": "Ice Breaker: Charades",
+            "en": "Ice Breaker: Charades"
+        },
+        "descripcion": {
+            "es": "Dinámica participativa en inglés para adivinar la palabra con mímica.",
+            "en": "Interactive English activity: word-guessing game with pantomime."
+        },
+        "responsable": {
+            "es": "Estudiantes RETOS",
+            "en": "RETOS Students"
+        },
+        "estado": "confirmado",
+        "tipo": "networking"
     },
     {
-      id: "ag-07",
-      fecha: "2026-10-30",
-      horaInicio: "09:00",
-      horaFin: "09:20",
-      titulo: "First English Certificate Award",
-      descripcion: "Primera entrega de certificaciones de inglés alcanzadas por los estudiantes.",
-      responsable: "Estudiantes RETOS",
-      estado: "destacado",
-      tipo: "inauguracion"
+        "id": "ag-07",
+        "fecha": "2026-10-30",
+        "horaInicio": "09:00",
+        "horaFin": "09:20",
+        "titulo": {
+            "es": "First English Certificate Award",
+            "en": "First English Certificate Award"
+        },
+        "descripcion": {
+            "es": "Primera entrega de certificaciones de inglés alcanzadas por los estudiantes.",
+            "en": "First ceremony awarding English certifications achieved by students."
+        },
+        "responsable": {
+            "es": "Estudiantes RETOS",
+            "en": "RETOS Students"
+        },
+        "estado": "destacado",
+        "tipo": "inauguracion"
     },
     {
-      id: "ag-08",
-      fecha: "2026-10-30",
-      horaInicio: "09:20",
-      horaFin: "09:30",
-      titulo: "Break",
-      descripcion: "Receso de la jornada.",
-      responsable: "RETOS / FTS",
-      estado: "confirmado",
-      tipo: "logistica"
+        "id": "ag-08",
+        "fecha": "2026-10-30",
+        "horaInicio": "09:20",
+        "horaFin": "09:30",
+        "titulo": {
+            "es": "Coffee Break",
+            "en": "Coffee Break"
+        },
+        "descripcion": {
+            "es": "Pausa dentro de la jornada con refrigerio.",
+            "en": "Mid-morning break with refreshments and informal networking."
+        },
+        "responsable": {
+            "es": "RETOS / FTS",
+            "en": "RETOS / FTS"
+        },
+        "estado": "confirmado",
+        "tipo": "logistica"
     },
     {
-      id: "ag-09",
-      fecha: "2026-10-30",
-      horaInicio: "09:30",
-      horaFin: "09:45",
-      titulo: "Ice Breaker: Treasure Hunt",
-      descripcion: "Dinámica participativa en inglés: búsqueda del tesoro.",
-      responsable: "Estudiantes RETOS",
-      estado: "confirmado",
-      tipo: "networking"
+        "id": "ag-09",
+        "fecha": "2026-10-30",
+        "horaInicio": "09:30",
+        "horaFin": "09:45",
+        "titulo": {
+            "es": "Ice Breaker: Treasure Hunt",
+            "en": "Ice Breaker: Treasure Hunt"
+        },
+        "descripcion": {
+            "es": "Dinámica participativa en inglés: búsqueda del tesoro.",
+            "en": "Interactive English activity: treasure hunt team challenge."
+        },
+        "responsable": {
+            "es": "Estudiantes RETOS",
+            "en": "RETOS Students"
+        },
+        "estado": "confirmado",
+        "tipo": "networking"
     },
     {
-      id: "ag-10",
-      fecha: "2026-10-30",
-      horaInicio: "09:45",
-      horaFin: "10:00",
-      titulo: "Software Project: RETOS Mentor",
-      descripcion: "Proyecto de Desarrollo de Software presentado en inglés: RETOS Mentor.",
-      responsable: "Estudiantes de Desarrollo de Software",
-      estado: "confirmado",
-      tipo: "showcase"
+        "id": "ag-10",
+        "fecha": "2026-10-30",
+        "horaInicio": "09:45",
+        "horaFin": "10:00",
+        "titulo": {
+            "es": "Software Project: RETOS Mentor",
+            "en": "Software Project: RETOS Mentor"
+        },
+        "descripcion": {
+            "es": "Proyecto de Desarrollo de Software presentado en inglés: RETOS Mentor.",
+            "en": "Software Development project presented in English: RETOS Mentor platform."
+        },
+        "responsable": {
+            "es": "Estudiantes de Desarrollo de Software",
+            "en": "Software Development Students"
+        },
+        "estado": "confirmado",
+        "tipo": "showcase"
     },
     {
-      id: "ag-11",
-      fecha: "2026-10-30",
-      horaInicio: "10:00",
-      horaFin: "10:15",
-      titulo: "Role-Play: The Power of Neo Study",
-      descripcion: "Simulación en inglés sobre el valor de estudiar con la plataforma Neo.",
-      responsable: "Estudiantes RETOS",
-      estado: "confirmado",
-      tipo: "debate"
+        "id": "ag-11",
+        "fecha": "2026-10-30",
+        "horaInicio": "10:00",
+        "horaFin": "10:15",
+        "titulo": {
+            "es": "Role-Play: The Power of Neo Study",
+            "en": "Role-Play: The Power of Neo Study"
+        },
+        "descripcion": {
+            "es": "Simulación en inglés sobre el valor de estudiar con la plataforma Neo.",
+            "en": "English simulation demonstrating the impact of learning with the Neo platform."
+        },
+        "responsable": {
+            "es": "Estudiantes RETOS",
+            "en": "RETOS Students"
+        },
+        "estado": "confirmado",
+        "tipo": "debate"
     },
     {
-      id: "ag-12",
-      fecha: "2026-10-30",
-      horaInicio: "10:15",
-      horaFin: "10:20",
-      titulo: "NEO Study Experience Video",
-      descripcion: "Video sobre la experiencia de estudio con Neo.",
-      responsable: "Neo y Estudiantes RETOS",
-      estado: "confirmado",
-      tipo: "ponencia"
+        "id": "ag-12",
+        "fecha": "2026-10-30",
+        "horaInicio": "10:15",
+        "horaFin": "10:20",
+        "titulo": {
+            "es": "NEO Study Experience Video",
+            "en": "NEO Study Experience Video"
+        },
+        "descripcion": {
+            "es": "Video sobre la experiencia de estudio con Neo.",
+            "en": "Video showcasing the student learning journey with Neo."
+        },
+        "responsable": {
+            "es": "Neo y Estudiantes RETOS",
+            "en": "Neo & RETOS Students"
+        },
+        "estado": "confirmado",
+        "tipo": "ponencia"
     },
     {
-      id: "ag-13",
-      fecha: "2026-10-30",
-      horaInicio: "10:20",
-      horaFin: "10:35",
-      titulo: "Mechatronics Project: Pick and Place",
-      descripcion: "Proyecto de Mecatrónica presentado en inglés: sistema Pick and Place.",
-      responsable: "Estudiantes de Mecatrónica",
-      estado: "confirmado",
-      tipo: "showcase"
+        "id": "ag-13",
+        "fecha": "2026-10-30",
+        "horaInicio": "10:20",
+        "horaFin": "10:35",
+        "titulo": {
+            "es": "Mechatronics Project: Pick and Place",
+            "en": "Mechatronics Project: Pick and Place"
+        },
+        "descripcion": {
+            "es": "Proyecto de Mecatrónica presentado en inglés: sistema Pick and Place.",
+            "en": "Mechatronics engineering project presented in English: automated Pick and Place system."
+        },
+        "responsable": {
+            "es": "Estudiantes de Mecatrónica",
+            "en": "Mechatronics Students"
+        },
+        "estado": "confirmado",
+        "tipo": "showcase"
     },
     {
-      id: "ag-14",
-      fecha: "2026-10-30",
-      horaInicio: "10:35",
-      horaFin: "10:50",
-      titulo: "Ice Breaker: The Queen Says",
-      descripcion: "Dinámica participativa en inglés: The Queen Says.",
-      responsable: "Estudiantes RETOS",
-      estado: "confirmado",
-      tipo: "networking"
+        "id": "ag-14",
+        "fecha": "2026-10-30",
+        "horaInicio": "10:35",
+        "horaFin": "10:50",
+        "titulo": {
+            "es": "Ice Breaker: The Queen Says",
+            "en": "Ice Breaker: The Queen Says"
+        },
+        "descripcion": {
+            "es": "Dinámica participativa en inglés: La Reina Dice.",
+            "en": "Interactive English activity: The Queen Says team game."
+        },
+        "responsable": {
+            "es": "Estudiantes RETOS",
+            "en": "RETOS Students"
+        },
+        "estado": "confirmado",
+        "tipo": "networking"
     },
     {
-      id: "ag-15",
-      fecha: "2026-10-30",
-      horaInicio: "10:50",
-      horaFin: "11:05",
-      titulo: "Role-Play: The PPE Incident",
-      descripcion: "Simulación en inglés de una situación de seguridad industrial: el incidente del equipo de protección personal (PPE).",
-      responsable: "Estudiantes RETOS",
-      estado: "confirmado",
-      tipo: "debate"
+        "id": "ag-15",
+        "fecha": "2026-10-30",
+        "horaInicio": "10:50",
+        "horaFin": "11:05",
+        "titulo": {
+            "es": "Role-Play: The PPE Incident",
+            "en": "Role-Play: The PPE Incident"
+        },
+        "descripcion": {
+            "es": "Simulación en inglés de una situación de seguridad industrial: el incidente con el EPP (equipo de protección personal).",
+            "en": "Industrial safety role-play in English: personal protective equipment (PPE) incident response."
+        },
+        "responsable": {
+            "es": "Estudiantes RETOS",
+            "en": "RETOS Students"
+        },
+        "estado": "confirmado",
+        "tipo": "debate"
     },
     {
-      id: "ag-16",
-      fecha: "2026-10-30",
-      horaInicio: "11:05",
-      horaFin: "11:20",
-      titulo: "Industrial Maintenance Project: Autodesk Inventor ('F1 car')",
-      descripcion: "Proyecto de Mantenimiento Industrial presentado en inglés, diseñado en Autodesk Inventor: un auto de F1.",
-      responsable: "Estudiantes de Mantenimiento Industrial",
-      estado: "confirmado",
-      tipo: "showcase"
+        "id": "ag-16",
+        "fecha": "2026-10-30",
+        "horaInicio": "11:05",
+        "horaFin": "11:20",
+        "titulo": {
+            "es": "Industrial Maintenance Project: Autodesk Inventor ('F1 car')",
+            "en": "Industrial Maintenance Project: Autodesk Inventor ('F1 car')"
+        },
+        "descripcion": {
+            "es": "Proyecto de Mantenimiento Industrial presentado en inglés, diseñado en Autodesk Inventor: un auto de F1.",
+            "en": "Industrial Maintenance engineering project presented in English, modeled in Autodesk Inventor: F1 race car."
+        },
+        "responsable": {
+            "es": "Estudiantes de Mantenimiento Industrial",
+            "en": "Industrial Maintenance Students"
+        },
+        "estado": "confirmado",
+        "tipo": "showcase"
     },
     {
-      id: "ag-17",
-      fecha: "2026-10-30",
-      horaInicio: "11:20",
-      horaFin: "11:35",
-      titulo: "Ice Breaker: Vocabulary Challenge",
-      descripcion: "Dinámica participativa en inglés: reto de vocabulario.",
-      responsable: "Estudiantes RETOS",
-      estado: "confirmado",
-      tipo: "networking"
+        "id": "ag-17",
+        "fecha": "2026-10-30",
+        "horaInicio": "11:20",
+        "horaFin": "11:35",
+        "titulo": {
+            "es": "Ice Breaker: Vocabulary Challenge",
+            "en": "Ice Breaker: Vocabulary Challenge"
+        },
+        "descripcion": {
+            "es": "Dinámica participativa en inglés: reto de vocabulario.",
+            "en": "Interactive English challenge: rapid-fire technical vocabulary game."
+        },
+        "responsable": {
+            "es": "Estudiantes RETOS",
+            "en": "RETOS Students"
+        },
+        "estado": "confirmado",
+        "tipo": "networking"
     },
     {
-      id: "ag-18",
-      fecha: "2026-10-30",
-      horaInicio: "11:35",
-      horaFin: "11:50",
-      titulo: "Role-Play: Boss vs. Machine",
-      descripcion: "Simulación en inglés de una situación laboral: el jefe frente a la máquina.",
-      responsable: "Estudiantes RETOS",
-      estado: "confirmado",
-      tipo: "debate"
+        "id": "ag-18",
+        "fecha": "2026-10-30",
+        "horaInicio": "11:35",
+        "horaFin": "11:50",
+        "titulo": {
+            "es": "Role-Play: Boss vs. Machine",
+            "en": "Role-Play: Boss vs. Machine"
+        },
+        "descripcion": {
+            "es": "Simulación en inglés de una situación laboral: el jefe vs la máquina.",
+            "en": "Workplace simulation in English: boss vs. machine operational challenge."
+        },
+        "responsable": {
+            "es": "Estudiantes RETOS",
+            "en": "RETOS Students"
+        },
+        "estado": "confirmado",
+        "tipo": "debate"
     },
     {
-      id: "ag-19",
-      fecha: "2026-10-30",
-      horaInicio: "11:50",
-      horaFin: "12:10",
-      titulo: "Second English Certificate Award",
-      descripcion: "Segunda entrega de certificaciones de inglés alcanzadas por los estudiantes.",
-      responsable: "Estudiantes RETOS",
-      estado: "destacado",
-      tipo: "inauguracion"
+        "id": "ag-19",
+        "fecha": "2026-10-30",
+        "horaInicio": "11:50",
+        "horaFin": "12:10",
+        "titulo": {
+            "es": "Second English Certificate Award",
+            "en": "Second English Certificate Award"
+        },
+        "descripcion": {
+            "es": "Segunda entrega de certificaciones de inglés alcanzadas por los estudiantes.",
+            "en": "Second ceremony awarding English certifications achieved by students."
+        },
+        "responsable": {
+            "es": "Estudiantes RETOS",
+            "en": "RETOS Students"
+        },
+        "estado": "destacado",
+        "tipo": "inauguracion"
     },
     {
-      id: "ag-20",
-      fecha: "2026-10-30",
-      horaInicio: "12:10",
-      horaFin: "12:15",
-      titulo: "RETOS Video",
-      descripcion: "Video institucional de RETOS.",
-      responsable: "RETOS / FTS",
-      estado: "confirmado",
-      tipo: "ponencia"
+        "id": "ag-20",
+        "fecha": "2026-10-30",
+        "horaInicio": "12:10",
+        "horaFin": "12:15",
+        "titulo": {
+            "es": "RETOS Video",
+            "en": "RETOS Video"
+        },
+        "descripcion": {
+            "es": "Recopilación de experiencias estudiantiles del ciclo.",
+            "en": "Highlights video compilation of student experiences throughout the academic cycle."
+        },
+        "responsable": {
+            "es": "RETOS / FTS",
+            "en": "RETOS / FTS"
+        },
+        "estado": "confirmado",
+        "tipo": "ponencia"
     },
     {
-      id: "ag-21",
-      fecha: "2026-10-30",
-      horaInicio: "12:15",
-      horaFin: "12:25",
-      titulo: "Closing Remarks",
-      descripcion: "Palabras de cierre de la jornada.",
-      responsable: "Estudiantes RETOS",
-      estado: "confirmado",
-      tipo: "protocolo"
+        "id": "ag-21",
+        "fecha": "2026-10-30",
+        "horaInicio": "12:15",
+        "horaFin": "12:25",
+        "titulo": {
+            "es": "Closing Remarks",
+            "en": "Closing Remarks"
+        },
+        "descripcion": {
+            "es": "Palabras de cierre de la jornada.",
+            "en": "Closing remarks and summary of the showcase session."
+        },
+        "responsable": {
+            "es": "Estudiantes RETOS",
+            "en": "RETOS Students"
+        },
+        "estado": "confirmado",
+        "tipo": "protocolo"
     },
     {
-      id: "ag-22",
-      fecha: "2026-10-30",
-      horaInicio: "12:25",
-      horaFin: "12:30",
-      titulo: "Official Closing",
-      descripcion: "Clausura oficial del RETOS Showcase 2026.",
-      responsable: "Estudiantes RETOS",
-      estado: "destacado",
-      tipo: "clausura"
+        "id": "ag-22",
+        "fecha": "2026-10-30",
+        "horaInicio": "12:25",
+        "horaFin": "12:30",
+        "titulo": {
+            "es": "Official Closing",
+            "en": "Official Closing"
+        },
+        "descripcion": {
+            "es": "Clausura oficial del RETOS Showcase 2026 - 2nd Edition.",
+            "en": "Official conclusion of RETOS Showcase 2026 - 2nd Edition."
+        },
+        "responsable": {
+            "es": "Estudiantes RETOS",
+            "en": "RETOS Students"
+        },
+        "estado": "destacado",
+        "tipo": "clausura"
     }
-  ]
+]
 };
 
 /* ==========================================================================
@@ -754,12 +952,23 @@ const Toast = {
    Simula la autorización de acceso institucional de forma cinemática.
    ========================================================================== */
 const VerificationModule = (() => {
-  const steps = [
-    { text: "Estableciendo enlace cifrado con el nodo institucional RETOS...", status: "CONECTADO" },
-    { text: "Validando firma digital y protocolo de acreditación...", status: "VERIFICADO" },
-    { text: "Sincronizando agenda académica y credenciales de sala...", status: "COMPLETADO" },
-    { text: "Autorizando acceso oficial al entorno del evento...", status: "AUTORIZADO" }
-  ];
+  const getSteps = () => {
+    const lang = (window.getCurrentLang && window.getCurrentLang()) || 'es';
+    if (lang === 'en') {
+      return [
+        { text: "Establishing encrypted link with RETOS institutional node...", status: "CONNECTED" },
+        { text: "Validating digital signature and accreditation protocol...", status: "VERIFIED" },
+        { text: "Synchronizing academic schedule and hall credentials...", status: "COMPLETED" },
+        { text: "Authorizing official access to the event environment...", status: "AUTHORIZED" }
+      ];
+    }
+    return [
+      { text: "Estableciendo enlace cifrado con el nodo institucional RETOS...", status: "CONECTADO" },
+      { text: "Validando firma digital y protocolo de acreditación...", status: "VERIFICADO" },
+      { text: "Sincronizando agenda académica y credenciales de sala...", status: "COMPLETADO" },
+      { text: "Autorizando acceso oficial al entorno del evento...", status: "AUTORIZADO" }
+    ];
+  };
 
   let timers = [];
   let isRunning = false;
@@ -784,7 +993,7 @@ const VerificationModule = (() => {
     isCompleted = true;
 
     if (logList) {
-      logList.innerHTML = steps.map(s => `
+      logList.innerHTML = getSteps().map(s => `
         <li class="log-entry visible">
           <span class="log-prefix">&gt;</span>
           <span class="log-text">${s.text}</span>
@@ -796,7 +1005,7 @@ const VerificationModule = (() => {
     if (meterFill) meterFill.style.width = '100%';
     if (percentLabel) percentLabel.textContent = '100%';
     if (statusIndicator) {
-      statusIndicator.textContent = 'ACCESO CONCEDIDO';
+      statusIndicator.textContent = ((window.getCurrentLang && window.getCurrentLang()) === 'en') ? 'ACCESS GRANTED' : 'ACCESO CONCEDIDO';
     }
 
     if (grantBanner) grantBanner.classList.add('show');
@@ -822,12 +1031,13 @@ const VerificationModule = (() => {
     if (logList) logList.innerHTML = '';
     if (meterFill) meterFill.style.width = '0%';
     if (percentLabel) percentLabel.textContent = '0%';
-    if (statusIndicator) statusIndicator.textContent = 'PROCESANDO...';
+    if (statusIndicator) statusIndicator.textContent = ((window.getCurrentLang && window.getCurrentLang()) === 'en') ? 'PROCESSING...' : 'PROCESANDO...';
     if (grantBanner) grantBanner.classList.remove('show');
     DOM.hide(getContinueBtn());
     DOM.show(btnSkip);
 
     const stepDuration = 550;
+    const steps = getSteps();
 
     steps.forEach((step, idx) => {
       const t = setTimeout(() => {
@@ -853,7 +1063,7 @@ const VerificationModule = (() => {
 
     const finalTimer = setTimeout(() => {
       completeVerification();
-    }, (steps.length + 1) * stepDuration);
+    }, (getSteps().length + 1) * stepDuration);
     timers.push(finalTimer);
   };
 
@@ -867,7 +1077,7 @@ const VerificationModule = (() => {
       if (logList) logList.innerHTML = '';
       if (meterFill) meterFill.style.width = '0%';
       if (percentLabel) percentLabel.textContent = '0%';
-      if (statusIndicator) statusIndicator.textContent = 'PROCESANDO...';
+      if (statusIndicator) statusIndicator.textContent = ((window.getCurrentLang && window.getCurrentLang()) === 'en') ? 'PROCESSING...' : 'PROCESANDO...';
       if (grantBanner) grantBanner.classList.remove('show');
       DOM.hide(getContinueBtn());
       DOM.show(btnSkip);
@@ -1712,8 +1922,9 @@ const CountdownEngine = {
       minsEl.textContent = pad(minutes);
       secsEl.textContent = pad(seconds);
 
-      DOM.safeText(statusLabel, 'TIEMPO RESTANTE PARA EL INICIO');
-      DOM.safeText(liveBadge, 'EN ESPERA // 30 OCT 2026');
+      const isEnCD = ((window.getCurrentLang && window.getCurrentLang()) === 'en');
+      DOM.safeText(statusLabel, isEnCD ? 'TIME REMAINING UNTIL START' : 'TIEMPO RESTANTE PARA EL INICIO');
+      DOM.safeText(liveBadge, isEnCD ? 'STANDBY // 30 OCT 2026' : 'EN ESPERA // 30 OCT 2026');
       if (liveBadge) {
         liveBadge.className = 'countdown-status-indicator status-waiting';
       }
@@ -1729,8 +1940,9 @@ const CountdownEngine = {
       minsEl.textContent = pad(minutes);
       secsEl.textContent = pad(seconds);
 
-      DOM.safeText(statusLabel, '¡EL EVENTO SE ESTÁ DESARROLLANDO EN ESTE MOMENTO!');
-      DOM.safeText(liveBadge, '● EN CURSO EN ESTE MOMENTO');
+      const isEnCD2 = ((window.getCurrentLang && window.getCurrentLang()) === 'en');
+      DOM.safeText(statusLabel, isEnCD2 ? 'THE EVENT IS CURRENTLY UNDERWAY!' : '¡EL EVENTO SE ESTÁ DESARROLLANDO EN ESTE MOMENTO!');
+      DOM.safeText(liveBadge, isEnCD2 ? '● LIVE IN PROGRESS' : '● EN CURSO EN ESTE MOMENTO');
       if (liveBadge) {
         liveBadge.className = 'countdown-status-indicator status-live';
       }
@@ -1742,8 +1954,9 @@ const CountdownEngine = {
       minsEl.textContent = '00';
       secsEl.textContent = '00';
 
-      DOM.safeText(statusLabel, 'SESIÓN CONCLUIDA');
-      DOM.safeText(liveBadge, 'EVENTO FINALIZADO CON ÉXITO');
+      const isEnCD3 = ((window.getCurrentLang && window.getCurrentLang()) === 'en');
+      DOM.safeText(statusLabel, isEnCD3 ? 'SESSION CONCLUDED' : 'SESIÓN CONCLUIDA');
+      DOM.safeText(liveBadge, isEnCD3 ? 'EVENT CONCLUDED SUCCESSFULLY' : 'EVENTO FINALIZADO CON ÉXITO');
       if (liveBadge) {
         liveBadge.className = 'countdown-status-indicator status-ended';
       }
@@ -1757,26 +1970,34 @@ const CountdownEngine = {
    y los contadores dependientes de ella.
    ========================================================================== */
 const UIRenderer = {
-  // Renderiza la Agenda formal cronológica (Escena 06) y calcula sus contadores
+  // Renderiza la Agenda formal cronológica (Escena 04) y calcula sus contadores
   renderFormalAgenda(agenda) {
     const container = document.getElementById('agenda-container');
     if (!container) return;
+
+    const currentLang = (window.getCurrentLang && window.getCurrentLang()) || 'es';
+
+    const getLocalized = (val) => {
+      if (!val) return '';
+      if (typeof val === 'object') return val[currentLang] || val.es || val.en || '';
+      return val;
+    };
 
     if (!Array.isArray(agenda) || agenda.length === 0) {
       container.innerHTML = `
         <li class="agenda-timeline-item">
           <article class="agenda-item-card">
-            <h3 class="agenda-event-title">Agenda por confirmar</h3>
-            <p class="agenda-event-desc">El cronograma oficial de actividades se encuentra en proceso de sincronización.</p>
+            <h3 class="agenda-event-title">${currentLang === 'en' ? 'Schedule to be confirmed' : 'Agenda por confirmar'}</h3>
+            <p class="agenda-event-desc">${currentLang === 'en' ? 'The official schedule of activities is currently synchronizing.' : 'El cronograma oficial de actividades se encuentra en proceso de sincronización.'}</p>
           </article>
         </li>
       `;
-      DOM.safeText('#agenda-blocks-count', '0 BLOQUES');
+      DOM.safeText('#agenda-blocks-count', currentLang === 'en' ? '0 BLOCKS' : '0 BLOQUES');
       return;
     }
 
     // Cálculo de contadores a partir del array de la agenda
-    DOM.safeText('#agenda-blocks-count', `${agenda.length} BLOQUES CONFIRMADOS`);
+    DOM.safeText('#agenda-blocks-count', `${agenda.length} ${currentLang === 'en' ? 'CONFIRMED BLOCKS' : 'BLOQUES CONFIRMADOS'}`);
 
     const firstItem = agenda[0];
     const lastItem = agenda[agenda.length - 1];
@@ -1787,10 +2008,11 @@ const UIRenderer = {
     const [year, month, day] = fechaRef.split('-').map(Number);
     const dateObj = new Date(year, month - 1, day);
     const dateFormatOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-    const dateFormatted = new Intl.DateTimeFormat('es-ES', dateFormatOptions).format(dateObj);
+    const localeStr = currentLang === 'en' ? 'en-US' : 'es-ES';
+    const dateFormatted = new Intl.DateTimeFormat(localeStr, dateFormatOptions).format(dateObj);
     const dateCapitalized = dateFormatted.charAt(0).toUpperCase() + dateFormatted.slice(1);
 
-    const dateShort = dateObj.toLocaleDateString('es-ES', { day: '2-digit', month: 'short', year: 'numeric' }).toUpperCase();
+    const dateShort = dateObj.toLocaleDateString(localeStr, { day: '2-digit', month: 'short', year: 'numeric' }).toUpperCase();
     DOM.safeText('#agenda-date-coord', `${dateShort} // ${horaInicioMin} - ${horaFinMax} HRS`);
 
     const agendaSummaryDate = document.getElementById('agenda-summary-date');
@@ -1811,11 +2033,21 @@ const UIRenderer = {
     };
 
     const statusLabels = {
-      'confirmado': 'Confirmado',
-      'destacado': 'Destacado',
-      'en-curso': 'En Curso',
-      'proximo': 'Programado'
+      es: {
+        'confirmado': 'Confirmado',
+        'destacado': 'Destacado',
+        'en-curso': 'En Curso',
+        'proximo': 'Programado'
+      },
+      en: {
+        'confirmado': 'Confirmed',
+        'destacado': 'Featured',
+        'en-curso': 'In Progress',
+        'proximo': 'Scheduled'
+      }
     };
+
+    const currentStatusLabels = statusLabels[currentLang] || statusLabels.es;
 
     container.innerHTML = agenda.map(item => `
       <li class="agenda-timeline-item" id="${item.id}">
@@ -1831,19 +2063,19 @@ const UIRenderer = {
               <time datetime="${item.fecha}T${item.horaFin}">${item.horaFin} hrs</time>
             </div>
             <span class="agenda-status-pill status-${item.estado || 'confirmado'}">
-              ${statusLabels[item.estado] || item.estado}
+              ${currentStatusLabels[item.estado] || item.estado}
             </span>
           </header>
 
-          <h3 class="agenda-event-title">${item.titulo}</h3>
-          <p class="agenda-event-desc">${item.descripcion}</p>
+          <h3 class="agenda-event-title">${getLocalized(item.titulo)}</h3>
+          <p class="agenda-event-desc">${getLocalized(item.descripcion)}</p>
 
           <footer class="agenda-item-footer">
             <div class="agenda-speaker">
               ${iconMap[item.tipo] || iconMap.ponencia}
-              <span>${item.responsable}</span>
+              <span>${getLocalized(item.responsable)}</span>
             </div>
-            <span class="agenda-type-tag">TIPO: ${item.tipo.toUpperCase()}</span>
+            <span class="agenda-type-tag">${currentLang === 'en' ? 'TYPE' : 'TIPO'}: ${item.tipo.toUpperCase()}</span>
           </footer>
         </article>
       </li>
@@ -1889,19 +2121,34 @@ const NavigationEngine = (() => {
   let routesMap = {}; // ruta -> índice
 
   const routeDisplayNames = {
-    'bienvenida': 'Portada y Bienvenida',
-    'proposito': 'Propósito y Experiencia',
-    'coordenadas': 'Coordenadas y Logística',
-    'programa': 'Programa y Ejes',
-    'rsvp': 'Confirmación de Asistencia',
-    // Alias para enlaces o hash previos
-    'init': 'Portada y Bienvenida',
-    'acceso': 'Portada y Bienvenida',
-    'evento': 'Propósito y Experiencia',
-    'institucion': 'Propósito y Experiencia',
-    'agenda': 'Programa y Ejes',
-    'ejes': 'Programa y Ejes',
-    'cierre': 'Confirmación de Asistencia'
+    es: {
+      'bienvenida': 'Portada y Bienvenida',
+      'proposito': 'Propósito y Experiencia',
+      'coordenadas': 'Coordenadas y Logística',
+      'programa': 'Programa y Ejes',
+      'rsvp': 'Confirmación de Asistencia',
+      'init': 'Portada y Bienvenida',
+      'acceso': 'Portada y Bienvenida',
+      'evento': 'Propósito y Experiencia',
+      'institucion': 'Propósito y Experiencia',
+      'agenda': 'Programa y Ejes',
+      'ejes': 'Programa y Ejes',
+      'cierre': 'Confirmación de Asistencia'
+    },
+    en: {
+      'bienvenida': 'Cover & Welcome',
+      'proposito': 'Purpose & Experience',
+      'coordenadas': 'Coordinates & Logistics',
+      'programa': 'Schedule & Pillars',
+      'rsvp': 'Attendance Confirmation',
+      'init': 'Cover & Welcome',
+      'acceso': 'Cover & Welcome',
+      'evento': 'Purpose & Experience',
+      'institucion': 'Purpose & Experience',
+      'agenda': 'Schedule & Pillars',
+      'ejes': 'Schedule & Pillars',
+      'cierre': 'Attendance Confirmation'
+    }
   };
 
   const navBtnBack = document.getElementById('nav-btn-back');
@@ -1992,8 +2239,22 @@ const NavigationEngine = (() => {
     if (sceneCounterCur) {
       sceneCounterCur.textContent = String(currentIndex + 1).padStart(2, '0');
     }
+    const currentLang = (window.getCurrentLang && window.getCurrentLang()) || 'es';
+    const names = routeDisplayNames[currentLang] || routeDisplayNames.es;
     if (sceneCounterName) {
-      sceneCounterName.textContent = routeDisplayNames[currentRoute] || `Escena ${currentIndex + 1}`;
+      sceneCounterName.textContent = names[currentRoute] || (currentLang === 'en' ? `Scene ${currentIndex + 1}` : `Escena ${currentIndex + 1}`);
+    }
+
+    // Visibilidad del toggle fijo de idioma en escenas 2 a 5
+    const fixedLangToggle = document.getElementById('hud-lang-fixed');
+    if (fixedLangToggle) {
+      if (currentIndex === 0) {
+        fixedLangToggle.classList.add('is-hidden');
+        fixedLangToggle.setAttribute('aria-hidden', 'true');
+      } else {
+        fixedLangToggle.classList.remove('is-hidden');
+        fixedLangToggle.removeAttribute('aria-hidden');
+      }
     }
 
     // 4. Visibilidad de botones de navegación inferior
@@ -2046,16 +2307,23 @@ const NavigationEngine = (() => {
       displayName = displayName.replace(/[.,;:!]+$/, '');
     }
 
+    const lang = (window.getCurrentLang && window.getCurrentLang()) || 'es';
     if (headline) {
       if (displayName) {
-        headline.innerHTML = `Sesión completada, <span class="text-gradient">${displayName}.</span>`;
+        headline.innerHTML = lang === 'en'
+          ? `Session completed, <span class="text-gradient">${displayName}.</span>`
+          : `Sesión completada, <span class="text-gradient">${displayName}.</span>`;
       } else {
-        headline.innerHTML = `Sesión <span class="text-gradient">completada.</span>`;
+        headline.innerHTML = lang === 'en'
+          ? `Session <span class="text-gradient">completed.</span>`
+          : `Sesión <span class="text-gradient">completada.</span>`;
       }
     }
 
     if (msg) {
-      msg.textContent = "Su presencia es una gran motivación para nuestros estudiantes. Esperamos contar con su valioso acompañamiento.";
+      msg.textContent = lang === 'en'
+        ? "Your presence is a great motivation for our students. We look forward to having your valuable company."
+        : "Su presencia es una gran motivación para nuestros estudiantes. Esperamos contar con su valioso acompañamiento.";
     }
   };
 
@@ -2065,6 +2333,16 @@ const NavigationEngine = (() => {
 
       // Delegación centralizada de clics
       document.addEventListener('click', (e) => {
+        const langBtn = e.target.closest('.lang-btn');
+        if (langBtn && langBtn.dataset.lang) {
+          e.preventDefault();
+          if (window.applyLang) {
+            window.applyLang(langBtn.dataset.lang);
+          }
+          SoundEngine.click();
+          return;
+        }
+
         const targetBtn = e.target.closest('[data-target]');
         if (targetBtn) {
           const targetVal = targetBtn.dataset.target;
@@ -2296,5 +2574,28 @@ document.addEventListener('DOMContentLoaded', async () => {
       UIRenderer.renderAll(FALLBACK_CONTENT.agenda);
       NavigationEngine.init();
     } catch (_) {}
+  }
+});
+
+
+// Re-render dinámico al conmutar idioma
+window.addEventListener('retos:langchange', (e) => {
+  const currentAgenda = DataService.getAgenda ? DataService.getAgenda() : (FALLBACK_CONTENT.agenda);
+  if (currentAgenda) {
+    UIRenderer.renderFormalAgenda(currentAgenda);
+  }
+  if (CountdownEngine && CountdownEngine.update) {
+    CountdownEngine.update();
+  }
+  const attendee = (typeof RSVPModule !== 'undefined' && RSVPModule.getAttendee) ? RSVPModule.getAttendee() : null;
+  if (attendee && attendee.name) {
+    NavigationEngine.updateClosingPersonalization(attendee);
+  }
+  if (NavigationEngine && NavigationEngine.updateHudSceneName) {
+    NavigationEngine.updateHudSceneName();
+  }
+  const step2El = document.getElementById('rsvp-step-2');
+  if (step2El && !step2El.classList.contains('is-hidden') && VerificationModule) {
+    VerificationModule.start();
   }
 });

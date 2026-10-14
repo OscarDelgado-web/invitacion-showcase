@@ -214,6 +214,7 @@ body::before {
   align-items: center;
   justify-content: center;
   flex-grow: 1;
+  margin-right: 80px;
   max-width: 740px;
   /* FIX: Permitir compresión del contenedor en pantallas pequeñas sin expulsar controles */
   min-width: 0;
@@ -2885,3 +2886,165 @@ body::before {
     animation: none !important;
   }
 }
+
+/* ==========================================================================
+   SISTEMA DE TRADUCCIÓN / SELECTORES DE IDIOMA (BILINGÜE)
+   ========================================================================== */
+
+/* 1. Selector en Escena 1 (justo debajo del CTA Principal) */
+.scene1-lang-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 16px;
+  width: 100%;
+}
+
+.scene1-lang-selector {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 2px 4px;
+  background: rgba(8, 22, 19, 0.65);
+  border: 1px solid var(--b-subtle);
+  border-radius: 8px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+}
+
+.scene1-lang-selector .lang-btn {
+  min-height: 44px;
+  min-width: 44px;
+  padding: 0 12px;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  color: var(--tx-muted);
+  font-family: var(--f-mono);
+  font-size: 0.84rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.22s var(--ease-smooth);
+}
+
+.scene1-lang-selector .lang-btn:hover {
+  color: var(--cyan-accent);
+  background: rgba(203, 239, 82, 0.08);
+}
+
+.scene1-lang-selector .lang-btn.active {
+  color: var(--green-electric);
+  background: rgba(160, 197, 37, 0.16);
+  border-color: rgba(160, 197, 37, 0.5);
+  box-shadow: 0 0 10px rgba(160, 197, 37, 0.25);
+}
+
+.scene1-lang-selector .lang-sep {
+  color: var(--tx-faint);
+  font-family: var(--f-mono);
+  font-size: 0.85rem;
+  user-select: none;
+  padding: 0 2px;
+}
+
+/* 2. Toggle fijo discreto en escenas 2 a 5 (esquina superior derecha) */
+.hud-lang-fixed {
+  position: fixed;
+  top: max(14px, env(safe-area-inset-top));
+  right: calc(max(16px, env(safe-area-inset-right)) + 88px);
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 2px 4px;
+  background: rgba(6, 17, 16, 0.88);
+  border: 1px solid var(--b-subtle);
+  border-radius: 6px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: 25;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+.hud-lang-fixed.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.hud-lang-fixed .lang-btn {
+  height: 30px;
+  min-width: 32px;
+  padding: 0 6px;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  color: var(--tx-muted);
+  font-family: var(--f-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+/* Área táctil accesible en móviles */
+.hud-lang-fixed .lang-btn::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 44px;
+  min-height: 44px;
+}
+
+.hud-lang-fixed .lang-btn:hover {
+  color: var(--cyan-accent);
+}
+
+.hud-lang-fixed .lang-btn.active {
+  color: var(--green-electric);
+  background: rgba(160, 197, 37, 0.16);
+  border-color: rgba(160, 197, 37, 0.45);
+  box-shadow: 0 0 8px rgba(160, 197, 37, 0.22);
+}
+
+.hud-lang-fixed .lang-sep {
+  color: var(--tx-faint);
+  font-family: var(--f-mono);
+  font-size: 0.72rem;
+  user-select: none;
+  padding: 0 1px;
+}
+
+.lang-btn:focus-visible {
+  outline: 2px solid var(--green-electric);
+  outline-offset: 2px;
+}
+
+@media (max-width: 640px) {
+  .hud-lang-fixed {
+    top: max(14px, env(safe-area-inset-top));
+    right: calc(max(10px, env(safe-area-inset-right)) + 80px);
+    height: 34px;
+  }
+  .hud-lang-fixed .lang-btn {
+    height: 28px;
+    min-width: 28px;
+    font-size: 0.68rem;
+    padding: 0 5px;
+  }
+}
+
