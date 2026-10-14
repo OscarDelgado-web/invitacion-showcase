@@ -1803,16 +1803,24 @@ const UIRenderer = {
 
   // Telemetría en tiempo real
   startTelemetryClock() {
-    const el = document.getElementById('telemetry-time');
-    if (!el) return;
-    const update = () => {
-      const now = new Date();
-      const pad = (n) => String(n).padStart(2, '0');
-      el.textContent = `UTC ${pad(now.getUTCHours())}:${pad(now.getUTCMinutes())}:${pad(now.getUTCSeconds())}`;
-    };
-    update();
-    setInterval(update, 1000);
-  },
+  const el = document.getElementById('telemetry-time');
+  if (!el) return;
+
+  const fmt = new Intl.DateTimeFormat('es-SV', {
+    timeZone: 'America/El_Salvador',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    hour12: false
+  });
+
+  const update = () => {
+    el.textContent = ` ${fmt.format(new Date())}`;
+  };
+
+  update();
+  setInterval(update, 1000);
+},
 
   // Ejecución integrada de renderizado dinámico
   renderAll(agenda) {
