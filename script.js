@@ -1045,7 +1045,7 @@ const QREngine = (() => {
     },
 
     downloadPass(attendee) {
-      if (!attendee || !attendee.code) return;
+      if (!attendee || (!attendee.codigo && !attendee.code)) return;
       const canvas = document.createElement('canvas');
       const width = 640;
       const height = 920;
@@ -1079,7 +1079,7 @@ const QREngine = (() => {
       }
 
       // 3. Marco decorativo principal
-      ctx.strokeStyle = '#00e5ff';
+      ctx.strokeStyle = '#3cff00ff';
       ctx.lineWidth = 2;
       ctx.strokeRect(26, 26, width - 52, height - 52);
 
@@ -1203,7 +1203,8 @@ const QREngine = (() => {
         link.href = canvas.toDataURL('image/png');
         link.click();
         if (typeof Toast !== 'undefined' && Toast.show) {
-          Toast.show('✔ Pase digital descargado exitosamente');
+          const currentLang = (window.getCurrentLang && window.getCurrentLang()) || 'en';
+          Toast.show(currentLang === 'en' ? '✔ Digital entrance pass downloaded successfully' : '✔ Pase digital descargado exitosamente');
         }
       } catch (err) {
         console.error('Error al generar imagen del pase:', err);
@@ -1737,7 +1738,8 @@ const RSVPModule = (() => {
       const btnDownloadPass = document.getElementById('btn-download-pass');
       if (btnDownloadPass) {
         btnDownloadPass.addEventListener('click', () => {
-          if (attendeeData && attendeeData.codigo) {
+          SoundEngine.click();
+          if (attendeeData && (attendeeData.codigo || attendeeData.code)) {
             QREngine.downloadPass(attendeeData);
           }
         });
