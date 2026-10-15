@@ -3681,7 +3681,7 @@ select.form-input option {
 }
 
 .at-sub-btn {
-  flex: 2;
+  flex: 1;
   min-height: 40px;
   font-size: 0.72rem;
   padding: 8px 10px;
