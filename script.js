@@ -2142,7 +2142,7 @@ const NavigationEngine = (() => {
       const rawName = attendee.nombre || attendee.name;
       const parts = rawName.trim().split(/\s+/);
       if (parts.length > 1) {
-        displayName = parts[0,1];
+        displayName = parts[0];
       } else {
         displayName = parts[0];
       }
