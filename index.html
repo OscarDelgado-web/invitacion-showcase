@@ -1,85 +1,84 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="theme-color" content="#030809">
-  <meta name="description" content="Invitación Oficial — RETOS Showcase 2026 - 2nd Edition. Programa de Inglés, RETOS / FTS. Viernes 30 de octubre de 2026, 08:00–12:30, Biblioteca RETOS, Instituto RETOS, La Libertad.">
-  <title>RETOS Showcase 2026 - 2nd Edition — Instituto RETOS</title>
+  <meta name="description" content="Official Invitation — RETOS Showcase 2026 - 2nd Edition. English Program, RETOS / FTS. Friday, October 30, 2026, 08:00–12:30, RETOS Library, RETOS Institute, La Libertad.">
+  <title>RETOS Showcase 2026 - 2nd Edition — RETOS Institute</title>
 
-  <!-- URL Canónica (Reemplazar con tu dominio final de producción en Vercel) -->
+  <!-- Canonical URL -->
   <link rel="canonical" href="https://invitacionshowcase2.vercel.app/">
 
-  
-  <!-- Metadatos para compartir: Open Graph y Twitter Cards -->
-  <meta property="og:title" content="RETOS Showcase 2026 - 2nd Edition - Instituto RETOS">
-  <meta property="og:description" content="Invitación Oficial al RETOS Showcase 2026 - 2nd Edition. Viernes 30 de octubre de 2026, 08:00–12:30, Biblioteca RETOS, Instituto RETOS, La Libertad.">
+  <!-- Metadata for sharing: Open Graph and Twitter Cards -->
+  <meta property="og:title" content="RETOS Showcase 2026 - 2nd Edition — RETOS Institute">
+  <meta property="og:description" content="Official Invitation to the RETOS Showcase 2026 - 2nd Edition. Friday, October 30, 2026, 08:00–12:30, RETOS Library, RETOS Institute, La Libertad.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://invitacionshowcase2.vercel.app/">
   <meta property="og:image" content="https://invitacionshowcase2.vercel.app/assets/logo-center.png">
-  <meta property="og:locale" content="es_SV">
+  <meta property="og:locale" content="en_US">
   <meta property="og:site_name" content="RETOS Showcase 2026 - 2nd Edition">
 
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Invitacion RETOS Showcase 2026 - 2nd Edition">
-  <meta name="twitter:description" content="Invitación Oficial al RETOS Showcase 2026 - 2nd Edition. Viernes 30 de octubre de 2026, 08:00–12:30, Biblioteca RETOS, Instituto RETOS, La Libertad.">
+  <meta name="twitter:title" content="RETOS Showcase 2026 - 2nd Edition Invitation">
+  <meta name="twitter:description" content="Official Invitation to the RETOS Showcase 2026 - 2nd Edition. Friday, October 30, 2026, 08:00–12:30, RETOS Library, RETOS Institute, La Libertad.">
   <meta name="twitter:image" content="https://invitacionshowcase2.vercel.app/assets/logo-center.png">
 
-  <!-- Favicon local optimizado en assets/ -->
+  <!-- Favicon -->
   <link rel="icon" href="./assets/favicon.png" type="image/png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=2">
 </head>
 <body>
-  <!-- Canvas de fondo para partículas cinéticas y retícula ambiental -->
+  <!-- Canvas background for kinetic particles and ambient grid -->
   <canvas id="ambient-canvas" aria-hidden="true"></canvas>
 
-  <!-- Línea de escaneo láser ambiental -->
+  <!-- Ambient laser scanline -->
   <div class="hud-scanline" aria-hidden="true"></div>
 
-  <!-- Luces ambientales de fondo -->
+  <!-- Ambient glow lights -->
   <div class="ambient-glow glow-top" aria-hidden="true"></div>
   <div class="ambient-glow glow-bottom" aria-hidden="true"></div>
 
-  <!-- ENCABEZADO GLOBAL / HUD -->
+  <!-- GLOBAL HEADER / HUD -->
   <header class="hud-header">
     <div class="hud-brand" id="brand-container" role="banner">
       <div class="brand-info">
-        <img src="./assets/logo-head.png" alt="Logotipo Instituto RETOS" class="brand-logo-img">
+        <img src="./assets/logo-head.png" alt="RETOS Institute logo" class="brand-logo-img" data-i18n-attr="alt:brandLogoAlt">
       </div>
     </div>
 
-    <!-- Indicador de progreso de 5 pasos dinámicos -->
-    <nav class="hud-progress-wrapper" aria-label="Progreso de la experiencia">
-      <!-- Stepper horizontal para pantallas grandes (Desktop) -->
+    <!-- 5-step dynamic progress indicator -->
+    <nav class="hud-progress-wrapper" aria-label="Experience progress" data-i18n-attr="aria-label:step1Aria">
+      <!-- Horizontal stepper for desktop screens -->
       <ol class="hud-stepper" id="hud-stepper">
-        <li class="step-node active" data-step="0" role="button" tabindex="0" aria-label="Escena 1: Bienvenida" data-i18n-attr="aria-label:step1Aria">
+        <li class="step-node active" data-step="0" role="button" tabindex="0" aria-label="Scene 1 of 5: Welcome" data-i18n-attr="aria-label:step1Aria">
           <span class="step-num">01</span>
-          <span class="step-tag" data-i18n="step1">Bienvenida</span>
+          <span class="step-tag" data-i18n="step1">Welcome</span>
         </li>
-        <li class="step-node" data-step="1" role="button" tabindex="0" aria-label="Escena 2: Propósito" data-i18n-attr="aria-label:step2Aria">
+        <li class="step-node" data-step="1" role="button" tabindex="0" aria-label="Scene 2 of 5: Purpose" data-i18n-attr="aria-label:step2Aria">
           <span class="step-num">02</span>
-          <span class="step-tag" data-i18n="step2">Propósito</span>
+          <span class="step-tag" data-i18n="step2">Purpose</span>
         </li>
-        <li class="step-node" data-step="2" role="button" tabindex="0" aria-label="Escena 3: Logística" data-i18n-attr="aria-label:step3Aria">
+        <li class="step-node" data-step="2" role="button" tabindex="0" aria-label="Scene 3 of 5: Logistics" data-i18n-attr="aria-label:step3Aria">
           <span class="step-num">03</span>
-          <span class="step-tag" data-i18n="step3">Logística</span>
+          <span class="step-tag" data-i18n="step3">Logistics</span>
         </li>
-        <li class="step-node" data-step="3" role="button" tabindex="0" aria-label="Escena 4: Programa" data-i18n-attr="aria-label:step4Aria">
+        <li class="step-node" data-step="3" role="button" tabindex="0" aria-label="Scene 4 of 5: Schedule" data-i18n-attr="aria-label:step4Aria">
           <span class="step-num">04</span>
-          <span class="step-tag" data-i18n="step4">Programa</span>
+          <span class="step-tag" data-i18n="step4">Schedule</span>
         </li>
-        <li class="step-node" data-step="4" role="button" tabindex="0" aria-label="Escena 5: Confirmación" data-i18n-attr="aria-label:step5Aria">
+        <li class="step-node" data-step="4" role="button" tabindex="0" aria-label="Scene 5 of 5: RSVP" data-i18n-attr="aria-label:step5Aria">
           <span class="step-num">05</span>
-          <span class="step-tag" data-i18n="step5">Confirmación</span>
+          <span class="step-tag" data-i18n="step5">RSVP</span>
         </li>
       </ol>
 
-      <!-- Botón Hamburguesa para celulares -->
-      <button class="hud-mobile-nav-toggle" id="hud-mobile-nav-toggle" type="button" aria-label="Abrir menú de navegación" aria-expanded="false" aria-controls="hud-mobile-menu">
+      <!-- Mobile hamburger navigation button -->
+      <button class="hud-mobile-nav-toggle" id="hud-mobile-nav-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="hud-mobile-menu" data-i18n-attr="aria-label:mobileNavToggleAria">
         <span class="mobile-toggle-curr" id="mobile-toggle-curr">01</span>
         <span class="mobile-hamburger-icon" aria-hidden="true">
           <span class="hbar hbar-1"></span>
@@ -88,28 +87,28 @@
         </span>
       </button>
 
-      <!-- Mini menú desplegable en celular: solo números en un cuadrado -->
-      <div class="hud-mobile-menu" id="hud-mobile-menu" role="menu" aria-label="Navegación de escenas" aria-hidden="true">
+      <!-- Mobile dropdown menu: numbered squares -->
+      <div class="hud-mobile-menu" id="hud-mobile-menu" role="menu" aria-label="Scene navigation" aria-hidden="true" data-i18n-attr="aria-label:mobileMenuAria">
         <div class="mobile-menu-grid">
-          <button type="button" class="step-node mobile-step-square active" data-step="0" role="menuitem" aria-label="Escena 1">01</button>
-          <button type="button" class="step-node mobile-step-square" data-step="1" role="menuitem" aria-label="Escena 2">02</button>
-          <button type="button" class="step-node mobile-step-square" data-step="2" role="menuitem" aria-label="Escena 3">03</button>
-          <button type="button" class="step-node mobile-step-square" data-step="3" role="menuitem" aria-label="Escena 4">04</button>
-          <button type="button" class="step-node mobile-step-square" data-step="4" role="menuitem" aria-label="Escena 5">05</button>
+          <button type="button" class="step-node mobile-step-square active" data-step="0" role="menuitem" aria-label="Scene 1" data-i18n-attr="aria-label:mobileStep1Aria">01</button>
+          <button type="button" class="step-node mobile-step-square" data-step="1" role="menuitem" aria-label="Scene 2" data-i18n-attr="aria-label:mobileStep2Aria">02</button>
+          <button type="button" class="step-node mobile-step-square" data-step="2" role="menuitem" aria-label="Scene 3" data-i18n-attr="aria-label:mobileStep3Aria">03</button>
+          <button type="button" class="step-node mobile-step-square" data-step="3" role="menuitem" aria-label="Scene 4" data-i18n-attr="aria-label:mobileStep4Aria">04</button>
+          <button type="button" class="step-node mobile-step-square" data-step="4" role="menuitem" aria-label="Scene 5" data-i18n-attr="aria-label:mobileStep5Aria">05</button>
         </div>
       </div>
     </nav>
 
-    <!-- Controles de cabecera: Audio FX y Ayuda teclado -->
-    
-    <!-- Toggle discreto fijo para escenas 2 a 5 (oculto en escena 1) -->
-    <div class="hud-lang-fixed is-hidden" id="hud-lang-fixed" role="group" aria-label="Selector de idioma / Language selector" aria-hidden="true">
-      <button type="button" class="lang-btn active" data-lang="es" aria-pressed="true" aria-label="Español" data-i18n-attr="aria-label:langEsAria">ES</button>
+    <!-- Discreet fixed language toggle for scenes 2 to 7 (hidden in scene 1) -->
+    <div class="hud-lang-fixed is-hidden" id="hud-lang-fixed" role="group" aria-label="Language selector / Selector de idioma" aria-hidden="true" data-i18n-attr="aria-label:langSelectorAria">
+      <button type="button" class="lang-btn active" data-lang="en" aria-pressed="true" aria-label="Switch language to English" data-i18n-attr="aria-label:langEnAria">EN</button>
       <span class="lang-sep" aria-hidden="true">|</span>
-      <button type="button" class="lang-btn" data-lang="en" aria-pressed="false" aria-label="English" data-i18n-attr="aria-label:langEnAria">EN</button>
+      <button type="button" class="lang-btn" data-lang="es" aria-pressed="false" aria-label="Cambiar idioma a Español" data-i18n-attr="aria-label:langEsAria">ES</button>
     </div>
+
+    <!-- Header controls: Audio FX and Keyboard Help -->
     <div class="hud-controls">
-      <button class="hud-btn-icon" id="audio-toggle" aria-label="Alternar efectos de sonido sintéticos" title="Efectos de sonido (Web Audio)" data-i18n-attr="aria-label:audioAria,title:audioTitle">
+      <button class="hud-btn-icon" id="audio-toggle" aria-label="Toggle synthetic sound effects" title="Sound effects (Web Audio)" data-i18n-attr="aria-label:audioAria,title:audioTitle">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="audio-icon-on" aria-hidden="true">
           <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
           <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
@@ -122,7 +121,7 @@
         </svg>
       </button>
 
-      <button class="hud-btn-icon" id="help-toggle" aria-label="Atajos de teclado y ayuda" title="Atajos de teclado" data-i18n-attr="aria-label:helpAria,title:helpTitle">
+      <button class="hud-btn-icon" id="help-toggle" aria-label="Keyboard shortcuts and help" title="Keyboard shortcuts" data-i18n-attr="aria-label:helpAria,title:helpTitle">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <circle cx="12" cy="12" r="10"/>
           <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
@@ -132,22 +131,22 @@
     </div>
   </header>
 
-  <!-- CONTENEDOR PRINCIPAL DE ESCENAS -->
+  <!-- MAIN STAGE CONTAINER FOR SCENES -->
   <main id="stage" class="hud-stage" role="main">
 
     <!-- ========================================== -->
-    <!-- ESCENA 01: PORTADA Y BIENVENIDA            -->
+    <!-- SCENE 01: COVER AND WELCOME                -->
     <!-- ========================================== -->
-    <section class="scene active" id="scene-0" aria-label="Escena 1 de 5: Portada y bienvenida" data-index="0" data-route="bienvenida" data-i18n-attr="aria-label:scene0Aria">
+    <section class="scene active" id="scene-0" aria-label="Scene 1 of 5: Cover and welcome" data-index="0" data-route="bienvenida" data-i18n-attr="aria-label:scene0Aria">
       <div class="scene-inner">
-        <!-- Telemetría superior -->
+        <!-- Top telemetry bar -->
         <header class="hud-meta-bar">
-          <span class="hud-badge pulse" data-i18n="s1Badge">INVITACIÓN ESPECIAL</span>
+          <span class="hud-badge pulse" data-i18n="s1Badge">SPECIAL INVITATION</span>
           <span class="hud-coords" id="telemetry-time">UTC --:--:--</span>
         </header>
 
         <div class="init-layout">
-          <!-- Núcleo Holográfico Central -->
+          <!-- Central Holographic Core -->
           <div class="hologram-portal" aria-hidden="true">
             <div class="portal-grid"></div>
             <svg class="portal-svg" viewBox="0 0 320 320">
@@ -158,34 +157,32 @@
               <path d="M160 12 L160 42 M160 278 L160 308 M12 160 L42 160 M278 160 L308 160" stroke="var(--c-green)" stroke-width="1.5"/>
             </svg>
 
-            <!-- Logotipo circular centrado con halo holográfico -->
+            <!-- Centered circular logo with holographic glow -->
             <div class="portal-center-logo">
-              <img src="./assets/logo-center.png" alt="Logotipo circular del evento" class="portal-logo-img">
+              <img src="./assets/logo-center.png" alt="Event circular logo" class="portal-logo-img" data-i18n-attr="alt:s1LogoAlt">
             </div>
 
             <div class="portal-scanner-sweep"></div>
           </div>
 
-          <!-- Contenido Editorial -->
+          <!-- Editorial Content -->
           <article class="init-content">
             <div class="category-callout">
               <span class="callout-indicator"></span>
-              <span class="callout-text" id="s1-institution" data-i18n="s1Institution">Programa de Inglés • RETOS / FTS</span>
+              <span class="callout-text" id="s1-institution" data-i18n="s1Institution">English Program • RETOS / FTS</span>
             </div>
 
             <h1 class="hero-title" tabindex="-1" data-i18n="s1HeroTitle">RETOS Showcase <span class="text-gradient">2026</span> - 2nd Edition</h1>
-
-
           </article>
         </div>
 
         <!-- ========================================== -->
-        <!-- BLOQUE: WHAT TO EXPECT (QUÉ ESPERAR)       -->
+        <!-- BLOCK: WHAT TO EXPECT                      -->
         <!-- ========================================== -->
         <section class="what-to-expect-block" aria-labelledby="wte-block-title">
           <header class="wte-header">
             <div class="wte-heading-group">
-              <h2 class="wte-title" id="wte-block-title" data-i18n="wteTitle">¿Qué esperar?</h2>
+              <h2 class="wte-title" id="wte-block-title" data-i18n="wteTitle">What to expect</h2>
             </div>
             <div class="wte-header-line" aria-hidden="true"></div>
           </header>
@@ -203,8 +200,8 @@
                   </svg>
                 </div>
               </div>
-              <h3 class="wte-card-title" data-i18n="wteCard1Title">Certificación de Inglés</h3>
-              <p class="wte-card-desc" data-i18n="wteCard1Desc">A través de <strong>Neo Study</strong>, según el <strong>Marco Común Europeo de Referencia para las Lenguas (MCERL)</strong>.</p>
+              <h3 class="wte-card-title" data-i18n="wteCard1Title">English Certification</h3>
+              <p class="wte-card-desc" data-i18n="wteCard1Desc">Through <strong>Neo Study</strong>, aligned with the <strong>Common European Framework of Reference for Languages (CEFR)</strong>.</p>
             </article>
 
             <!-- 2. Career Based Project -->
@@ -220,8 +217,8 @@
                   </svg>
                 </div>
               </div>
-              <h3 class="wte-card-title" data-i18n="wteCard2Title">Proyectos por Carrera</h3>
-              <p class="wte-card-desc" data-i18n="wteCard2Desc">Demostración de las habilidades técnicas adquiridas durante el ciclo.</p>
+              <h3 class="wte-card-title" data-i18n="wteCard2Title">Career Based Project</h3>
+              <p class="wte-card-desc" data-i18n="wteCard2Desc">Showcase of technical and professional skills acquired throughout the cycle.</p>
             </article>
 
             <!-- 3. English Environment Only -->
@@ -235,42 +232,42 @@
                   </svg>
                 </div>
               </div>
-              <h3 class="wte-card-title" data-i18n="wteCard3Title">Ambiente 100% Inglés</h3>
-              <p class="wte-card-desc" data-i18n="wteCard3Desc">Role plays y actividades interactivas en un entorno de inmersión total.</p>
+              <h3 class="wte-card-title" data-i18n="wteCard3Title">English Environment Only</h3>
+              <p class="wte-card-desc" data-i18n="wteCard3Desc">Role plays and interactive activities in a fully immersive English environment.</p>
             </article>
           </div>
 
-          <!-- Nota breve debajo de las tres tarjetas -->
+          <!-- Brief footer note below cards -->
           <footer class="wte-footer-note">
             <svg class="wte-note-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <circle cx="12" cy="12" r="10"/>
               <line x1="12" y1="16" x2="12" y2="12"/>
               <line x1="12" y1="8" x2="12.01" y2="8"/>
             </svg>
-            <span class="wte-note-text" data-i18n="wteFooterNote">Durante el evento, la comunicación será en inglés.</span>
+            <span class="wte-note-text" data-i18n="wteFooterNote">During the event, all communication will be in English.</span>
           </footer>
         </section>
 
-        <!-- CTA Principal: Abrir Invitación -->
+        <!-- Dominant CTA Button: Start experience -->
         <div class="init-cta-group">
-          <button class="btn btn-primary btn-glow" id="btn-start" data-target="1" aria-label="Abrir Invitación y avanzar a la siguiente escena" data-i18n-attr="aria-label:btnStartAria">
+          <button class="btn btn-primary btn-glow" id="btn-start" data-target="1" aria-label="Start experience and proceed to next scene" data-i18n-attr="aria-label:btnStartAria">
             <span class="btn-scan"></span>
-            <span class="btn-text" data-i18n="btnStart">Abrir Invitación</span>
+            <span class="btn-text" data-i18n="btnStart">Start experience</span>
             <svg class="btn-icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
               <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
             </svg>
           </button>
         </div>
 
-        <!-- Selector de Idioma Secundario (Escena 1: ES | EN) -->
+        <!-- Scene 1 Language Selector: small, secondary, directly under Start button (EN | ES) -->
         <div class="scene1-lang-container">
-          <div class="scene1-lang-selector" role="group" aria-label="Selector de idioma / Language selector">
-            <button type="button" class="lang-btn active" data-lang="es" aria-pressed="true" aria-label="Español" data-i18n-attr="aria-label:langEsAria">
-              <span>ESPAÑOL</span>
+          <div class="scene1-lang-selector" role="group" aria-label="Language selector / Selector de idioma" data-i18n-attr="aria-label:langSelectorAria">
+            <button type="button" class="lang-btn active" data-lang="en" aria-pressed="true" aria-label="Switch language to English" data-i18n-attr="aria-label:langEnAria">
+              <span>EN</span>
             </button>
             <span class="lang-sep" aria-hidden="true">|</span>
-            <button type="button" class="lang-btn" data-lang="en" aria-pressed="false" aria-label="English" data-i18n-attr="aria-label:langEnAria">
-              <span>ENGLISH</span>
+            <button type="button" class="lang-btn" data-lang="es" aria-pressed="false" aria-label="Cambiar idioma a Español" data-i18n-attr="aria-label:langEsAria">
+              <span>ES</span>
             </button>
           </div>
         </div>
@@ -278,29 +275,29 @@
     </section>
 
     <!-- ========================================== -->
-    <!-- ESCENA 02: PROPÓSITO Y EXPERIENCIA        -->
+    <!-- SCENE 02: PURPOSE AND EXPERIENCE           -->
     <!-- ========================================== -->
-    <section class="scene" id="scene-1" aria-label="Escena 2 de 5: Propósito y experiencia" data-index="1" data-route="proposito" data-i18n-attr="aria-label:scene1Aria">
+    <section class="scene" id="scene-1" aria-label="Scene 2 of 5: Purpose and experience" data-index="1" data-route="proposito" data-i18n-attr="aria-label:scene1Aria">
       <div class="scene-inner">
         <header class="hud-meta-bar">
-          <span class="hud-badge" data-i18n="s2Badge">IDENTIDAD &amp; PROPÓSITO</span>
-          <span class="hud-coords" data-i18n="s2Coords">RETOS / FTS // PROGRAMA DE INGLÉS</span>
+          <span class="hud-badge" data-i18n="s2Badge">IDENTITY &amp; PURPOSE</span>
+          <span class="hud-coords" data-i18n="s2Coords">RETOS / FTS // ENGLISH PROGRAM</span>
           <span class="hud-tag">SEC-02//PURPOSE</span>
         </header>
 
         <div class="institucion-layout">
           <header class="scene-header">
-            <span class="scene-tag-kicker" data-i18n="s2Kicker">02 / PROPÓSITO Y EXPERIENCIA</span>
-            <h2 class="scene-title" tabindex="-1" data-i18n="s2Title">Un espacio de encuentro y <span class="text-gradient">talento</span></h2>
-            <p class="scene-lead" data-i18n="s2Lead">RETOS Showcase 2026 - 2nd Edition es un espacio donde nuestros estudiantes de Mecánica, Mecatrónica, Mantenimiento Industrial, Logística y Desarrollo de Software demuestran sus competencias comunicativas en inglés aplicadas a entornos técnicos reales.</p>
+            <span class="scene-tag-kicker" data-i18n="s2Kicker">02 / PURPOSE AND EXPERIENCE</span>
+            <h2 class="scene-title" tabindex="-1" data-i18n="s2Title">A space for connection and <span class="text-gradient">talent</span></h2>
+            <p class="scene-lead" data-i18n="s2Lead">RETOS Showcase 2026 - 2nd Edition is a space where our students in Mechanics, Mechatronics, Industrial Maintenance, Logistics, and Software Development demonstrate their English communication skills applied to real-world technical environments.</p>
           </header>
 
-          <!-- Mosaico Misión y Visión (Objetivo eliminado según requerimiento) -->
+          <!-- Mission and Vision Mosaic -->
           <div class="mision-vision-grid">
-            <!-- Misión (tal como está) -->
+            <!-- Mission -->
             <article class="mv-card mission-card">
               <header class="mv-card-header">
-                <span class="mv-badge" data-i18n="s2MissionBadge">PROPÓSITO FORMATIVO</span>
+                <span class="mv-badge" data-i18n="s2MissionBadge">EDUCATIONAL PURPOSE</span>
                 <div class="mv-icon" aria-hidden="true">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
                     <circle cx="12" cy="12" r="10"/>
@@ -309,16 +306,16 @@
                   </svg>
                 </div>
               </header>
-              <h3 class="mv-title" data-i18n="s2MissionTitle">Nuestra Misión</h3>
+              <h3 class="mv-title" data-i18n="s2MissionTitle">Our Mission</h3>
               <p class="mv-body" id="inst-mision" data-i18n="s2MissionBody">
-                Promover un espacio de aprendizaje, intercambio y certificación que fortalezca las competencias comunicativas en inglés de los estudiantes.
+                To foster a space of learning, exchange, and certification that strengthens students’ communicative competence in English.
               </p>
             </article>
 
-            <!-- Visión (tal como está) -->
+            <!-- Vision -->
             <article class="mv-card vision-card">
               <header class="mv-card-header">
-                <span class="mv-badge" data-i18n="s2VisionBadge">PROYECCIÓN ESTRATÉGICA</span>
+                <span class="mv-badge" data-i18n="s2VisionBadge">STRATEGIC PROJECTION</span>
                 <div class="mv-icon" aria-hidden="true">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
                     <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
@@ -326,20 +323,19 @@
                   </svg>
                 </div>
               </header>
-              <h3 class="mv-title" data-i18n="s2VisionTitle">Nuestra Visión</h3>
+              <h3 class="mv-title" data-i18n="s2VisionTitle">Our Vision</h3>
               <p class="mv-body" id="inst-vision" data-i18n="s2VisionBody">
-                Ser un evento que impulse el intercambio académico en inglés y proyecte el talento de los estudiantes hacia oportunidades nacionales e internacionales.
+                To be a flagship event promoting academic exchange in English and showcasing student talent toward national and international opportunities.
               </p>
             </article>
           </div>
 
-
           <footer class="scene-nav-actions">
             <button class="btn btn-ghost" data-target="0">
-              <span data-i18n="s2BtnBack">← Volver a portada</span>
+              <span data-i18n="s2BtnBack">← Back to cover</span>
             </button>
             <button class="btn btn-primary" data-target="2">
-              <span class="btn-text" data-i18n="s2BtnNext">Ver coordenadas y logística →</span>
+              <span class="btn-text" data-i18n="s2BtnNext">View coordinates &amp; logistics →</span>
             </button>
           </footer>
         </div>
@@ -347,26 +343,26 @@
     </section>
 
     <!-- ========================================== -->
-    <!-- ESCENA 03: COORDENADAS Y LOGÍSTICA         -->
+    <!-- SCENE 03: COORDINATES AND LOGISTICS        -->
     <!-- ========================================== -->
-    <section class="scene" id="scene-2" aria-label="Escena 3 de 5: Coordenadas y logística" data-index="2" data-route="coordenadas" data-i18n-attr="aria-label:scene2Aria">
+    <section class="scene" id="scene-2" aria-label="Scene 3 of 5: Coordinates and logistics" data-index="2" data-route="coordenadas" data-i18n-attr="aria-label:scene2Aria">
       <div class="scene-inner">
         <header class="hud-meta-bar">
-          <span class="hud-badge" data-i18n="s3Badge">LOGÍSTICA CONFIRMADA</span>
-          <span class="hud-coords" data-i18n="s3Coords">COORDENADAS // LOCALIZACIÓN</span>
+          <span class="hud-badge" data-i18n="s3Badge">CONFIRMED LOGISTICS</span>
+          <span class="hud-coords" data-i18n="s3Coords">COORDINATES // LOCATION</span>
           <span class="hud-tag">SEC-03//DETAILS</span>
         </header>
 
         <div class="details-layout">
           <header class="scene-header">
-            <span class="scene-tag-kicker" data-i18n="s3Kicker">03 / COORDENADAS DEL EVENTO</span>
-            <h2 class="scene-title" tabindex="-1" data-i18n="s3Title">Fecha, sede y <span class="text-gradient">logística</span></h2>
-            <p class="scene-lead" data-i18n="s3Lead">Consulta toda la información esencial para planificar tu participación y sincronizarla con tu agenda personal.</p>
+            <span class="scene-tag-kicker" data-i18n="s3Kicker">03 / EVENT COORDINATES</span>
+            <h2 class="scene-title" tabindex="-1" data-i18n="s3Title">Date, venue and <span class="text-gradient">logistics</span></h2>
+            <p class="scene-lead" data-i18n="s3Lead">Review all essential information to plan your attendance and synchronize it with your calendar.</p>
           </header>
 
-          <!-- Tarjetas de especificaciones HUD -->
+          <!-- Specification HUD Cards -->
           <div class="details-grid">
-            <!-- Tarjeta 1: Fecha -->
+            <!-- Card 1: Date -->
             <article class="detail-card">
               <div class="dc-icon-wrapper" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
@@ -377,13 +373,13 @@
                 </svg>
               </div>
               <div class="dc-content">
-                <span class="dc-tag" data-i18n="s3CardDateTag">FECHA DEL EVENTO</span>
-                <strong class="dc-headline" id="detail-date" data-i18n="s3CardDateVal"><time datetime="2026-10-30">Viernes, 30 de octubre de 2026</time></strong>
-                <span class="dc-sub" id="detail-date-sub" data-i18n="s3CardDateSub">Convocatoria oficial para el año 2026</span>
+                <span class="dc-tag" data-i18n="s3CardDateTag">EVENT DATE</span>
+                <strong class="dc-headline" id="detail-date" data-i18n="s3CardDateVal"><time datetime="2026-10-30">Friday, October 30, 2026</time></strong>
+                <span class="dc-sub" id="detail-date-sub" data-i18n="s3CardDateSub">Official gathering for academic year 2026</span>
               </div>
             </article>
 
-            <!-- Tarjeta 2: Horario -->
+            <!-- Card 2: Time (24h format) -->
             <article class="detail-card">
               <div class="dc-icon-wrapper" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
@@ -392,13 +388,13 @@
                 </svg>
               </div>
               <div class="dc-content">
-                <span class="dc-tag" data-i18n="s3CardTimeTag">HORARIO OFICIAL</span>
-                <strong class="dc-headline" id="detail-time" data-i18n="s3CardTimeVal">8:00 a.m. — 12:30 p.m.</strong>
-                <span class="dc-sub" data-i18n="s3CardTimeSub">Actividad matutina continua</span>
+                <span class="dc-tag" data-i18n="s3CardTimeTag">OFFICIAL TIME</span>
+                <strong class="dc-headline" id="detail-time" data-i18n="s3CardTimeVal">08:00 – 12:30</strong>
+                <span class="dc-sub" data-i18n="s3CardTimeSub">Continuous morning program</span>
               </div>
             </article>
 
-            <!-- Tarjeta 3: Sede / Ubicación -->
+            <!-- Card 3: Venue -->
             <article class="detail-card">
               <div class="dc-icon-wrapper" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
@@ -407,13 +403,13 @@
                 </svg>
               </div>
               <div class="dc-content">
-                <span class="dc-tag" data-i18n="s3CardVenueTag">SEDE &amp; DIRECCIÓN</span>
-                <strong class="dc-headline" id="detail-venue" data-i18n="s3CardVenueVal">Biblioteca de Instituto RETOS / FTS</strong>
-                <span class="dc-sub" id="detail-address" data-i18n="s3CardVenueSub">Instituto RETOS • La Libertad</span>
+                <span class="dc-tag" data-i18n="s3CardVenueTag">VENUE &amp; ADDRESS</span>
+                <strong class="dc-headline" id="detail-venue" data-i18n="s3CardVenueVal">RETOS / FTS Institute Library</strong>
+                <span class="dc-sub" id="detail-address" data-i18n="s3CardVenueSub">RETOS Institute • La Libertad</span>
               </div>
             </article>
 
-            <!-- Tarjeta 4: Audiencia y Acceso -->
+            <!-- Card 4: Audience & Access -->
             <article class="detail-card">
               <div class="dc-icon-wrapper" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
@@ -424,20 +420,20 @@
                 </svg>
               </div>
               <div class="dc-content">
-                <span class="dc-tag" data-i18n="s3CardAudienceTag">AUDIENCIA &amp; ACREDITACIÓN</span>
-                <strong class="dc-headline" id="detail-audience" data-i18n="s3CardAudienceVal">Comunidad RETOS / FTS, empresas, instituciones e invitados especiales.</strong>
-                <span class="dc-sub" id="detail-notes" data-i18n="s3CardAudienceSub">Actividad presencial durante toda la mañana. Se solicita confirmar asistencia para acompañar a nuestros estudiantes.</span>
+                <span class="dc-tag" data-i18n="s3CardAudienceTag">AUDIENCE &amp; ACCREDITATION</span>
+                <strong class="dc-headline" id="detail-audience" data-i18n="s3CardAudienceVal">RETOS / FTS Community, enterprises, institutions, and honored guests.</strong>
+                <span class="dc-sub" id="detail-notes" data-i18n="s3CardAudienceSub">In-person morning session. RSVP is kindly requested to support our students.</span>
               </div>
             </article>
           </div>
 
-          <!-- Botones de Acción Funcionales -->
+          <!-- Functional CTA Banner -->
           <article class="details-cta-banner">
             <div class="cta-banner-text">
-              <strong data-i18n="s3BannerTitle">¿Cómo llegar y sincronizar el evento?</strong>
-              <span data-i18n="s3BannerSub">Abre el mapa de navegación o añade el evento a tu calendario personal:</span>
+              <strong data-i18n="s3BannerTitle">How to get there and synchronize the event?</strong>
+              <span data-i18n="s3BannerSub">Open the navigation map or add the event to your personal calendar:</span>
             </div>
-            <div class="cta-banner-buttons" role="group" aria-label="Opciones de navegación y calendario">
+            <div class="cta-banner-buttons" role="group" aria-label="Navigation and calendar options">
               <a
                 class="btn btn-secondary"
                 id="btn-map-google"
@@ -446,14 +442,14 @@
                 target="_blank"
                 rel="noopener noreferrer"
                 role="button"
-                aria-label="Abrir ubicación en Google Maps (se abre en nueva pestaña)"
+                aria-label="Open location in Google Maps (opens in new tab)"
                 data-i18n-attr="aria-label:s3BtnGoogleAria"
               >
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="btn-inline-icon" aria-hidden="true">
                   <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
                   <circle cx="12" cy="10" r="3"/>
                 </svg>
-                <span class="btn-text" data-i18n="s3BtnGoogle">Abrir en Google Maps</span>
+                <span class="btn-text" data-i18n="s3BtnGoogle">Open in Google Maps</span>
               </a>
 
               <a
@@ -464,24 +460,24 @@
                 target="_blank"
                 rel="noopener noreferrer"
                 role="button"
-                aria-label="Abrir navegación directa en Waze (se abre en nueva pestaña)"
+                aria-label="Open direct navigation in Waze (opens in new tab)"
                 data-i18n-attr="aria-label:s3BtnWazeAria"
               >
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="btn-inline-icon" aria-hidden="true">
                   <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
                   <circle cx="12" cy="10" r="3"/>
                 </svg>
-                <span class="btn-text" data-i18n="s3BtnWaze">Abrir en Waze</span>
+                <span class="btn-text" data-i18n="s3BtnWaze">Open in Waze</span>
               </a>
             </div>
           </article>
 
           <footer class="scene-nav-actions">
             <button class="btn btn-ghost" data-target="1">
-              <span data-i18n="s3BtnBack">← Propósito y experiencia</span>
+              <span data-i18n="s3BtnBack">← Purpose and experience</span>
             </button>
             <button class="btn btn-primary" data-target="3">
-              <span class="btn-text" data-i18n="s3BtnNext">Explorar programa →</span>
+              <span class="btn-text" data-i18n="s3BtnNext">Explore schedule →</span>
             </button>
           </footer>
         </div>
@@ -489,59 +485,57 @@
     </section>
 
     <!-- ========================================== -->
-    <!-- ESCENA 04: PROGRAMA Y EJES                 -->
+    <!-- SCENE 04: SCHEDULE AND CRONOGRAM           -->
     <!-- ========================================== -->
-    <section class="scene" id="scene-3" aria-label="Escena 4 de 5: Programa del evento" data-index="3" data-route="programa" data-i18n-attr="aria-label:scene3Aria">
+    <section class="scene" id="scene-3" aria-label="Scene 4 of 5: Event schedule" data-index="3" data-route="programa" data-i18n-attr="aria-label:scene3Aria">
       <div class="scene-inner">
         <header class="hud-meta-bar">
-          <span class="hud-badge pulse-cyan" data-i18n="s4Badge">PROGRAMA OFICIAL</span>
+          <span class="hud-badge pulse-cyan" data-i18n="s4Badge">OFFICIAL SCHEDULE</span>
           <span class="hud-coords" id="agenda-date-coord">30 OCT 2026 // 08:00 - 12:30 HRS</span>
           <span class="hud-tag">SEC-04//SCHEDULE</span>
         </header>
 
         <div class="agenda-layout">
           <header class="scene-header">
-            <span class="scene-tag-kicker" data-i18n="s4Kicker">04 / PROGRAMA DEL EVENTO</span>
-            <h2 class="scene-title" tabindex="-1" data-i18n="s4Title">Agenda formal y <span class="text-gradient">cronograma</span></h2>
-            <p class="scene-lead" data-i18n="s4Lead">Estructura cronológica de la jornada matutina, presentaciones estudiantiles en contextos técnicos, entrega de certificaciones y vinculación institucional.</p>
+            <span class="scene-tag-kicker" data-i18n="s4Kicker">04 / EVENT SCHEDULE</span>
+            <h2 class="scene-title" tabindex="-1" data-i18n="s4Title">Formal agenda and <span class="text-gradient">schedule</span></h2>
+            <p class="scene-lead" data-i18n="s4Lead">Chronological schedule of the morning session, student presentations in technical contexts, certification awards, and institutional networking.</p>
           </header>
 
-          <!-- Resumen de metadatos de la jornada -->
-          <aside class="agenda-meta-summary" aria-label="Resumen de la jornada">
+          <!-- Day metadata summary -->
+          <aside class="agenda-meta-summary" aria-label="Schedule summary">
             <div class="ams-item">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="agenda-time-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="agenda-time-icon" width="16" height="16" aria-hidden="true">
                 <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
                 <line x1="16" y1="2" x2="16" y2="6"/>
                 <line x1="8" y1="2" x2="8" y2="6"/>
                 <line x1="3" y1="10" x2="21" y2="10"/>
               </svg>
-              <span><span data-i18n="s4SummaryDateLabel">FECHA:</span> <strong id="agenda-summary-date"><time datetime="2026-10-30">Viernes, 30 de octubre de 2026</time></strong></span>
+              <span><span data-i18n="s4SummaryDateLabel">DATE:</span> <strong id="agenda-summary-date"><time datetime="2026-10-30">Friday, October 30, 2026</time></strong></span>
             </div>
             <div class="ams-item">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="agenda-time-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="agenda-time-icon" width="16" height="16" aria-hidden="true">
                 <circle cx="12" cy="12" r="10"/>
                 <polyline points="12 6 12 12 16 14"/>
               </svg>
-              <span><span data-i18n="s4SummaryTimeLabel">HORARIO:</span> <strong id="agenda-summary-time" data-i18n="s4SummaryTimeVal">08:00 — 12:30 hrs</strong></span>
+              <span><span data-i18n="s4SummaryTimeLabel">TIME:</span> <strong id="agenda-summary-time" data-i18n="s4SummaryTimeVal">08:00 — 12:30 hrs</strong></span>
             </div>
             <div class="ams-item">
-              <span class="hud-badge" id="agenda-blocks-count" data-i18n="s4BlocksCount">22 BLOQUES CONFIRMADOS</span>
+              <span class="hud-badge" id="agenda-blocks-count" data-i18n="s4BlocksCount">22 CONFIRMED BLOCKS</span>
             </div>
           </aside>
 
-          <!-- Lista ordenada cronológica de eventos (renderizada dinámicamente) -->
-          <ol class="agenda-timeline" id="agenda-container" aria-label="Lista de actividades de la agenda">
-            <!-- Inyectado dinámicamente mediante renderFormalAgenda() -->
-          </ol>
-
-        
+          <!-- Redesigned minimal agenda timeline: ul with li cards -->
+          <ul class="agenda-timeline" id="agenda-container" aria-label="Official event schedule" data-i18n-attr="aria-label:agendaTimelineAria">
+            <!-- Dynamically injected via UIRenderer.renderFormalAgenda() -->
+          </ul>
 
           <footer class="scene-nav-actions">
             <button class="btn btn-ghost" data-target="2">
-              <span data-i18n="s4BtnBack">← Coordenadas y logística</span>
+              <span data-i18n="s4BtnBack">← Coordinates and logistics</span>
             </button>
             <button class="btn btn-primary" data-target="4">
-              <span class="btn-text" data-i18n="s4BtnNext">Confirmar asistencia →</span>
+              <span class="btn-text" data-i18n="s4BtnNext">Confirm attendance →</span>
             </button>
           </footer>
         </div>
@@ -549,74 +543,74 @@
     </section>
 
     <!-- ========================================== -->
-    <!-- ESCENA 05: CONFIRMACIÓN DE ASISTENCIA      -->
-    <!-- (3 PASOS: FORMULARIO -> VERIFICACIÓN -> FIN) -->
+    <!-- SCENE 05: RSVP AND ATTENDANCE CONFIRMATION -->
+    <!-- (3 PANELS: FORM -> VERIFICATION -> CLOSING)-->
     <!-- ========================================== -->
-    <section class="scene" id="scene-4" aria-label="Escena 5 de 5: Confirmación de asistencia" data-index="4" data-route="rsvp" data-i18n-attr="aria-label:scene4Aria">
+    <section class="scene" id="scene-4" aria-label="Scene 5 of 5: Attendance confirmation" data-index="4" data-route="rsvp" data-i18n-attr="aria-label:scene4Aria">
       <div class="scene-inner">
 
-        <!-- PASO 1: Formulario de asistencia -->
+        <!-- STEP 1: RSVP Form -->
         <div class="rsvp-step-panel" id="rsvp-step-1">
           <header class="hud-meta-bar">
-            <span class="hud-badge pulse-cyan" data-i18n="s5Step1Badge">TERMINAL DE REGISTRO</span>
-            <span class="hud-coords" data-i18n="s5Step1Coords">PROTOCOLO RSVP // PASO 1 DE 3</span>
+            <span class="hud-badge pulse-cyan" data-i18n="s5Step1Badge">REGISTRATION TERMINAL</span>
+            <span class="hud-coords" data-i18n="s5Step1Coords">RSVP PROTOCOL // STEP 1 OF 3</span>
             <span class="hud-tag">SEC-05//FORM</span>
           </header>
 
           <div class="rsvp-layout">
             <header class="scene-header">
-              <span class="scene-tag-kicker" data-i18n="s5Step1Kicker">05 / CONFIRMACIÓN DE ASISTENCIA</span>
-              <h2 class="scene-title" tabindex="-1" data-i18n="s5Step1Title">Asegura tu <span class="text-gradient">acreditación</span></h2>
-              <p class="scene-lead" data-i18n="s5Step1Lead">Completa tus datos oficiales para reservar tu plaza en el evento institucional.</p>
+              <span class="scene-tag-kicker" data-i18n="s5Step1Kicker">05 / ATTENDANCE CONFIRMATION</span>
+              <h2 class="scene-title" tabindex="-1" data-i18n="s5Step1Title">Secure your <span class="text-gradient">accreditation</span></h2>
+              <p class="scene-lead" data-i18n="s5Step1Lead">Fill in your official details to reserve your seat at the institutional event.</p>
             </header>
 
-            <!-- Aviso de Modo Demostrativo (Oculto en producción, activado solo en entorno local/file://) -->
+            <!-- Local Demo Mode Notice (Hidden in production) -->
             <aside class="demo-integration-notice is-hidden" id="demo-mode-notice">
-              <div class="notice-badge" data-i18n="s5DemoNoticeBadge">MODO DEMOSTRATIVO LOCAL</div>
+              <div class="notice-badge" data-i18n="s5DemoNoticeBadge">LOCAL DEMO MODE</div>
               <p class="notice-text" data-i18n="s5DemoNoticeText">
-                Entorno local de demostración. Las confirmaciones generan un recibo simulado para validar la interfaz. En producción se conectan a Supabase mediante la función serverless.
+                Local demonstration environment. Confirmations generate a simulated receipt to validate the interface. In production, they connect to Supabase via a serverless function.
               </p>
             </aside>
 
-            <!-- Formulario RSVP -->
+            <!-- RSVP Form -->
             <form class="rsvp-form" id="rsvp-form" novalidate>
-              <!-- Campo honeypot anti-spam -->
+              <!-- Anti-spam honeypot field -->
               <div class="form-group-hp" style="position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; pointer-events: none; overflow: hidden;" aria-hidden="true">
-                <label for="rsvp-website">Sitio Web Institucional</label>
+                <label for="rsvp-website">Institutional Website</label>
                 <input type="text" id="rsvp-website" name="website" tabindex="-1" autocomplete="off">
               </div>
 
-              <!-- Campo: Nombre completo -->
+              <!-- Field: Full Name -->
               <div class="form-group">
                 <label for="rsvp-name" class="form-label">
-                  <span data-i18n="s5FieldNameLabel">NOMBRE Y APELLIDO *</span>
-                  <span class="form-hint" data-i18n="s5FieldNameHint">Mínimo 2 caracteres</span>
+                  <span data-i18n="s5FieldNameLabel">FULL NAME *</span>
+                  <span class="form-hint" data-i18n="s5FieldNameHint">At least 2 characters</span>
                 </label>
                 <div class="input-wrapper">
-                  <input type="text" id="rsvp-name" name="name" class="form-input" placeholder="Ej. Lic. Juan Pacheco" data-i18n-attr="placeholder:s5FieldNamePlaceholder" autocomplete="name" required aria-required="true" aria-describedby="err-name">
+                  <input type="text" id="rsvp-name" name="name" class="form-input" placeholder="E.g. Mr. John Doe" data-i18n-attr="placeholder:s5FieldNamePlaceholder" autocomplete="name" required aria-required="true" aria-describedby="err-name">
                   <span class="input-focus-line" aria-hidden="true"></span>
                 </div>
                 <div class="field-error" id="err-name" role="alert"></div>
               </div>
 
-              <!-- Campo: Correo Electrónico -->
+              <!-- Field: Email Address -->
               <div class="form-group">
                 <label for="rsvp-email" class="form-label">
-                  <span data-i18n="s5FieldEmailLabel">CORREO ELECTRÓNICO *</span>
-                  <span class="form-hint" data-i18n="s5FieldEmailHint">Institucional o personal</span>
+                  <span data-i18n="s5FieldEmailLabel">EMAIL ADDRESS *</span>
+                  <span class="form-hint" data-i18n="s5FieldEmailHint">Institutional or personal</span>
                 </label>
                 <div class="input-wrapper">
-                  <input type="email" id="rsvp-email" name="email" class="form-input" placeholder="correo@dominio" data-i18n-attr="placeholder:s5FieldEmailPlaceholder" autocomplete="email" required aria-required="true" aria-describedby="err-email">
+                  <input type="email" id="rsvp-email" name="email" class="form-input" placeholder="email@domain.com" data-i18n-attr="placeholder:s5FieldEmailPlaceholder" autocomplete="email" required aria-required="true" aria-describedby="err-email">
                   <span class="input-focus-line" aria-hidden="true"></span>
                 </div>
                 <div class="field-error" id="err-email" role="alert"></div>
               </div>
 
-              <!-- Campo: Estado de Asistencia -->
+              <!-- Field: Attendance Status -->
               <fieldset class="form-fieldset">
                 <legend class="form-label">
-                  <span data-i18n="s5FieldAttLabel">ESTADO DE ASISTENCIA *</span>
-                  <span class="form-hint" data-i18n="s5FieldAttHint">Selecciona tu respuesta</span>
+                  <span data-i18n="s5FieldAttLabel">ATTENDANCE STATUS *</span>
+                  <span class="form-hint" data-i18n="s5FieldAttHint">Select your response</span>
                 </legend>
                 <div class="attendance-options" role="radiogroup" aria-describedby="err-attendance" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
                   <label class="radio-card">
@@ -624,8 +618,8 @@
                     <div class="radio-card-ui">
                       <span class="rc-indicator"></span>
                       <div class="rc-texts">
-                        <strong class="rc-title" data-i18n="s5AttYesTitle">Sí, asistiré</strong>
-                        <span class="rc-desc" data-i18n="s5AttYesDesc">Reservar lugar oficial</span>
+                        <strong class="rc-title" data-i18n="s5AttYesTitle">Yes, I will attend</strong>
+                        <span class="rc-desc" data-i18n="s5AttYesDesc">Reserve official seat</span>
                       </div>
                     </div>
                   </label>
@@ -635,7 +629,7 @@
                     <div class="radio-card-ui">
                       <span class="rc-indicator"></span>
                       <div class="rc-texts">
-                        <strong class="rc-title" data-i18n="s5AttNoTitle">No podré asistir</strong>
+                        <strong class="rc-title" data-i18n="s5AttNoTitle">I cannot attend</strong>
                       </div>
                     </div>
                   </label>
@@ -643,54 +637,54 @@
                 <div class="field-error" id="err-attendance" role="alert"></div>
               </fieldset>
 
-              <!-- Campo Opcional: Requerimiento especial / Institución -->
+              <!-- Optional Field: Notes / Institution -->
               <div class="form-group">
                 <label for="rsvp-notes" class="form-label">
-                  <span data-i18n="s5FieldNotesLabel">ORGANIZACIÓN / NOTAS ADICIONALES (OPCIONAL)</span>
+                  <span data-i18n="s5FieldNotesLabel">ORGANIZATION / ADDITIONAL NOTES (OPTIONAL)</span>
                 </label>
                 <div class="input-wrapper">
-                  <input type="text" id="rsvp-notes" name="notes" class="form-input" placeholder="Ej. Universidad / Empresa / Requerimientos" data-i18n-attr="placeholder:s5FieldNotesPlaceholder">
+                  <input type="text" id="rsvp-notes" name="notes" class="form-input" placeholder="E.g. University / Company / Special requests" data-i18n-attr="placeholder:s5FieldNotesPlaceholder">
                   <span class="input-focus-line" aria-hidden="true"></span>
                 </div>
               </div>
 
-              <!-- Botón de Envío: Enviar formulario -->
+              <!-- Submit Button -->
               <footer class="form-actions">
                 <button type="submit" class="btn btn-primary btn-submit" id="btn-submit-rsvp">
-                  <span class="btn-text" data-i18n="s5BtnSubmit">Enviar formulario</span>
+                  <span class="btn-text" data-i18n="s5BtnSubmit">Submit Form</span>
                   <svg class="btn-icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                     <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
                   </svg>
                 </button>
               </footer>
 
-              <!-- Aviso breve de privacidad de datos -->
+              <!-- Data Privacy Notice -->
               <p class="form-privacy-notice" id="rsvp-privacy-notice" data-i18n="s5PrivacyNotice" style="margin-top: 16px; font-size: 0.75rem; color: var(--tx-muted); line-height: 1.5; text-align: center;">
-                🔒 <strong>Aviso de privacidad:</strong> Los datos proporcionados (nombre, correo electrónico, asistencia y notas) se utilizan exclusivamente para la organización y acreditación oficial del RETOS Showcase 2026 - 2nd Edition.
+                🔒 <strong>Privacy notice:</strong> Provided information (name, email, attendance, and notes) is strictly used for official accreditation and organization of RETOS Showcase 2026 - 2nd Edition.
               </p>
             </form>
 
             <footer class="scene-nav-actions" style="margin-top: 24px;">
               <button type="button" class="btn btn-ghost" data-target="3">
-                <span data-i18n="s5BtnBackToProg">← Volver al programa</span>
+                <span data-i18n="s5BtnBackToProg">← Back to schedule</span>
               </button>
             </footer>
           </div>
         </div>
 
-        <!-- PASO 2: Verificación intermedia visual -->
+        <!-- STEP 2: Intermediate Verification Sequence -->
         <div class="rsvp-step-panel is-hidden" id="rsvp-step-2">
           <header class="hud-meta-bar">
-            <span class="hud-badge pulse-cyan" data-i18n="s5Step2Badge">PROTOCOLO DE VERIFICACIÓN</span>
-            <span class="hud-coords" data-i18n="s5Step2Coords">CANAL CIFRADO // PASO 2 DE 3</span>
+            <span class="hud-badge pulse-cyan" data-i18n="s5Step2Badge">VERIFICATION PROTOCOL</span>
+            <span class="hud-coords" data-i18n="s5Step2Coords">ENCRYPTED CHANNEL // STEP 2 OF 3</span>
             <span class="hud-tag">SEC-05//VERIFY</span>
           </header>
 
           <div class="verify-layout">
             <header class="scene-header">
-              <span class="scene-tag-kicker" data-i18n="s5Step2Kicker">PASO 02 / VERIFICACIÓN DE CREDENCIALES</span>
-              <h2 class="scene-title" tabindex="-1" data-i18n="s5Step2Title">Comprobando <span class="text-gradient">acreditación</span></h2>
-              <p class="scene-lead" data-i18n="s5Step2Lead">Sincronizando credenciales antes del registro definitivo en el sistema institucional.</p>
+              <span class="scene-tag-kicker" data-i18n="s5Step2Kicker">STEP 02 / CREDENTIAL VERIFICATION</span>
+              <h2 class="scene-title" tabindex="-1" data-i18n="s5Step2Title">Verifying <span class="text-gradient">accreditation</span></h2>
+              <p class="scene-lead" data-i18n="s5Step2Lead">Synchronizing credentials prior to definitive institutional registration.</p>
             </header>
 
             <article class="verify-terminal">
@@ -701,26 +695,26 @@
                   <span class="tdot green"></span>
                 </div>
                 <span class="terminal-title">AUTH_CONSOLE://RETOS-ENDPOINT</span>
-                <span class="terminal-status" id="verify-status-indicator" data-i18n="s5TerminalProcessing">PROCESANDO...</span>
+                <span class="terminal-status" id="verify-status-indicator" data-i18n="s5TerminalProcessing">PROCESSING...</span>
               </header>
 
-              <ul class="terminal-log" id="verification-log" aria-live="polite" aria-label="Registro de comprobación">
-                <!-- Generado dinámicamente -->
+              <ul class="terminal-log" id="verification-log" aria-live="polite" aria-label="Verification log" data-i18n-attr="aria-label:verificationLogAria">
+                <!-- Dynamically generated -->
               </ul>
 
-              <!-- Barra de progreso de carga -->
+              <!-- Progress bar -->
               <div class="terminal-meter-wrapper" aria-hidden="true">
                 <div class="terminal-meter-bar">
                   <div class="terminal-meter-fill" id="verification-progress-fill"></div>
                 </div>
                 <div class="terminal-meter-labels">
-                  <span class="t-label" data-i18n="s5TerminalSyncLabel">SINCRONIZACIÓN DE ACCESO</span>
+                  <span class="t-label" data-i18n="s5TerminalSyncLabel">ACCESS SYNCHRONIZATION</span>
                   <span class="t-percent" id="verification-percent">0%</span>
                 </div>
               </div>
             </article>
 
-            <!-- Revelación de ACCESO CONCEDIDO -->
+            <!-- ACCESS GRANTED banner -->
             <div class="access-grant-display" id="access-grant-banner" role="status" aria-live="assertive">
               <div class="grant-ring" aria-hidden="true">
                 <svg viewBox="0 0 100 100" fill="none">
@@ -729,29 +723,29 @@
                 </svg>
               </div>
               <div class="grant-text-group">
-                <div class="grant-title">ACCESS GRANTED</div>
-                <p class="grant-subtitle" data-i18n="s5GrantSubtitle">Credenciales validadas. Listo para confirmar tu registro oficial.</p>
+                <div class="grant-title" data-i18n="s5GrantTitle">ACCESS GRANTED</div>
+                <p class="grant-subtitle" data-i18n="s5GrantSubtitle">Credentials validated. Ready to confirm your official registration.</p>
               </div>
             </div>
 
-            <!-- Banner accesible de error en el envío -->
+            <!-- Error banner -->
             <div class="demo-integration-notice is-hidden" id="submission-error-banner" role="alert" aria-live="assertive" style="border-color: var(--c-alert-red, #ff4d6d); background: rgba(255, 77, 109, 0.08); margin-top: 16px; margin-bottom: 0;">
-              <div class="notice-badge" data-i18n="s5ErrorBadge" style="color: var(--c-alert-red, #ff4d6d);">ERROR AL ENVIAR CONFIRMACIÓN</div>
+              <div class="notice-badge" data-i18n="s5ErrorBadge" style="color: var(--c-alert-red, #ff4d6d);">ERROR SUBMITTING CONFIRMATION</div>
               <p class="notice-text" id="submission-error-text" style="color: var(--tx-primary); margin-bottom: 12px;"></p>
-              <button type="button" class="btn btn-secondary" id="btn-retry-rsvp" data-i18n="s5BtnRetry" style="width: auto; padding: 8px 18px; font-size: 0.82rem;">Reintentar envío</button>
+              <button type="button" class="btn btn-secondary" id="btn-retry-rsvp" data-i18n="s5BtnRetry" style="width: auto; padding: 8px 18px; font-size: 0.82rem;">Retry submission</button>
             </div>
 
-            <!-- Acciones de verificación -->
+            <!-- Verification actions -->
             <footer class="verify-actions">
               <button type="button" class="btn btn-ghost" id="btn-back-to-step1">
-                <span class="btn-text" data-i18n="s5BtnModifyData">← Modificar datos</span>
+                <span class="btn-text" data-i18n="s5BtnModifyData">← Edit information</span>
               </button>
               <button type="button" class="btn btn-secondary" id="btn-skip-verify">
-                <span class="btn-text" data-i18n="s5BtnSkipAnim">Omitir animación</span>
+                <span class="btn-text" data-i18n="s5BtnSkipAnim">Skip animation</span>
               </button>
               <button type="button" class="btn btn-primary is-hidden" id="btn-confirm-attendance">
                 <span class="btn-spinner is-hidden" aria-hidden="true"></span>
-                <span class="btn-text" data-i18n="s5BtnConfirmAttendance">Confirmar asistencia</span>
+                <span class="btn-text" data-i18n="s5BtnConfirmAttendance">Confirm attendance</span>
                 <svg class="btn-icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                   <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
                 </svg>
@@ -760,15 +754,15 @@
           </div>
         </div>
 
-        <!-- PASO 3: Pantalla final confirmada -->
+        <!-- STEP 3: Access and Session Completed -->
         <div class="rsvp-step-panel is-hidden" id="rsvp-step-3">
           <header class="hud-meta-bar">
-            <span class="hud-coords" data-i18n="s5Step3Coords">GRACIAS POR TU ASISTENCIA</span>
+            <span class="hud-coords" data-i18n="s5Step3Coords">THANK YOU FOR YOUR RSVP</span>
             <span class="hud-tag">SEC-05//CLOSING</span>
           </header>
 
           <div class="closing-layout">
-            <!-- Sello geométrico de cierre -->
+            <!-- Geometric closing emblem -->
             <div class="closing-emblem" aria-hidden="true">
               <svg viewBox="0 0 180 180" fill="none">
                 <circle cx="90" cy="90" r="82" stroke="rgba(0, 255, 136, 0.2)" stroke-width="1.5" stroke-dasharray="4 6"/>
@@ -779,17 +773,17 @@
             </div>
 
             <article class="closing-content">
-              <span class="closing-kicker" data-i18n="s5Step3Kicker">05 / ACCESO Y SESIÓN COMPLETADA</span>
+              <span class="closing-kicker" data-i18n="s5Step3Kicker">05 / ACCESS &amp; SESSION COMPLETED</span>
 
               <h1 class="closing-title" id="closing-headline" tabindex="-1" data-i18n="s5ClosingHeadline">
-                Sesión <span class="text-gradient">completada.</span>
+                Session <span class="text-gradient">completed.</span>
               </h1>
 
               <p class="closing-message" id="closing-personalized-message" data-i18n="s5ClosingMessage">
-                Su presencia es una gran motivación para nuestros estudiantes. Esperamos contar con su valioso acompañamiento.
+                Your presence is a great motivation for our students. We look forward to having your valuable company.
               </p>
 
-              <!-- Recibo / Estado de Confirmación con Pase Digital QR -->
+              <!-- Digital pass receipt with QR code -->
               <article class="rsvp-result-card is-hidden" id="rsvp-result-card" role="region" aria-live="polite" tabindex="-1" style="margin-bottom: 28px;">
                 <div class="result-status-icon" aria-hidden="true">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -798,24 +792,24 @@
                   </svg>
                 </div>
                 <div class="result-body">
-                  <span class="result-badge" id="result-badge-text" data-i18n="s5ResultBadgeCompleted">REGISTRO COMPLETADO</span>
-                  <h3 class="result-title" id="result-title-text" data-i18n="s5ResultTitleReceived">Confirmación recibida</h3>
+                  <span class="result-badge" id="result-badge-text" data-i18n="s5ResultBadgeCompleted">REGISTRATION COMPLETED</span>
+                  <h3 class="result-title" id="result-title-text" data-i18n="s5ResultTitleReceived">Confirmation received</h3>
                   <p class="result-msg" id="result-message-text"></p>
                   <div class="result-telemetry">
-                    <div><span data-i18n="s5LabelHolder">TITULAR:</span> <strong id="res-attendee-name">-</strong></div>
-                    <div><span data-i18n="s5LabelEmail">CORREO:</span> <strong id="res-attendee-email">-</strong></div>
-                    <div><span data-i18n="s5LabelResponse">RESPUESTA:</span> <strong id="res-attendee-status">-</strong></div>
-                    <div><span data-i18n="s5LabelCode">CÓDIGO DE REGISTRO:</span> <strong id="res-attendee-code">RETOS-2026-XXXX</strong></div>
+                    <div><span data-i18n="s5LabelHolder">NAME:</span> <strong id="res-attendee-name">-</strong></div>
+                    <div><span data-i18n="s5LabelEmail">EMAIL:</span> <strong id="res-attendee-email">-</strong></div>
+                    <div><span data-i18n="s5LabelResponse">RESPONSE:</span> <strong id="res-attendee-status">-</strong></div>
+                    <div><span data-i18n="s5LabelCode">REGISTRATION CODE:</span> <strong id="res-attendee-code">RETOS-2026-XXXX</strong></div>
                   </div>
 
-                  <!-- Sección del Pase Digital con Código QR (Solo para confirmaciones afirmativas) -->
+                  <!-- QR pass section for affirmative attendees -->
                   <div class="result-qr-section is-hidden" id="result-qr-container" style="display: flex; flex-direction: column; align-items: center; margin-top: 22px; padding: 18px 20px; background: rgba(0, 0, 0, 0.45); border: 1px solid var(--b-cyan, rgba(0, 229, 255, 0.35)); border-radius: 8px; width: 100%; box-sizing: border-box;">
-                    <span data-i18n="s5QrSectionTitle" style="font-family: var(--f-mono); font-size: 0.72rem; letter-spacing: 0.12em; color: var(--c-cyan, #00e5ff); margin-bottom: 12px; font-weight: 700;">PASE DIGITAL DE ACREDITACIÓN</span>
+                    <span data-i18n="s5QrSectionTitle" style="font-family: var(--f-mono); font-size: 0.72rem; letter-spacing: 0.12em; color: var(--c-cyan, #00e5ff); margin-bottom: 12px; font-weight: 700;">DIGITAL ACCREDITATION PASS</span>
                     <div id="rsvp-qr-code-wrapper" style="background: #ffffff; padding: 14px; border-radius: 8px; box-shadow: 0 0 20px rgba(0, 229, 255, 0.25); display: flex; justify-content: center; align-items: center; width: 196px; height: 196px; box-sizing: border-box;">
-                      <!-- Código QR vectorial SVG inyectado por script.js -->
+                      <!-- Injected SVG QR Code -->
                     </div>
                     <p data-i18n="s5QrSectionDesc" style="font-size: 0.76rem; color: var(--tx-secondary); margin-top: 12px; margin-bottom: 14px; text-align: center; line-height: 1.45;">
-                      Presenta este código QR desde tu teléfono o impreso en la entrada de la Biblioteca RETOS.
+                      Present this QR code from your mobile device or printed at the entrance of the RETOS Library.
                     </p>
                     <button type="button" class="btn btn-secondary" id="btn-download-pass" style="width: 100%; font-size: 0.82rem; padding: 10px 16px; display: inline-flex; align-items: center; justify-content: center; gap: 8px;">
                       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 16px; height: 16px;" aria-hidden="true">
@@ -823,28 +817,28 @@
                         <polyline points="7 10 12 15 17 10"/>
                         <line x1="12" y1="15" x2="12" y2="3"/>
                       </svg>
-                      <span data-i18n="s5BtnDownloadPass">DESCARGAR PASE DIGITAL (PNG)</span>
+                      <span data-i18n="s5BtnDownloadPass">DOWNLOAD DIGITAL PASS (PNG)</span>
                     </button>
                   </div>
                 </div>
               </article>
 
-              <!-- Cuenta Regresiva Oficial del Evento -->
-              <section class="closing-countdown-card" aria-label="Cuenta regresiva oficial hacia el evento">
+              <!-- Official Event Countdown -->
+              <section class="closing-countdown-card" aria-label="Official countdown towards the event">
                 <header class="countdown-header">
-                  <span class="countdown-tag pulse-cyan" id="countdown-status-label" data-i18n="s5CountdownStatus">TIEMPO RESTANTE PARA EL INICIO</span>
-                  <span class="countdown-target-label" id="countdown-live-badge" data-i18n="s5CountdownLive">EN ESPERA // 30 OCT 2026</span>
+                  <span class="countdown-tag pulse-cyan" id="countdown-status-label" data-i18n="s5CountdownStatus">TIME REMAINING UNTIL START</span>
+                  <span class="countdown-target-label" id="countdown-live-badge" data-i18n="s5CountdownLive">STANDBY // 30 OCT 2026</span>
                 </header>
 
                 <div class="countdown-grid" id="countdown-timer-display" role="timer" aria-live="polite">
                   <div class="countdown-unit">
                     <span class="countdown-num" id="cd-days">00</span>
-                    <span class="countdown-lbl" data-i18n="s5CdDays">DÍAS</span>
+                    <span class="countdown-lbl" data-i18n="s5CdDays">DAYS</span>
                   </div>
                   <span class="countdown-sep" aria-hidden="true">:</span>
                   <div class="countdown-unit">
                     <span class="countdown-num" id="cd-hours">00</span>
-                    <span class="countdown-lbl" data-i18n="s5CdHours">HORAS</span>
+                    <span class="countdown-lbl" data-i18n="s5CdHours">HOURS</span>
                   </div>
                   <span class="countdown-sep" aria-hidden="true">:</span>
                   <div class="countdown-unit">
@@ -854,7 +848,7 @@
                   <span class="countdown-sep" aria-hidden="true">:</span>
                   <div class="countdown-unit">
                     <span class="countdown-num" id="cd-seconds">00</span>
-                    <span class="countdown-lbl" data-i18n="s5CdSec">SEG</span>
+                    <span class="countdown-lbl" data-i18n="s5CdSec">SEC</span>
                   </div>
                 </div>
 
@@ -866,27 +860,27 @@
                       <line x1="8" y1="2" x2="8" y2="6"/>
                       <line x1="3" y1="10" x2="21" y2="10"/>
                     </svg>
-                    <time datetime="2026-10-30T08:00:00" id="countdown-date-full" data-i18n="s5CdFullDate">Viernes, 30 de octubre de 2026 // 08:00 hrs</time>
+                    <time datetime="2026-10-30T08:00:00" id="countdown-date-full" data-i18n="s5CdFullDate">Friday, October 30, 2026 // 08:00 hrs</time>
                   </span>
                 </footer>
               </section>
 
               <div class="closing-meta-card">
                 <div class="cm-row">
-                  <span class="cm-key" data-i18n="s5MetaEventKey">EVENTO</span>
+                  <span class="cm-key" data-i18n="s5MetaEventKey">EVENT</span>
                   <span class="cm-val" id="closing-event-name">RETOS Showcase 2026 - 2nd Edition</span>
                 </div>
                 <div class="cm-row">
-                  <span class="cm-key" data-i18n="s5MetaDateKey">FECHA &amp; SEDE</span>
-                  <span class="cm-val" id="closing-event-date" data-i18n="s5MetaDateVal">Biblioteca de Instituto RETOS / FTS • La Libertad</span>
+                  <span class="cm-key" data-i18n="s5MetaDateKey">DATE &amp; VENUE</span>
+                  <span class="cm-val" id="closing-event-date" data-i18n="s5MetaDateVal">RETOS / FTS Institute Library • La Libertad</span>
                 </div>
                 <div class="cm-row">
-                  <span class="cm-key" data-i18n="s5MetaAccredKey">ACREDITACIÓN</span>
-                  <span class="cm-val text-green" data-i18n="s5MetaAccredVal">Activa en sistema</span>
+                  <span class="cm-key" data-i18n="s5MetaAccredKey">ACREDITATION</span>
+                  <span class="cm-val text-green" data-i18n="s5MetaAccredVal">Active in system</span>
                 </div>
               </div>
 
-              <!-- Botones finales de utilidad -->
+              <!-- Utility actions -->
               <footer class="closing-actions">
                 <button class="btn btn-secondary" id="btn-share-invite">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="btn-inline-icon" aria-hidden="true">
@@ -896,11 +890,11 @@
                     <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
                     <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
                   </svg>
-                  <span class="btn-text" data-i18n="s5BtnShare">Comparte nuestra invitación</span>
+                  <span class="btn-text" data-i18n="s5BtnShare">Share our invitation</span>
                 </button>
 
                 <button class="btn btn-ghost" id="btn-restart-experience">
-                  <span class="btn-text" data-i18n="s5BtnRestart">↺ Volver al inicio</span>
+                  <span class="btn-text" data-i18n="s5BtnRestart">↺ Back to start</span>
                 </button>
               </footer>
             </article>
@@ -912,47 +906,44 @@
 
   </main>
 
-  
-
-  <!-- MODAL DE AYUDA Y ATAJOS DE TECLADO -->
+  <!-- KEYBOARD SHORTCUTS & HELP MODAL -->
   <div class="hud-modal-overlay is-hidden" id="help-modal" role="dialog" aria-modal="true" aria-labelledby="modal-help-title">
     <div class="hud-modal-box">
       <header class="modal-header">
-        <h3 id="modal-help-title" data-i18n="modalTitle">Atajos de Teclado &amp; Guía de Navegación</h3>
-        <button class="modal-close-btn" id="modal-help-close" aria-label="Cerrar ventana modal" data-i18n-attr="aria-label:modalCloseAria">&times;</button>
+        <h3 id="modal-help-title" data-i18n="modalTitle">Keyboard Shortcuts &amp; Navigation Guide</h3>
+        <button class="modal-close-btn" id="modal-help-close" aria-label="Close modal window" data-i18n-attr="aria-label:modalCloseAria">&times;</button>
       </header>
       <div class="modal-body">
-        <p class="modal-intro" data-i18n="modalIntro">Esta invitación web interactiva permite navegación fluida en 5 secciones mediante teclado o controles táctiles en pantalla:</p>
+        <p class="modal-intro" data-i18n="modalIntro">This interactive web invitation allows seamless navigation across 5 scenes using keyboard or on-screen touch controls:</p>
         <ul class="shortcuts-list">
           <li>
-            <kbd>→</kbd> / <kbd>Espacio</kbd>
-            <span data-i18n="modalNext">Avanzar a la siguiente escena</span>
+            <kbd>→</kbd> / <kbd>Space</kbd>
+            <span data-i18n="modalNext">Advance to next scene</span>
           </li>
           <li>
             <kbd>←</kbd>
-            <span data-i18n="modalPrev">Retroceder a la escena anterior</span>
+            <span data-i18n="modalPrev">Go back to previous scene</span>
           </li>
           <li>
             <kbd>M</kbd>
-            <span data-i18n="modalAudio">Activar / Silenciar efectos de audio</span>
+            <span data-i18n="modalAudio">Enable / Mute audio effects</span>
           </li>
           <li>
             <kbd>Esc</kbd>
-            <span data-i18n="modalEsc">Cerrar esta ventana</span>
+            <span data-i18n="modalEsc">Close this window</span>
           </li>
         </ul>
-        
       </div>
       <footer class="modal-footer">
-        <button class="btn btn-secondary" id="modal-help-accept" data-i18n="modalAccept">Entendido</button>
+        <button class="btn btn-secondary" id="modal-help-accept" data-i18n="modalAccept">Understood</button>
       </footer>
     </div>
   </div>
 
-  <!-- TOAST NOTIFICACIONES -->
+  <!-- TOAST NOTIFICATIONS -->
   <div class="hud-toast" id="hud-toast" role="status" aria-live="polite"></div>
 
-  <!-- Script principal del proyecto -->
+  <!-- Main scripts -->
   <script src="i18n.js"></script>
   <script src="script.js"></script>
 </body>

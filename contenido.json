@@ -1,444 +1,180 @@
 {
   "agenda": [
     {
-      "id": "ag-01",
-      "fecha": "2026-10-30",
-      "horaInicio": "08:00",
-      "horaFin": "08:05",
+      "inicio": "08:00",
+      "fin": "08:05",
       "titulo": {
-        "es": "Opening Ceremony",
-        "en": "Opening Ceremony"
-      },
-      "descripcion": {
-        "es": "Ceremonia de apertura del RETOS Showcase 2026 - 2nd Edition y bienvenida a estudiantes e invitados.",
-        "en": "Opening ceremony of RETOS Showcase 2026 - 2nd Edition and official welcome to students and guests."
-      },
-      "responsable": {
-        "es": "Estudiantes RETOS",
-        "en": "RETOS Students"
-      },
-      "estado": "destacado",
-      "tipo": "protocolo"
+        "en": "Opening Ceremony",
+        "es": "Ceremonia de Apertura"
+      }
     },
     {
-      "id": "ag-02",
-      "fecha": "2026-10-30",
-      "horaInicio": "08:05",
-      "horaFin": "08:10",
+      "inicio": "08:05",
+      "fin": "08:10",
       "titulo": {
-        "es": "RETOS Brainstorm",
-        "en": "RETOS Brainstorm"
-      },
-      "descripcion": {
-        "es": "Dinámica de lluvia de ideas en inglés para dar inicio a la jornada.",
-        "en": "Brainstorming session in English to kick off the day's activities."
-      },
-      "responsable": {
-        "es": "Estudiantes RETOS",
-        "en": "RETOS Students"
-      },
-      "estado": "confirmado",
-      "tipo": "debate"
+        "en": "RETOS Brainstorm",
+        "es": "Lluvia de Ideas RETOS"
+      }
     },
     {
-      "id": "ag-03",
-      "fecha": "2026-10-30",
-      "horaInicio": "08:10",
-      "horaFin": "08:25",
+      "inicio": "08:10",
+      "fin": "08:25",
       "titulo": {
-        "es": "Logistics Project: Ice Cream and Popsicle Producer",
-        "en": "Logistics Project: Ice Cream and Popsicle Producer"
-      },
-      "descripcion": {
-        "es": "Proyecto de Logística presentado en inglés: productor de helados y paletas.",
-        "en": "Logistics project presented in English: ice cream and popsicle production chain."
-      },
-      "responsable": {
-        "es": "Estudiantes de Logística",
-        "en": "Logistics Students"
-      },
-      "estado": "confirmado",
-      "tipo": "showcase"
+        "en": "Logistics Project: Ice Cream and Popsicle Producer",
+        "es": "Proyecto de Logística: Productora de Helados y Paletas"
+      }
     },
     {
-      "id": "ag-04",
-      "fecha": "2026-10-30",
-      "horaInicio": "08:25",
-      "horaFin": "08:40",
+      "inicio": "08:25",
+      "fin": "08:40",
       "titulo": {
-        "es": "Role-Play: The New Employee",
-        "en": "Role-Play: The New Employee"
-      },
-      "descripcion": {
-        "es": "Simulación en inglés de una situación laboral: la llegada de un nuevo empleado.",
-        "en": "Workplace simulation in English: the onboarding of a new employee."
-      },
-      "responsable": {
-        "es": "Estudiantes RETOS",
-        "en": "RETOS Students"
-      },
-      "estado": "confirmado",
-      "tipo": "debate"
+        "en": "Role-Play: The New Employee",
+        "es": "Role-Play: El Nuevo Empleado"
+      }
     },
     {
-      "id": "ag-05",
-      "fecha": "2026-10-30",
-      "horaInicio": "08:40",
-      "horaFin": "08:45",
+      "inicio": "08:40",
+      "fin": "08:45",
       "titulo": {
-        "es": "NEO Certification Progress Overview",
-        "en": "NEO Certification Progress Overview"
-      },
-      "descripcion": {
-        "es": "Resumen del avance de los estudiantes en las certificaciones de la plataforma Neo.",
-        "en": "Overview of student advancement in the Neo platform international certifications."
-      },
-      "responsable": {
-        "es": "Neo y Estudiantes RETOS",
-        "en": "Neo & RETOS Students"
-      },
-      "estado": "confirmado",
-      "tipo": "ponencia"
+        "en": "NEO Certification Progress Overview",
+        "es": "Avance de Certificaciones NEO"
+      }
     },
     {
-      "id": "ag-06",
-      "fecha": "2026-10-30",
-      "horaInicio": "08:45",
-      "horaFin": "09:00",
+      "inicio": "08:45",
+      "fin": "09:00",
       "titulo": {
-        "es": "Ice Breaker: Charades",
-        "en": "Ice Breaker: Charades"
-      },
-      "descripcion": {
-        "es": "Dinámica participativa en inglés para adivinar la palabra con mímica.",
-        "en": "Interactive English activity: word-guessing game with pantomime."
-      },
-      "responsable": {
-        "es": "Estudiantes RETOS",
-        "en": "RETOS Students"
-      },
-      "estado": "confirmado",
-      "tipo": "networking"
+        "en": "Ice Breaker: Charades",
+        "es": "Dinámica Rompehielos: Charadas"
+      }
     },
     {
-      "id": "ag-07",
-      "fecha": "2026-10-30",
-      "horaInicio": "09:00",
-      "horaFin": "09:20",
+      "inicio": "09:00",
+      "fin": "09:20",
       "titulo": {
-        "es": "First English Certificate Award",
-        "en": "First English Certificate Award"
-      },
-      "descripcion": {
-        "es": "Primera entrega de certificaciones de inglés alcanzadas por los estudiantes.",
-        "en": "First ceremony awarding English certifications achieved by students."
-      },
-      "responsable": {
-        "es": "Estudiantes RETOS",
-        "en": "RETOS Students"
-      },
-      "estado": "destacado",
-      "tipo": "inauguracion"
+        "en": "First English Certificate Award",
+        "es": "Primera Entrega de Certificados de Inglés"
+      }
     },
     {
-      "id": "ag-08",
-      "fecha": "2026-10-30",
-      "horaInicio": "09:20",
-      "horaFin": "09:30",
+      "inicio": "09:20",
+      "fin": "09:30",
       "titulo": {
-        "es": "Coffee Break",
-        "en": "Coffee Break"
-      },
-      "descripcion": {
-        "es": "Pausa dentro de la jornada con refrigerio.",
-        "en": "Mid-morning break with refreshments and informal networking."
-      },
-      "responsable": {
-        "es": "RETOS / FTS",
-        "en": "RETOS / FTS"
-      },
-      "estado": "confirmado",
-      "tipo": "logistica"
+        "en": "Coffee Break",
+        "es": "Coffee Break"
+      }
     },
     {
-      "id": "ag-09",
-      "fecha": "2026-10-30",
-      "horaInicio": "09:30",
-      "horaFin": "09:45",
+      "inicio": "09:30",
+      "fin": "09:45",
       "titulo": {
-        "es": "Ice Breaker: Treasure Hunt",
-        "en": "Ice Breaker: Treasure Hunt"
-      },
-      "descripcion": {
-        "es": "Dinámica participativa en inglés: búsqueda del tesoro.",
-        "en": "Interactive English activity: treasure hunt team challenge."
-      },
-      "responsable": {
-        "es": "Estudiantes RETOS",
-        "en": "RETOS Students"
-      },
-      "estado": "confirmado",
-      "tipo": "networking"
+        "en": "Ice Breaker: Treasure Hunt",
+        "es": "Dinámica Rompehielos: Búsqueda del Tesoro"
+      }
     },
     {
-      "id": "ag-10",
-      "fecha": "2026-10-30",
-      "horaInicio": "09:45",
-      "horaFin": "10:00",
+      "inicio": "09:45",
+      "fin": "10:00",
       "titulo": {
-        "es": "Software Project: RETOS Mentor",
-        "en": "Software Project: RETOS Mentor"
-      },
-      "descripcion": {
-        "es": "Proyecto de Desarrollo de Software presentado en inglés: RETOS Mentor.",
-        "en": "Software Development project presented in English: RETOS Mentor platform."
-      },
-      "responsable": {
-        "es": "Estudiantes de Desarrollo de Software",
-        "en": "Software Development Students"
-      },
-      "estado": "confirmado",
-      "tipo": "showcase"
+        "en": "Software Project: RETOS Mentor",
+        "es": "Proyecto de Software: RETOS Mentor"
+      }
     },
     {
-      "id": "ag-11",
-      "fecha": "2026-10-30",
-      "horaInicio": "10:00",
-      "horaFin": "10:15",
+      "inicio": "10:00",
+      "fin": "10:15",
       "titulo": {
-        "es": "Role-Play: The Power of Neo Study",
-        "en": "Role-Play: The Power of Neo Study"
-      },
-      "descripcion": {
-        "es": "Simulación en inglés sobre el valor de estudiar con la plataforma Neo.",
-        "en": "English simulation demonstrating the impact of learning with the Neo platform."
-      },
-      "responsable": {
-        "es": "Estudiantes RETOS",
-        "en": "RETOS Students"
-      },
-      "estado": "confirmado",
-      "tipo": "debate"
+        "en": "Role-Play: The Power of Neo Study",
+        "es": "Role-Play: El Poder de Neo Study"
+      }
     },
     {
-      "id": "ag-12",
-      "fecha": "2026-10-30",
-      "horaInicio": "10:15",
-      "horaFin": "10:20",
+      "inicio": "10:15",
+      "fin": "10:20",
       "titulo": {
-        "es": "NEO Study Experience Video",
-        "en": "NEO Study Experience Video"
-      },
-      "descripcion": {
-        "es": "Video sobre la experiencia de estudio con Neo.",
-        "en": "Video showcasing the student learning journey with Neo."
-      },
-      "responsable": {
-        "es": "Neo y Estudiantes RETOS",
-        "en": "Neo & RETOS Students"
-      },
-      "estado": "confirmado",
-      "tipo": "ponencia"
+        "en": "NEO Study Experience Video",
+        "es": "Video: Experiencia de Estudio NEO"
+      }
     },
     {
-      "id": "ag-13",
-      "fecha": "2026-10-30",
-      "horaInicio": "10:20",
-      "horaFin": "10:35",
+      "inicio": "10:20",
+      "fin": "10:35",
       "titulo": {
-        "es": "Mechatronics Project: Pick and Place",
-        "en": "Mechatronics Project: Pick and Place"
-      },
-      "descripcion": {
-        "es": "Proyecto de Mecatrónica presentado en inglés: sistema Pick and Place.",
-        "en": "Mechatronics engineering project presented in English: automated Pick and Place system."
-      },
-      "responsable": {
-        "es": "Estudiantes de Mecatrónica",
-        "en": "Mechatronics Students"
-      },
-      "estado": "confirmado",
-      "tipo": "showcase"
+        "en": "Mechatronics Project: Pick and Place",
+        "es": "Proyecto de Mecatrónica: Pick and Place"
+      }
     },
     {
-      "id": "ag-14",
-      "fecha": "2026-10-30",
-      "horaInicio": "10:35",
-      "horaFin": "10:50",
+      "inicio": "10:35",
+      "fin": "10:50",
       "titulo": {
-        "es": "Ice Breaker: The Queen Says",
-        "en": "Ice Breaker: The Queen Says"
-      },
-      "descripcion": {
-        "es": "Dinámica participativa en inglés: La Reina Dice.",
-        "en": "Interactive English activity: The Queen Says team game."
-      },
-      "responsable": {
-        "es": "Estudiantes RETOS",
-        "en": "RETOS Students"
-      },
-      "estado": "confirmado",
-      "tipo": "networking"
+        "en": "Ice Breaker: The Queen Says",
+        "es": "Dinámica Rompehielos: La Reina Pide"
+      }
     },
     {
-      "id": "ag-15",
-      "fecha": "2026-10-30",
-      "horaInicio": "10:50",
-      "horaFin": "11:05",
+      "inicio": "10:50",
+      "fin": "11:05",
       "titulo": {
-        "es": "Role-Play: The PPE Incident",
-        "en": "Role-Play: The PPE Incident"
-      },
-      "descripcion": {
-        "es": "Simulación en inglés de una situación de seguridad industrial: el incidente con el EPP (equipo de protección personal).",
-        "en": "Industrial safety role-play in English: personal protective equipment (PPE) incident response."
-      },
-      "responsable": {
-        "es": "Estudiantes RETOS",
-        "en": "RETOS Students"
-      },
-      "estado": "confirmado",
-      "tipo": "debate"
+        "en": "Role-Play: The PPE Incident",
+        "es": "Role-Play: Incidente de EPP"
+      }
     },
     {
-      "id": "ag-16",
-      "fecha": "2026-10-30",
-      "horaInicio": "11:05",
-      "horaFin": "11:20",
+      "inicio": "11:05",
+      "fin": "11:20",
       "titulo": {
-        "es": "Industrial Maintenance Project: Autodesk Inventor ('F1 car')",
-        "en": "Industrial Maintenance Project: Autodesk Inventor ('F1 car')"
-      },
-      "descripcion": {
-        "es": "Proyecto de Mantenimiento Industrial presentado en inglés, diseñado en Autodesk Inventor: un auto de F1.",
-        "en": "Industrial Maintenance engineering project presented in English, modeled in Autodesk Inventor: F1 race car."
-      },
-      "responsable": {
-        "es": "Estudiantes de Mantenimiento Industrial",
-        "en": "Industrial Maintenance Students"
-      },
-      "estado": "confirmado",
-      "tipo": "showcase"
+        "en": "Industrial Maintenance Project: Autodesk Inventor ('F1 car')",
+        "es": "Proyecto de Mantenimiento Industrial: Autodesk Inventor (Auto F1)"
+      }
     },
     {
-      "id": "ag-17",
-      "fecha": "2026-10-30",
-      "horaInicio": "11:20",
-      "horaFin": "11:35",
+      "inicio": "11:20",
+      "fin": "11:35",
       "titulo": {
-        "es": "Ice Breaker: Vocabulary Challenge",
-        "en": "Ice Breaker: Vocabulary Challenge"
-      },
-      "descripcion": {
-        "es": "Dinámica participativa en inglés: reto de vocabulario.",
-        "en": "Interactive English challenge: rapid-fire technical vocabulary game."
-      },
-      "responsable": {
-        "es": "Estudiantes RETOS",
-        "en": "RETOS Students"
-      },
-      "estado": "confirmado",
-      "tipo": "networking"
+        "en": "Ice Breaker: Vocabulary Challenge",
+        "es": "Dinámica Rompehielos: Reto de Vocabulario"
+      }
     },
     {
-      "id": "ag-18",
-      "fecha": "2026-10-30",
-      "horaInicio": "11:35",
-      "horaFin": "11:50",
+      "inicio": "11:35",
+      "fin": "11:50",
       "titulo": {
-        "es": "Role-Play: Boss vs. Machine",
-        "en": "Role-Play: Boss vs. Machine"
-      },
-      "descripcion": {
-        "es": "Simulación en inglés de una situación laboral: el jefe vs la máquina.",
-        "en": "Workplace simulation in English: boss vs. machine operational challenge."
-      },
-      "responsable": {
-        "es": "Estudiantes RETOS",
-        "en": "RETOS Students"
-      },
-      "estado": "confirmado",
-      "tipo": "debate"
+        "en": "Role-Play: Boss vs. Machine",
+        "es": "Role-Play: Jefe vs. Máquina"
+      }
     },
     {
-      "id": "ag-19",
-      "fecha": "2026-10-30",
-      "horaInicio": "11:50",
-      "horaFin": "12:10",
+      "inicio": "11:50",
+      "fin": "12:10",
       "titulo": {
-        "es": "Second English Certificate Award",
-        "en": "Second English Certificate Award"
-      },
-      "descripcion": {
-        "es": "Segunda entrega de certificaciones de inglés alcanzadas por los estudiantes.",
-        "en": "Second ceremony awarding English certifications achieved by students."
-      },
-      "responsable": {
-        "es": "Estudiantes RETOS",
-        "en": "RETOS Students"
-      },
-      "estado": "destacado",
-      "tipo": "inauguracion"
+        "en": "Second English Certificate Award",
+        "es": "Segunda Entrega de Certificados de Inglés"
+      }
     },
     {
-      "id": "ag-20",
-      "fecha": "2026-10-30",
-      "horaInicio": "12:10",
-      "horaFin": "12:15",
+      "inicio": "12:10",
+      "fin": "12:15",
       "titulo": {
-        "es": "RETOS Video",
-        "en": "RETOS Video"
-      },
-      "descripcion": {
-        "es": "Recopilación de experiencias estudiantiles del ciclo.",
-        "en": "Highlights video compilation of student experiences throughout the academic cycle."
-      },
-      "responsable": {
-        "es": "RETOS / FTS",
-        "en": "RETOS / FTS"
-      },
-      "estado": "confirmado",
-      "tipo": "ponencia"
+        "en": "RETOS Video",
+        "es": "Video RETOS"
+      }
     },
     {
-      "id": "ag-21",
-      "fecha": "2026-10-30",
-      "horaInicio": "12:15",
-      "horaFin": "12:25",
+      "inicio": "12:15",
+      "fin": "12:25",
       "titulo": {
-        "es": "Closing Remarks",
-        "en": "Closing Remarks"
-      },
-      "descripcion": {
-        "es": "Palabras de cierre de la jornada.",
-        "en": "Closing remarks and summary of the showcase session."
-      },
-      "responsable": {
-        "es": "Estudiantes RETOS",
-        "en": "RETOS Students"
-      },
-      "estado": "confirmado",
-      "tipo": "protocolo"
+        "en": "Closing Remarks",
+        "es": "Palabras de Cierre"
+      }
     },
     {
-      "id": "ag-22",
-      "fecha": "2026-10-30",
-      "horaInicio": "12:25",
-      "horaFin": "12:30",
+      "inicio": "12:25",
+      "fin": "12:30",
       "titulo": {
-        "es": "Official Closing",
-        "en": "Official Closing"
-      },
-      "descripcion": {
-        "es": "Clausura oficial del RETOS Showcase 2026 - 2nd Edition.",
-        "en": "Official conclusion of RETOS Showcase 2026 - 2nd Edition."
-      },
-      "responsable": {
-        "es": "Estudiantes RETOS",
-        "en": "RETOS Students"
-      },
-      "estado": "destacado",
-      "tipo": "clausura"
+        "en": "Official Closing",
+        "es": "Clausura Oficial"
+      }
     }
   ]
 }

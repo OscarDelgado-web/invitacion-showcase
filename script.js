@@ -51,446 +51,182 @@ const EVENT_META = {
 const FALLBACK_CONTENT = {
   agenda: [
     {
-        "id": "ag-01",
-        "fecha": "2026-10-30",
-        "horaInicio": "08:00",
-        "horaFin": "08:05",
-        "titulo": {
-            "es": "Opening Ceremony",
-            "en": "Opening Ceremony"
-        },
-        "descripcion": {
-            "es": "Ceremonia de apertura del RETOS Showcase 2026 - 2nd Edition y bienvenida a estudiantes e invitados.",
-            "en": "Opening ceremony of RETOS Showcase 2026 - 2nd Edition and official welcome to students and guests."
-        },
-        "responsable": {
-            "es": "Estudiantes RETOS",
-            "en": "RETOS Students"
-        },
-        "estado": "destacado",
-        "tipo": "protocolo"
+      "inicio": "08:00",
+      "fin": "08:05",
+      "titulo": {
+        "en": "Opening Ceremony",
+        "es": "Ceremonia de Apertura"
+      }
     },
     {
-        "id": "ag-02",
-        "fecha": "2026-10-30",
-        "horaInicio": "08:05",
-        "horaFin": "08:10",
-        "titulo": {
-            "es": "RETOS Brainstorm",
-            "en": "RETOS Brainstorm"
-        },
-        "descripcion": {
-            "es": "Dinámica de lluvia de ideas en inglés para dar inicio a la jornada.",
-            "en": "Brainstorming session in English to kick off the day's activities."
-        },
-        "responsable": {
-            "es": "Estudiantes RETOS",
-            "en": "RETOS Students"
-        },
-        "estado": "confirmado",
-        "tipo": "debate"
+      "inicio": "08:05",
+      "fin": "08:10",
+      "titulo": {
+        "en": "RETOS Brainstorm",
+        "es": "Lluvia de Ideas RETOS"
+      }
     },
     {
-        "id": "ag-03",
-        "fecha": "2026-10-30",
-        "horaInicio": "08:10",
-        "horaFin": "08:25",
-        "titulo": {
-            "es": "Logistics Project: Ice Cream and Popsicle Producer",
-            "en": "Logistics Project: Ice Cream and Popsicle Producer"
-        },
-        "descripcion": {
-            "es": "Proyecto de Logística presentado en inglés: productor de helados y paletas.",
-            "en": "Logistics project presented in English: ice cream and popsicle production chain."
-        },
-        "responsable": {
-            "es": "Estudiantes de Logística",
-            "en": "Logistics Students"
-        },
-        "estado": "confirmado",
-        "tipo": "showcase"
+      "inicio": "08:10",
+      "fin": "08:25",
+      "titulo": {
+        "en": "Logistics Project: Ice Cream and Popsicle Producer",
+        "es": "Proyecto de Logística: Productora de Helados y Paletas"
+      }
     },
     {
-        "id": "ag-04",
-        "fecha": "2026-10-30",
-        "horaInicio": "08:25",
-        "horaFin": "08:40",
-        "titulo": {
-            "es": "Role-Play: The New Employee",
-            "en": "Role-Play: The New Employee"
-        },
-        "descripcion": {
-            "es": "Simulación en inglés de una situación laboral: la llegada de un nuevo empleado.",
-            "en": "Workplace simulation in English: the onboarding of a new employee."
-        },
-        "responsable": {
-            "es": "Estudiantes RETOS",
-            "en": "RETOS Students"
-        },
-        "estado": "confirmado",
-        "tipo": "debate"
+      "inicio": "08:25",
+      "fin": "08:40",
+      "titulo": {
+        "en": "Role-Play: The New Employee",
+        "es": "Role-Play: El Nuevo Empleado"
+      }
     },
     {
-        "id": "ag-05",
-        "fecha": "2026-10-30",
-        "horaInicio": "08:40",
-        "horaFin": "08:45",
-        "titulo": {
-            "es": "NEO Certification Progress Overview",
-            "en": "NEO Certification Progress Overview"
-        },
-        "descripcion": {
-            "es": "Resumen del avance de los estudiantes en las certificaciones de la plataforma Neo.",
-            "en": "Overview of student advancement in the Neo platform international certifications."
-        },
-        "responsable": {
-            "es": "Neo y Estudiantes RETOS",
-            "en": "Neo & RETOS Students"
-        },
-        "estado": "confirmado",
-        "tipo": "ponencia"
+      "inicio": "08:40",
+      "fin": "08:45",
+      "titulo": {
+        "en": "NEO Certification Progress Overview",
+        "es": "Avance de Certificaciones NEO"
+      }
     },
     {
-        "id": "ag-06",
-        "fecha": "2026-10-30",
-        "horaInicio": "08:45",
-        "horaFin": "09:00",
-        "titulo": {
-            "es": "Ice Breaker: Charades",
-            "en": "Ice Breaker: Charades"
-        },
-        "descripcion": {
-            "es": "Dinámica participativa en inglés para adivinar la palabra con mímica.",
-            "en": "Interactive English activity: word-guessing game with pantomime."
-        },
-        "responsable": {
-            "es": "Estudiantes RETOS",
-            "en": "RETOS Students"
-        },
-        "estado": "confirmado",
-        "tipo": "networking"
+      "inicio": "08:45",
+      "fin": "09:00",
+      "titulo": {
+        "en": "Ice Breaker: Charades",
+        "es": "Dinámica Rompehielos: Charadas"
+      }
     },
     {
-        "id": "ag-07",
-        "fecha": "2026-10-30",
-        "horaInicio": "09:00",
-        "horaFin": "09:20",
-        "titulo": {
-            "es": "First English Certificate Award",
-            "en": "First English Certificate Award"
-        },
-        "descripcion": {
-            "es": "Primera entrega de certificaciones de inglés alcanzadas por los estudiantes.",
-            "en": "First ceremony awarding English certifications achieved by students."
-        },
-        "responsable": {
-            "es": "Estudiantes RETOS",
-            "en": "RETOS Students"
-        },
-        "estado": "destacado",
-        "tipo": "inauguracion"
+      "inicio": "09:00",
+      "fin": "09:20",
+      "titulo": {
+        "en": "First English Certificate Award",
+        "es": "Primera Entrega de Certificados de Inglés"
+      }
     },
     {
-        "id": "ag-08",
-        "fecha": "2026-10-30",
-        "horaInicio": "09:20",
-        "horaFin": "09:30",
-        "titulo": {
-            "es": "Coffee Break",
-            "en": "Coffee Break"
-        },
-        "descripcion": {
-            "es": "Pausa dentro de la jornada con refrigerio.",
-            "en": "Mid-morning break with refreshments and informal networking."
-        },
-        "responsable": {
-            "es": "RETOS / FTS",
-            "en": "RETOS / FTS"
-        },
-        "estado": "confirmado",
-        "tipo": "logistica"
+      "inicio": "09:20",
+      "fin": "09:30",
+      "titulo": {
+        "en": "Coffee Break",
+        "es": "Coffee Break"
+      }
     },
     {
-        "id": "ag-09",
-        "fecha": "2026-10-30",
-        "horaInicio": "09:30",
-        "horaFin": "09:45",
-        "titulo": {
-            "es": "Ice Breaker: Treasure Hunt",
-            "en": "Ice Breaker: Treasure Hunt"
-        },
-        "descripcion": {
-            "es": "Dinámica participativa en inglés: búsqueda del tesoro.",
-            "en": "Interactive English activity: treasure hunt team challenge."
-        },
-        "responsable": {
-            "es": "Estudiantes RETOS",
-            "en": "RETOS Students"
-        },
-        "estado": "confirmado",
-        "tipo": "networking"
+      "inicio": "09:30",
+      "fin": "09:45",
+      "titulo": {
+        "en": "Ice Breaker: Treasure Hunt",
+        "es": "Dinámica Rompehielos: Búsqueda del Tesoro"
+      }
     },
     {
-        "id": "ag-10",
-        "fecha": "2026-10-30",
-        "horaInicio": "09:45",
-        "horaFin": "10:00",
-        "titulo": {
-            "es": "Software Project: RETOS Mentor",
-            "en": "Software Project: RETOS Mentor"
-        },
-        "descripcion": {
-            "es": "Proyecto de Desarrollo de Software presentado en inglés: RETOS Mentor.",
-            "en": "Software Development project presented in English: RETOS Mentor platform."
-        },
-        "responsable": {
-            "es": "Estudiantes de Desarrollo de Software",
-            "en": "Software Development Students"
-        },
-        "estado": "confirmado",
-        "tipo": "showcase"
+      "inicio": "09:45",
+      "fin": "10:00",
+      "titulo": {
+        "en": "Software Project: RETOS Mentor",
+        "es": "Proyecto de Software: RETOS Mentor"
+      }
     },
     {
-        "id": "ag-11",
-        "fecha": "2026-10-30",
-        "horaInicio": "10:00",
-        "horaFin": "10:15",
-        "titulo": {
-            "es": "Role-Play: The Power of Neo Study",
-            "en": "Role-Play: The Power of Neo Study"
-        },
-        "descripcion": {
-            "es": "Simulación en inglés sobre el valor de estudiar con la plataforma Neo.",
-            "en": "English simulation demonstrating the impact of learning with the Neo platform."
-        },
-        "responsable": {
-            "es": "Estudiantes RETOS",
-            "en": "RETOS Students"
-        },
-        "estado": "confirmado",
-        "tipo": "debate"
+      "inicio": "10:00",
+      "fin": "10:15",
+      "titulo": {
+        "en": "Role-Play: The Power of Neo Study",
+        "es": "Role-Play: El Poder de Neo Study"
+      }
     },
     {
-        "id": "ag-12",
-        "fecha": "2026-10-30",
-        "horaInicio": "10:15",
-        "horaFin": "10:20",
-        "titulo": {
-            "es": "NEO Study Experience Video",
-            "en": "NEO Study Experience Video"
-        },
-        "descripcion": {
-            "es": "Video sobre la experiencia de estudio con Neo.",
-            "en": "Video showcasing the student learning journey with Neo."
-        },
-        "responsable": {
-            "es": "Neo y Estudiantes RETOS",
-            "en": "Neo & RETOS Students"
-        },
-        "estado": "confirmado",
-        "tipo": "ponencia"
+      "inicio": "10:15",
+      "fin": "10:20",
+      "titulo": {
+        "en": "NEO Study Experience Video",
+        "es": "Video: Experiencia de Estudio NEO"
+      }
     },
     {
-        "id": "ag-13",
-        "fecha": "2026-10-30",
-        "horaInicio": "10:20",
-        "horaFin": "10:35",
-        "titulo": {
-            "es": "Mechatronics Project: Pick and Place",
-            "en": "Mechatronics Project: Pick and Place"
-        },
-        "descripcion": {
-            "es": "Proyecto de Mecatrónica presentado en inglés: sistema Pick and Place.",
-            "en": "Mechatronics engineering project presented in English: automated Pick and Place system."
-        },
-        "responsable": {
-            "es": "Estudiantes de Mecatrónica",
-            "en": "Mechatronics Students"
-        },
-        "estado": "confirmado",
-        "tipo": "showcase"
+      "inicio": "10:20",
+      "fin": "10:35",
+      "titulo": {
+        "en": "Mechatronics Project: Pick and Place",
+        "es": "Proyecto de Mecatrónica: Pick and Place"
+      }
     },
     {
-        "id": "ag-14",
-        "fecha": "2026-10-30",
-        "horaInicio": "10:35",
-        "horaFin": "10:50",
-        "titulo": {
-            "es": "Ice Breaker: The Queen Says",
-            "en": "Ice Breaker: The Queen Says"
-        },
-        "descripcion": {
-            "es": "Dinámica participativa en inglés: La Reina Dice.",
-            "en": "Interactive English activity: The Queen Says team game."
-        },
-        "responsable": {
-            "es": "Estudiantes RETOS",
-            "en": "RETOS Students"
-        },
-        "estado": "confirmado",
-        "tipo": "networking"
+      "inicio": "10:35",
+      "fin": "10:50",
+      "titulo": {
+        "en": "Ice Breaker: The Queen Says",
+        "es": "Dinámica Rompehielos: La Reina Pide"
+      }
     },
     {
-        "id": "ag-15",
-        "fecha": "2026-10-30",
-        "horaInicio": "10:50",
-        "horaFin": "11:05",
-        "titulo": {
-            "es": "Role-Play: The PPE Incident",
-            "en": "Role-Play: The PPE Incident"
-        },
-        "descripcion": {
-            "es": "Simulación en inglés de una situación de seguridad industrial: el incidente con el EPP (equipo de protección personal).",
-            "en": "Industrial safety role-play in English: personal protective equipment (PPE) incident response."
-        },
-        "responsable": {
-            "es": "Estudiantes RETOS",
-            "en": "RETOS Students"
-        },
-        "estado": "confirmado",
-        "tipo": "debate"
+      "inicio": "10:50",
+      "fin": "11:05",
+      "titulo": {
+        "en": "Role-Play: The PPE Incident",
+        "es": "Role-Play: Incidente de EPP"
+      }
     },
     {
-        "id": "ag-16",
-        "fecha": "2026-10-30",
-        "horaInicio": "11:05",
-        "horaFin": "11:20",
-        "titulo": {
-            "es": "Industrial Maintenance Project: Autodesk Inventor ('F1 car')",
-            "en": "Industrial Maintenance Project: Autodesk Inventor ('F1 car')"
-        },
-        "descripcion": {
-            "es": "Proyecto de Mantenimiento Industrial presentado en inglés, diseñado en Autodesk Inventor: un auto de F1.",
-            "en": "Industrial Maintenance engineering project presented in English, modeled in Autodesk Inventor: F1 race car."
-        },
-        "responsable": {
-            "es": "Estudiantes de Mantenimiento Industrial",
-            "en": "Industrial Maintenance Students"
-        },
-        "estado": "confirmado",
-        "tipo": "showcase"
+      "inicio": "11:05",
+      "fin": "11:20",
+      "titulo": {
+        "en": "Industrial Maintenance Project: Autodesk Inventor ('F1 car')",
+        "es": "Proyecto de Mantenimiento Industrial: Autodesk Inventor (Auto F1)"
+      }
     },
     {
-        "id": "ag-17",
-        "fecha": "2026-10-30",
-        "horaInicio": "11:20",
-        "horaFin": "11:35",
-        "titulo": {
-            "es": "Ice Breaker: Vocabulary Challenge",
-            "en": "Ice Breaker: Vocabulary Challenge"
-        },
-        "descripcion": {
-            "es": "Dinámica participativa en inglés: reto de vocabulario.",
-            "en": "Interactive English challenge: rapid-fire technical vocabulary game."
-        },
-        "responsable": {
-            "es": "Estudiantes RETOS",
-            "en": "RETOS Students"
-        },
-        "estado": "confirmado",
-        "tipo": "networking"
+      "inicio": "11:20",
+      "fin": "11:35",
+      "titulo": {
+        "en": "Ice Breaker: Vocabulary Challenge",
+        "es": "Dinámica Rompehielos: Reto de Vocabulario"
+      }
     },
     {
-        "id": "ag-18",
-        "fecha": "2026-10-30",
-        "horaInicio": "11:35",
-        "horaFin": "11:50",
-        "titulo": {
-            "es": "Role-Play: Boss vs. Machine",
-            "en": "Role-Play: Boss vs. Machine"
-        },
-        "descripcion": {
-            "es": "Simulación en inglés de una situación laboral: el jefe vs la máquina.",
-            "en": "Workplace simulation in English: boss vs. machine operational challenge."
-        },
-        "responsable": {
-            "es": "Estudiantes RETOS",
-            "en": "RETOS Students"
-        },
-        "estado": "confirmado",
-        "tipo": "debate"
+      "inicio": "11:35",
+      "fin": "11:50",
+      "titulo": {
+        "en": "Role-Play: Boss vs. Machine",
+        "es": "Role-Play: Jefe vs. Máquina"
+      }
     },
     {
-        "id": "ag-19",
-        "fecha": "2026-10-30",
-        "horaInicio": "11:50",
-        "horaFin": "12:10",
-        "titulo": {
-            "es": "Second English Certificate Award",
-            "en": "Second English Certificate Award"
-        },
-        "descripcion": {
-            "es": "Segunda entrega de certificaciones de inglés alcanzadas por los estudiantes.",
-            "en": "Second ceremony awarding English certifications achieved by students."
-        },
-        "responsable": {
-            "es": "Estudiantes RETOS",
-            "en": "RETOS Students"
-        },
-        "estado": "destacado",
-        "tipo": "inauguracion"
+      "inicio": "11:50",
+      "fin": "12:10",
+      "titulo": {
+        "en": "Second English Certificate Award",
+        "es": "Segunda Entrega de Certificados de Inglés"
+      }
     },
     {
-        "id": "ag-20",
-        "fecha": "2026-10-30",
-        "horaInicio": "12:10",
-        "horaFin": "12:15",
-        "titulo": {
-            "es": "RETOS Video",
-            "en": "RETOS Video"
-        },
-        "descripcion": {
-            "es": "Recopilación de experiencias estudiantiles del ciclo.",
-            "en": "Highlights video compilation of student experiences throughout the academic cycle."
-        },
-        "responsable": {
-            "es": "RETOS / FTS",
-            "en": "RETOS / FTS"
-        },
-        "estado": "confirmado",
-        "tipo": "ponencia"
+      "inicio": "12:10",
+      "fin": "12:15",
+      "titulo": {
+        "en": "RETOS Video",
+        "es": "Video RETOS"
+      }
     },
     {
-        "id": "ag-21",
-        "fecha": "2026-10-30",
-        "horaInicio": "12:15",
-        "horaFin": "12:25",
-        "titulo": {
-            "es": "Closing Remarks",
-            "en": "Closing Remarks"
-        },
-        "descripcion": {
-            "es": "Palabras de cierre de la jornada.",
-            "en": "Closing remarks and summary of the showcase session."
-        },
-        "responsable": {
-            "es": "Estudiantes RETOS",
-            "en": "RETOS Students"
-        },
-        "estado": "confirmado",
-        "tipo": "protocolo"
+      "inicio": "12:15",
+      "fin": "12:25",
+      "titulo": {
+        "en": "Closing Remarks",
+        "es": "Palabras de Cierre"
+      }
     },
     {
-        "id": "ag-22",
-        "fecha": "2026-10-30",
-        "horaInicio": "12:25",
-        "horaFin": "12:30",
-        "titulo": {
-            "es": "Official Closing",
-            "en": "Official Closing"
-        },
-        "descripcion": {
-            "es": "Clausura oficial del RETOS Showcase 2026 - 2nd Edition.",
-            "en": "Official conclusion of RETOS Showcase 2026 - 2nd Edition."
-        },
-        "responsable": {
-            "es": "Estudiantes RETOS",
-            "en": "RETOS Students"
-        },
-        "estado": "destacado",
-        "tipo": "clausura"
+      "inicio": "12:25",
+      "fin": "12:30",
+      "titulo": {
+        "en": "Official Closing",
+        "es": "Clausura Oficial"
+      }
     }
-]
+  ]
 };
 
 /* ==========================================================================
@@ -953,7 +689,7 @@ const Toast = {
    ========================================================================== */
 const VerificationModule = (() => {
   const getSteps = () => {
-    const lang = (window.getCurrentLang && window.getCurrentLang()) || 'es';
+    const lang = (window.getCurrentLang && window.getCurrentLang()) || 'en';
     if (lang === 'en') {
       return [
         { text: "Establishing encrypted link with RETOS institutional node...", status: "CONNECTED" },
@@ -1363,7 +1099,7 @@ const QREngine = (() => {
 
       ctx.fillStyle = '#ffffff';
       ctx.font = '900 26px sans-serif';
-      ctx.fillText('RETOS SHOWCASE 2026', width / 2, 106);
+      ctx.fillText('RETOS SHOWCASE 2026 - 2nd Edition', width / 2, 106);
 
       ctx.fillStyle = '#45f573';
       ctx.font = 'bold 11px monospace';
@@ -1443,7 +1179,7 @@ const QREngine = (() => {
 
       drawField('TITULAR ACREDITADO:', attendee.name || 'Invitado Especial', infoY + 28, '#45f573');
       drawField('FECHA OFICIAL:', 'Viernes, 30 de octubre de 2026', infoY + 78);
-      drawField('HORARIO DEL EVENTO:', '08:00 — 12:30 hrs (GMT-6)', infoY + 128);
+      drawField('HORARIO DEL EVENTO:', '08:00 — 12:30 hrs', infoY + 128);
       drawField('SEDE & LOCALIZACIÓN:', 'Biblioteca RETOS, Instituto RETOS • La Libertad', infoY + 178);
 
       // 9. Pie de seguridad
@@ -1491,6 +1227,7 @@ const RSVPModule = (() => {
   const errAttendance = document.getElementById('err-attendance');
 
   let pendingPayload = null;
+  let lastResult = null;
   let attendeeData = {
     name: '',
     email: '',
@@ -1522,6 +1259,7 @@ const RSVPModule = (() => {
     let firstInvalid = null;
 
     if (!form) return null;
+    const lang = (window.getCurrentLang && window.getCurrentLang()) || 'en';
     const name = form.name ? form.name.value.trim() : '';
     const email = form.email ? form.email.value.trim().toLowerCase() : '';
     const attendance = form.attendance ? form.attendance.value : '';
@@ -1530,7 +1268,7 @@ const RSVPModule = (() => {
 
     if (name.length < 2 || name.length > 120) {
       hasError = true;
-      DOM.safeText(errName, '⚠ Por favor, ingresa tu nombre (entre 2 y 120 caracteres).');
+      DOM.safeText(errName, lang === 'en' ? '⚠ Please enter your full name (2–120 characters).' : '⚠ Por favor, ingresa tu nombre (entre 2 y 120 caracteres).');
       if (form.name) {
         form.name.setAttribute('aria-invalid', 'true');
         if (!firstInvalid) firstInvalid = form.name;
@@ -1540,7 +1278,7 @@ const RSVPModule = (() => {
     const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
     if (email.length > 254 || !emailRegex.test(email)) {
       hasError = true;
-      DOM.safeText(errEmail, '⚠ Ingresa un correo electrónico válido (máx. 254 caracteres).');
+      DOM.safeText(errEmail, lang === 'en' ? '⚠ Please enter a valid email address (max 254 chars).' : '⚠ Ingresa un correo electrónico válido (máx. 254 caracteres).');
       if (form.email) {
         form.email.setAttribute('aria-invalid', 'true');
         if (!firstInvalid) firstInvalid = form.email;
@@ -1549,14 +1287,14 @@ const RSVPModule = (() => {
 
     if (!['si', 'no'].includes(attendance)) {
       hasError = true;
-      DOM.safeText(errAttendance, '⚠ Selecciona si asistirás o no al evento.');
+      DOM.safeText(errAttendance, lang === 'en' ? '⚠ Please select whether you will attend the event.' : '⚠ Selecciona si asistirás o no al evento.');
       const firstRadio = form.querySelector('input[name="attendance"]');
       if (!firstInvalid) firstInvalid = firstRadio;
     }
 
     if (notes.length > 500) {
       hasError = true;
-      Toast.show('⚠ Las notas adicionales no deben exceder 500 caracteres.');
+      Toast.show(lang === 'en' ? '⚠ Additional notes must not exceed 500 characters.' : '⚠ Las notas adicionales no deben exceder 500 caracteres.');
     }
 
     if (hasError) {
@@ -1696,7 +1434,8 @@ const RSVPModule = (() => {
       btnConfirmAttendance.setAttribute('aria-busy', 'true');
     }
     DOM.show(spinner);
-    DOM.safeText(btnText, 'CONFIRMANDO...');
+    const currentLang = (window.getCurrentLang && window.getCurrentLang()) || 'en';
+    DOM.safeText(btnText, currentLang === 'en' ? 'CONFIRMING...' : 'CONFIRMANDO...');
 
     try {
       const result = await submitData(pendingPayload);
@@ -1707,53 +1446,9 @@ const RSVPModule = (() => {
         attendance: pendingPayload.attendance,
         code: result.code
       };
+      lastResult = result;
 
-      const statusLabels = {
-        'si': 'Asistencia Confirmada (Presencial)',
-        'no': 'Inasistencia Registrada (Cupo Liberado)'
-      };
-
-      DOM.safeText('#res-attendee-name', pendingPayload.name);
-      DOM.safeText('#res-attendee-email', pendingPayload.email);
-      DOM.safeText('#res-attendee-status', statusLabels[pendingPayload.attendance] || pendingPayload.attendance);
-      DOM.safeText('#res-attendee-code', result.code);
-
-      const resBadgeEl = document.getElementById('result-badge-text');
-      const resTitleEl = document.getElementById('result-title-text');
-      const resMsgEl = document.getElementById('result-message-text');
-      const qrContainerEl = document.getElementById('result-qr-container');
-      const qrWrapperEl = document.getElementById('rsvp-qr-code-wrapper');
-
-      if (pendingPayload.attendance === 'si') {
-        if (qrWrapperEl) {
-          qrWrapperEl.innerHTML = QREngine.generateSVG(result.code, 168);
-        }
-        if (qrContainerEl) DOM.show(qrContainerEl);
-
-        if (resBadgeEl) {
-          DOM.safeText(resBadgeEl, result.demoMode ? 'MODO DEMOSTRACIÓN LOCAL' : 'ACREDITACIÓN CONFIRMADA');
-        }
-        if (resTitleEl) {
-          DOM.safeText(resTitleEl, '¡Tu lugar ha sido reservado!');
-        }
-        if (resMsgEl) {
-          resMsgEl.innerHTML = result.demoMode
-            ? `<strong>AVISO DE DEMOSTRACIÓN:</strong> Tu acreditación fue validada exitosamente en entorno local. En producción, la confirmación se almacena en Supabase. Puedes descargar tu pase digital a continuación.`
-            : `Hemos reservado tu lugar oficial en la Biblioteca RETOS. Guarda o descarga tu pase digital de entrada para presentarlo el día del evento.`;
-        }
-      } else {
-        if (qrContainerEl) DOM.hide(qrContainerEl);
-
-        if (resBadgeEl) {
-          DOM.safeText(resBadgeEl, 'RESPUESTA REGISTRADA');
-        }
-        if (resTitleEl) {
-          DOM.safeText(resTitleEl, 'Agradecemos tu notificación');
-        }
-        if (resMsgEl) {
-          resMsgEl.textContent = 'Hemos registrado que no podrás acompañarnos en esta ocasión y liberado el cupo. Si tu disponibilidad cambia antes del 30 de octubre, puedes volver a ingresar con este mismo correo para confirmar tu asistencia.';
-        }
-      }
+      renderReceiptUI(attendeeData, result.demoMode);
 
       if (resultCard) DOM.show(resultCard);
 
@@ -1764,16 +1459,17 @@ const RSVPModule = (() => {
       NavigationEngine.updateClosingPersonalization(attendeeData);
 
       SoundEngine.success();
-      Toast.show('✔ Asistencia confirmada con éxito');
+      Toast.show(currentLang === 'en' ? '✔ Attendance confirmed successfully' : '✔ Asistencia confirmada con éxito');
 
     } catch (err) {
       console.error("[RSVP Error]:", err);
       SoundEngine.error();
-      Toast.show('⚠ Error al procesar confirmación');
+      const currentLangErr = (window.getCurrentLang && window.getCurrentLang()) || 'en';
+      Toast.show(currentLangErr === 'en' ? '⚠ Error processing confirmation' : '⚠ Error al procesar confirmación');
 
       const errorTextEl = document.getElementById('submission-error-text');
       if (errorTextEl) {
-        DOM.safeText(errorTextEl, err.message || 'No se pudo completar el registro. Por favor, reintenta.');
+        DOM.safeText(errorTextEl, err.message || (currentLangErr === 'en' ? 'Could not complete registration. Please retry.' : 'No se pudo completar el registro. Por favor, reintenta.'));
       }
       if (errorBannerEl) {
         DOM.show(errorBannerEl);
@@ -1786,7 +1482,75 @@ const RSVPModule = (() => {
         btnConfirmAttendance.removeAttribute('aria-busy');
       }
       DOM.hide(spinner);
-      DOM.safeText(btnText, 'Confirmar asistencia');
+      const currentLangFinal = (window.getCurrentLang && window.getCurrentLang()) || 'en';
+      DOM.safeText(btnText, currentLangFinal === 'en' ? 'Confirm attendance' : 'Confirmar asistencia');
+    }
+  };
+
+  const renderReceiptUI = (attendee, isDemo) => {
+    if (!attendee || !attendee.code) return;
+    const currentLang = (window.getCurrentLang && window.getCurrentLang()) || 'en';
+    const statusLabels = {
+      en: {
+        'si': 'Attendance Confirmed (In-Person)',
+        'no': 'Non-Attendance Recorded'
+      },
+      es: {
+        'si': 'Asistencia Confirmada (Presencial)',
+        'no': 'Inasistencia Registrada (Cupo Liberado)'
+      }
+    };
+    const currentStatusLabels = statusLabels[currentLang] || statusLabels.en;
+
+    DOM.safeText('#res-attendee-name', attendee.name);
+    DOM.safeText('#res-attendee-email', attendee.email);
+    DOM.safeText('#res-attendee-status', currentStatusLabels[attendee.attendance] || attendee.attendance);
+    DOM.safeText('#res-attendee-code', attendee.code);
+
+    const resBadgeEl = document.getElementById('result-badge-text');
+    const resTitleEl = document.getElementById('result-title-text');
+    const resMsgEl = document.getElementById('result-message-text');
+    const qrContainerEl = document.getElementById('result-qr-container');
+    const qrWrapperEl = document.getElementById('rsvp-qr-code-wrapper');
+
+    if (attendee.attendance === 'si') {
+      if (qrWrapperEl) {
+        qrWrapperEl.innerHTML = QREngine.generateSVG(attendee.code, 168);
+      }
+      if (qrContainerEl) DOM.show(qrContainerEl);
+
+      if (resBadgeEl) {
+        DOM.safeText(resBadgeEl, isDemo
+          ? (currentLang === 'en' ? 'LOCAL DEMO MODE' : 'MODO DEMOSTRACIÓN LOCAL')
+          : (currentLang === 'en' ? 'CONFIRMED ACCREDITATION' : 'ACREDITACIÓN CONFIRMADA')
+        );
+      }
+      if (resTitleEl) {
+        DOM.safeText(resTitleEl, currentLang === 'en' ? 'Your seat has been reserved!' : '¡Tu lugar ha sido reservado!');
+      }
+      if (resMsgEl) {
+        resMsgEl.innerHTML = isDemo
+          ? (currentLang === 'en'
+              ? `<strong>DEMO NOTICE:</strong> Your accreditation was validated in local demonstration mode. In production, confirmations are stored in Supabase. You can download your digital pass below.`
+              : `<strong>AVISO DE DEMOSTRACIÓN:</strong> Tu acreditación fue validada exitosamente en entorno local. En producción, la confirmación se almacena en Supabase. Puedes descargar tu pase digital a continuación.`)
+          : (currentLang === 'en'
+              ? `We have reserved your official seat at the RETOS Library. Please save or download your digital entrance pass to present on event day.`
+              : `Hemos reservado tu lugar oficial en la Biblioteca RETOS. Guarda o descarga tu pase digital de entrada para presentarlo el día del evento.`);
+      }
+    } else {
+      if (qrContainerEl) DOM.hide(qrContainerEl);
+
+      if (resBadgeEl) {
+        DOM.safeText(resBadgeEl, currentLang === 'en' ? 'RESPONSE RECORDED' : 'RESPUESTA REGISTRADA');
+      }
+      if (resTitleEl) {
+        DOM.safeText(resTitleEl, currentLang === 'en' ? 'Thank you for letting us know' : 'Agradecemos tu notificación');
+      }
+      if (resMsgEl) {
+        resMsgEl.textContent = currentLang === 'en'
+          ? 'We have recorded that you will be unable to attend this time. If your availability changes before October 30, you may return with this email to confirm your attendance.'
+          : 'Hemos registrado que no podrás acompañarnos en esta ocasión y liberado el cupo. Si tu disponibilidad cambia antes del 30 de octubre, puedes volver a ingresar con este mismo correo para confirmar tu asistencia.';
+      }
     }
   };
 
@@ -1872,7 +1636,8 @@ const RSVPModule = (() => {
       }
     },
     reset,
-    getAttendee: () => attendeeData
+    getAttendee: () => attendeeData,
+    updateReceipt: () => renderReceiptUI(attendeeData, lastResult ? lastResult.demoMode : false)
   };
 })();
 
@@ -1975,20 +1740,21 @@ const UIRenderer = {
     const container = document.getElementById('agenda-container');
     if (!container) return;
 
-    const currentLang = (window.getCurrentLang && window.getCurrentLang()) || 'es';
+    const currentLang = (window.getCurrentLang && window.getCurrentLang()) || 'en';
 
     const getLocalized = (val) => {
       if (!val) return '';
-      if (typeof val === 'object') return val[currentLang] || val.es || val.en || '';
+      if (typeof val === 'object') return val[currentLang] || val.en || val.es || '';
       return val;
     };
 
     if (!Array.isArray(agenda) || agenda.length === 0) {
       container.innerHTML = `
         <li class="agenda-timeline-item">
-          <article class="agenda-item-card">
-            <h3 class="agenda-event-title">${currentLang === 'en' ? 'Schedule to be confirmed' : 'Agenda por confirmar'}</h3>
-            <p class="agenda-event-desc">${currentLang === 'en' ? 'The official schedule of activities is currently synchronizing.' : 'El cronograma oficial de actividades se encuentra en proceso de sincronización.'}</p>
+          <article class="agenda-item-card" tabindex="0">
+            <div class="agenda-card-content">
+              <h3 class="agenda-card-title">${currentLang === 'en' ? 'Schedule to be confirmed' : 'Agenda por confirmar'}</h3>
+            </div>
           </article>
         </li>
       `;
@@ -2001,9 +1767,9 @@ const UIRenderer = {
 
     const firstItem = agenda[0];
     const lastItem = agenda[agenda.length - 1];
-    const fechaRef = firstItem.fecha || "2026-10-30";
-    const horaInicioMin = firstItem.horaInicio || "08:00";
-    const horaFinMax = lastItem.horaFin || "12:00";
+    const fechaRef = (EVENT_META && EVENT_META.inicio) ? EVENT_META.inicio.split('T')[0] : "2026-10-30";
+    const horaInicioMin = firstItem.inicio || "08:00";
+    const horaFinMax = lastItem.fin || "12:30";
 
     const [year, month, day] = fechaRef.split('-').map(Number);
     const dateObj = new Date(year, month - 1, day);
@@ -2021,65 +1787,29 @@ const UIRenderer = {
     }
     DOM.safeText('#agenda-summary-time', `${horaInicioMin} — ${horaFinMax} hrs`);
 
-    const iconMap = {
-      protocolo: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="agenda-speaker-icon"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="22"/></svg>`,
-      inauguracion: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="agenda-speaker-icon"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`,
-      ponencia: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="agenda-speaker-icon"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>`,
-      showcase: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="agenda-speaker-icon"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/></svg>`,
-      logistica: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="agenda-speaker-icon"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>`,
-      debate: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="agenda-speaker-icon"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>`,
-      networking: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="agenda-speaker-icon"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>`,
-      clausura: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="agenda-speaker-icon"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>`
-    };
+    container.innerHTML = agenda.map((item, index) => {
+      const title = getLocalized(item.titulo);
+      const delayMs = index * 100;
+      const srTimeLabel = currentLang === 'en' 
+        ? `${item.inicio} to ${item.fin}` 
+        : `${item.inicio} a ${item.fin}`;
 
-    const statusLabels = {
-      es: {
-        'confirmado': 'Confirmado',
-        'destacado': 'Destacado',
-        'en-curso': 'En Curso',
-        'proximo': 'Programado'
-      },
-      en: {
-        'confirmado': 'Confirmed',
-        'destacado': 'Featured',
-        'en-curso': 'In Progress',
-        'proximo': 'Scheduled'
-      }
-    };
-
-    const currentStatusLabels = statusLabels[currentLang] || statusLabels.es;
-
-    container.innerHTML = agenda.map(item => `
-      <li class="agenda-timeline-item" id="${item.id}">
-        <article class="agenda-item-card ${item.estado === 'destacado' ? 'highlight' : ''}">
-          <header class="agenda-item-header">
-            <div class="agenda-time-badge">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="agenda-time-icon" aria-hidden="true">
-                <circle cx="12" cy="12" r="10"/>
-                <polyline points="12 6 12 12 16 14"/>
-              </svg>
-              <time datetime="${item.fecha}T${item.horaInicio}">${item.horaInicio}</time>
-              <span>—</span>
-              <time datetime="${item.fecha}T${item.horaFin}">${item.horaFin} hrs</time>
+      return `
+        <li class="agenda-timeline-item" style="--delay: ${delayMs}ms;">
+          <article class="agenda-item-card" tabindex="0">
+            <div class="agenda-card-time-block">
+              <time class="agenda-time-range" datetime="${item.inicio}/${item.fin}" aria-label="${srTimeLabel}">
+                ${item.inicio} – ${item.fin}
+              </time>
             </div>
-            <span class="agenda-status-pill status-${item.estado || 'confirmado'}">
-              ${currentStatusLabels[item.estado] || item.estado}
-            </span>
-          </header>
-
-          <h3 class="agenda-event-title">${getLocalized(item.titulo)}</h3>
-          <p class="agenda-event-desc">${getLocalized(item.descripcion)}</p>
-
-          <footer class="agenda-item-footer">
-            <div class="agenda-speaker">
-              ${iconMap[item.tipo] || iconMap.ponencia}
-              <span>${getLocalized(item.responsable)}</span>
+            <div class="agenda-card-divider" aria-hidden="true"></div>
+            <div class="agenda-card-content">
+              <h3 class="agenda-card-title">${title}</h3>
             </div>
-            <span class="agenda-type-tag">${currentLang === 'en' ? 'TYPE' : 'TIPO'}: ${item.tipo.toUpperCase()}</span>
-          </footer>
-        </article>
-      </li>
-    `).join('');
+          </article>
+        </li>
+      `;
+    }).join('');
   },
 
   // Telemetría en tiempo real
@@ -2247,8 +1977,8 @@ const NavigationEngine = (() => {
     if (sceneCounterCur) {
       sceneCounterCur.textContent = String(currentIndex + 1).padStart(2, '0');
     }
-    const currentLang = (window.getCurrentLang && window.getCurrentLang()) || 'es';
-    const names = routeDisplayNames[currentLang] || routeDisplayNames.es;
+    const currentLang = (window.getCurrentLang && window.getCurrentLang()) || 'en';
+    const names = routeDisplayNames[currentLang] || routeDisplayNames.en;
     if (sceneCounterName) {
       sceneCounterName.textContent = names[currentRoute] || (currentLang === 'en' ? `Scene ${currentIndex + 1}` : `Escena ${currentIndex + 1}`);
     }
@@ -2315,7 +2045,7 @@ const NavigationEngine = (() => {
       displayName = displayName.replace(/[.,;:!]+$/, '');
     }
 
-    const lang = (window.getCurrentLang && window.getCurrentLang()) || 'es';
+    const lang = (window.getCurrentLang && window.getCurrentLang()) || 'en';
     if (headline) {
       if (displayName) {
         headline.innerHTML = lang === 'en'
@@ -2642,12 +2372,22 @@ window.addEventListener('retos:langchange', (e) => {
   const attendee = (typeof RSVPModule !== 'undefined' && RSVPModule.getAttendee) ? RSVPModule.getAttendee() : null;
   if (attendee && attendee.name) {
     NavigationEngine.updateClosingPersonalization(attendee);
+    if (RSVPModule && RSVPModule.updateReceipt) {
+      RSVPModule.updateReceipt();
+    }
   }
   if (NavigationEngine && NavigationEngine.updateHudSceneName) {
     NavigationEngine.updateHudSceneName();
   }
   const step2El = document.getElementById('rsvp-step-2');
   if (step2El && !step2El.classList.contains('is-hidden') && VerificationModule) {
-    VerificationModule.start();
+    const grantBanner = document.getElementById('access-grant-banner');
+    if (grantBanner && grantBanner.classList.contains('show')) {
+      VerificationModule.reset();
+      VerificationModule.skip();
+    } else {
+      VerificationModule.reset();
+      VerificationModule.start();
+    }
   }
 });
