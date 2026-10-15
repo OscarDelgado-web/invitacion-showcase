@@ -3,7 +3,9 @@
  * RETOS Showcase 2026 — Función Serverless RSVP (Vercel Node.js Runtime)
  * Archivo: api/rsvp.js
  *
- * Justificación: Se utiliza fetch nativo hacia la REST API de Supabase (PostgREST) para garantizar cero dependencias de npm, arranques en frío instantáneos y máxima ligereza en la función serverless.
+ * Utiliza fetch nativo hacia la REST API de Supabase (PostgREST) con service_role.
+ * Esquema de datos: public.rsvp_registros
+ * Columnas: id, created_at, updated_at, nombre, asistencia, rol, organizacion, codigo, origen.
  * ==============================================================================
  */
 
@@ -13,20 +15,26 @@ const crypto = require('crypto');
 
 // Límites de validación técnica
 const MAX_BODY_BYTES = 10 * 1024; // 10 KB
-const EMAIL_REGEX = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
 const VALID_ATTENDANCE = new Set(['si', 'no']);
+const VALID_ROLES = new Set(['estudiante', 'docente', 'empresa', 'familiar', 'invitado']);
+const CODE_CHARSET = '23456789ABCDEFGHJKLMNPQRSTUVWXYZ';
+const CODE_REGEX = /^RETOS-[23456789ABCDEFGHJKLMNPQRSTUVWXYZ]{6}$/;
 
 /**
- * Genera un código de acreditación oficial con entropía criptográfica (crypto.randomInt).
- * Formato: RETOS-XXXX-<ASISTENCIA_MAYUS> (ej. RETOS-4891-SI)
+ * Genera un código de acreditación alfanumérico en mayúsculas sin 0, O, 1, I.
+ * Formato: RETOS-XXXXXX (ej. RETOS-K9P42A)
  */
-function generateAccessCode(attendance) {
-  const randomSuffix = crypto.randomInt(1000, 10000); // 1000 a 9999 inclusive
-  return `RETOS-${randomSuffix}-${attendance.toUpperCase()}`;
+function generateAccessCode() {
+  const bytes = crypto.randomBytes(6);
+  let suffix = '';
+  for (let i = 0; i < 6; i++) {
+    suffix += CODE_CHARSET[bytes[i] % CODE_CHARSET.length];
+  }
+  return `RETOS-${suffix}`;
 }
 
 module.exports = async function handler(req, res) {
-  // 1. Configurar cabeceras de seguridad y control de caché (mismo origen, sin almacenamiento en caché)
+  // 1. Configurar cabeceras de seguridad y control de caché
   res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
 
   // 2. Restringir método exclusivamente a POST
@@ -47,7 +55,7 @@ module.exports = async function handler(req, res) {
     });
   }
 
-  // 4. Protección contra payload excesivo (DoS / Buffer overflow)
+  // 4. Protección contra payload excesivo
   const rawBody = typeof req.body === 'string' ? req.body : JSON.stringify(req.body || {});
   if (Buffer.byteLength(rawBody, 'utf8') > MAX_BODY_BYTES) {
     return res.status(413).json({
@@ -77,7 +85,6 @@ module.exports = async function handler(req, res) {
   }
 
   // 6. Trampa Honeypot contra bots automatizados
-  // Si el campo oculto "website" contiene texto, se responde 200 ficticio sin persistir
   if (body.website && typeof body.website === 'string' && body.website.trim().length > 0) {
     return res.status(200).json({
       ok: true,
@@ -85,29 +92,27 @@ module.exports = async function handler(req, res) {
     });
   }
 
-  // 7. Extracción y normalización rigurosa en servidor (nunca confiar en el cliente)
+  // 7. Extracción y normalización de las columnas del esquema public.rsvp_registros
   const nombreRaw = body.nombre !== undefined ? body.nombre : (body.name !== undefined ? body.name : '');
-  const emailRaw = body.email !== undefined ? body.email : '';
   const asistenciaRaw = body.asistencia !== undefined ? body.asistencia : (body.attendance !== undefined ? body.attendance : '');
-  const notasRaw = body.notas !== undefined ? body.notas : (body.notes !== undefined ? body.notes : '');
+  const rolRaw = body.rol !== undefined ? body.rol : (body.role !== undefined ? body.role : '');
+  const orgRaw = body.organizacion !== undefined ? body.organizacion : (body.organization !== undefined ? body.organization : '');
+  const codigoRaw = body.codigo !== undefined ? body.codigo : (body.code !== undefined ? body.code : '');
+  const origenRaw = body.origen !== undefined ? body.origen : 'web_showcase_2026';
 
   const nombre = typeof nombreRaw === 'string' ? nombreRaw.trim() : '';
-  const email = typeof emailRaw === 'string' ? emailRaw.trim().toLowerCase() : '';
   const asistencia = typeof asistenciaRaw === 'string' ? asistenciaRaw.trim().toLowerCase() : '';
-  const notas = typeof notasRaw === 'string' ? notasRaw.trim() : '';
+  const rol = typeof rolRaw === 'string' ? rolRaw.trim().toLowerCase() : '';
+  const orgTrimmed = typeof orgRaw === 'string' ? orgRaw.trim() : '';
+  const organizacion = orgTrimmed.length > 0 ? orgTrimmed : null;
+  const codigoCandidate = typeof codigoRaw === 'string' ? codigoRaw.trim().toUpperCase() : '';
+  const origen = typeof origenRaw === 'string' ? origenRaw.trim().slice(0, 60) : 'web_showcase_2026';
 
-  // 8. Validación de reglas de negocio
+  // 8. Validación de restricciones CHECK de PostgreSQL
   if (nombre.length < 2 || nombre.length > 120) {
     return res.status(400).json({
       ok: false,
       error: 'El nombre es obligatorio y debe tener entre 2 y 120 caracteres.'
-    });
-  }
-
-  if (email.length > 254 || !EMAIL_REGEX.test(email)) {
-    return res.status(400).json({
-      ok: false,
-      error: 'El correo electrónico proporcionado no es válido (máximo 254 caracteres).'
     });
   }
 
@@ -118,10 +123,17 @@ module.exports = async function handler(req, res) {
     });
   }
 
-  if (notas.length > 500) {
+  if (!VALID_ROLES.has(rol)) {
     return res.status(400).json({
       ok: false,
-      error: 'Las notas adicionales no deben exceder 500 caracteres.'
+      error: 'El rol seleccionado no es válido. Opciones permitidas: estudiante, docente, empresa, familiar, invitado.'
+    });
+  }
+
+  if (organizacion !== null && organizacion.length > 120) {
+    return res.status(400).json({
+      ok: false,
+      error: 'La organización no debe exceder 120 caracteres.'
     });
   }
 
@@ -137,10 +149,7 @@ module.exports = async function handler(req, res) {
     });
   }
 
-  // Normalización defensiva de SUPABASE_URL:
-  // En Supabase existen "Project URL" (https://xyz.supabase.co) y "REST URL" (https://xyz.supabase.co/rest/v1/).
-  // Si en Vercel o en .env se configuró con '/rest/v1' o barras finales '/', se eliminan
-  // para evitar rutas erróneas 404 tipo '/rest/v1/rest/v1/rsvp_registros'.
+  // Normalización defensiva de SUPABASE_URL
   supabaseUrl = supabaseUrl.replace(/\/+$/, '').replace(/\/rest\/v1\/?$/i, '').replace(/\/+$/, '');
 
   const commonHeaders = {
@@ -150,67 +159,15 @@ module.exports = async function handler(req, res) {
   };
 
   try {
-    // 10. Consultar si ya existe un registro con lower(email)
-    const checkQueryUrl = `${supabaseUrl}/rest/v1/rsvp_registros?email=ilike.${encodeURIComponent(email)}&select=id,codigo`;
-    const checkResponse = await fetch(checkQueryUrl, {
-      method: 'GET',
-      headers: commonHeaders
-    });
-
-    if (!checkResponse.ok) {
-      const errorText = await checkResponse.text();
-      console.error('[RSVP Supabase Check Error]:', checkResponse.status, errorText);
-      return res.status(500).json({
-        ok: false,
-        error: 'No se pudo verificar el estado previo del registro en el sistema.'
-      });
-    }
-
-    const existingRows = await checkResponse.json();
-
-    // 11. Caso A: El correo ya existe -> Actualizar respuesta y conservar su código original
-    if (Array.isArray(existingRows) && existingRows.length > 0) {
-      const existing = existingRows[0];
-      const existingCode = existing.codigo;
-
-      const updateUrl = `${supabaseUrl}/rest/v1/rsvp_registros?id=eq.${encodeURIComponent(existing.id)}`;
-      const updateResponse = await fetch(updateUrl, {
-        method: 'PATCH',
-        headers: {
-          ...commonHeaders,
-          'Content-Type': 'application/json',
-          'Prefer': 'return=minimal'
-        },
-        body: JSON.stringify({
-          nombre,
-          asistencia,
-          notas: notas.length > 0 ? notas : null,
-          updated_at: new Date().toISOString()
-        })
-      });
-
-      if (!updateResponse.ok) {
-        const updateError = await updateResponse.text();
-        console.error('[RSVP Supabase Update Error]:', updateResponse.status, updateError);
-        return res.status(500).json({
-          ok: false,
-          error: 'No fue posible actualizar tu confirmación en este momento.'
-        });
-      }
-
-      return res.status(200).json({
-        ok: true,
-        code: existingCode
-      });
-    }
-
-    // 12. Caso B: Correo nuevo -> Insertar con generación de código y reintento defensivo ante colisión
+    // 10. Inserción con reintento ante colisión de código único (error 23505)
     let inserted = false;
-    let finalCode = '';
+    let finalCode = CODE_REGEX.test(codigoCandidate) ? codigoCandidate : generateAccessCode();
     const maxRetries = 3;
 
     for (let attempt = 0; attempt < maxRetries; attempt++) {
-      finalCode = generateAccessCode(asistencia);
+      if (attempt > 0) {
+        finalCode = generateAccessCode();
+      }
 
       const insertUrl = `${supabaseUrl}/rest/v1/rsvp_registros`;
       const insertResponse = await fetch(insertUrl, {
@@ -222,11 +179,11 @@ module.exports = async function handler(req, res) {
         },
         body: JSON.stringify({
           nombre,
-          email,
           asistencia,
-          notas: notas.length > 0 ? notas : null,
+          rol,
+          organizacion,
           codigo: finalCode,
-          origen: 'web_showcase_2026'
+          origen
         })
       });
 
@@ -236,9 +193,10 @@ module.exports = async function handler(req, res) {
       }
 
       const insertError = await insertResponse.text();
-      // Si el error es por colisión de clave única en codigo, reintentar con otro número
-      if (insertError.includes('codigo') || insertError.includes('duplicate key')) {
-        console.warn(`[RSVP Collision]: Reintentando código para ${email} (intento ${attempt + 1})...`);
+
+      // Si el error es 23505 (violación de clave única en codigo), reintentar
+      if (insertResponse.status === 409 || insertError.includes('23505') || insertError.includes('codigo') || insertError.includes('duplicate key')) {
+        console.warn(`[RSVP Colisión 23505]: Reintentando generación de código (intento ${attempt + 1}/${maxRetries})...`);
         continue;
       }
 
@@ -250,7 +208,7 @@ module.exports = async function handler(req, res) {
     }
 
     if (!inserted) {
-      console.error('[RSVP Collision Exhausted]: Se agotaron los reintentos de generación de código.');
+      console.error('[RSVP Colisión Agotada]: Se agotaron los reintentos de código de acreditación.');
       return res.status(500).json({
         ok: false,
         error: 'Error temporal al asignar tu código de acreditación. Por favor, reintenta.'

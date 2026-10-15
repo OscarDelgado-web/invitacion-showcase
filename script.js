@@ -359,8 +359,8 @@ const SoundEngine = (() => {
     try {
       initCtx();
       if (!ctx) return;
-      const notes = [523.25, 659.25, 783.99, 1046.50]; // C5, E5, G5, C6
-      notes.forEach((freq, idx) => {
+      const chimes = [523.25, 659.25, 783.99, 1046.50]; // C5, E5, G5, C6
+      chimes.forEach((freq, idx) => {
         setTimeout(() => {
           try {
             const osc = ctx.createOscillator();
@@ -745,6 +745,8 @@ const VerificationModule = (() => {
     }
 
     if (grantBanner) grantBanner.classList.add('show');
+    const summaryCard = document.getElementById('verify-summary-card');
+    if (summaryCard) DOM.show(summaryCard);
     DOM.hide(btnSkip);
     const btnContinue = getContinueBtn();
     DOM.show(btnContinue);
@@ -815,6 +817,8 @@ const VerificationModule = (() => {
       if (percentLabel) percentLabel.textContent = '0%';
       if (statusIndicator) statusIndicator.textContent = ((window.getCurrentLang && window.getCurrentLang()) === 'en') ? 'PROCESSING...' : 'PROCESANDO...';
       if (grantBanner) grantBanner.classList.remove('show');
+      const summaryCard = document.getElementById('verify-summary-card');
+      if (summaryCard) DOM.hide(summaryCard);
       DOM.hide(getContinueBtn());
       DOM.show(btnSkip);
     }
@@ -1123,7 +1127,8 @@ const QREngine = (() => {
       ctx.shadowBlur = 0;
 
       // 6. Dibujo de módulos del código QR
-      const matrix = encode(attendee.code);
+      const attendeeCode = attendee.codigo || attendee.code || 'RETOS-SHOWCASE';
+      const matrix = encode(attendeeCode);
       const N = matrix.length;
       const padding = 20;
       const cellSize = (qrBoxSize - padding * 2) / N;
@@ -1145,7 +1150,7 @@ const QREngine = (() => {
       // 7. Código de acreditación
       ctx.fillStyle = '#45f573';
       ctx.font = '900 24px monospace';
-      ctx.fillText(attendee.code, width / 2, qrY + qrBoxSize + 40);
+      ctx.fillText(attendeeCode, width / 2, qrY + qrBoxSize + 40);
 
       // 8. Ficha del asistente
       const infoY = qrY + qrBoxSize + 76;
@@ -1177,7 +1182,7 @@ const QREngine = (() => {
         ctx.fillText(value, leftX, y + 20);
       };
 
-      drawField('TITULAR ACREDITADO:', attendee.name || 'Invitado Especial', infoY + 28, '#45f573');
+      drawField('TITULAR ACREDITADO:', attendee.nombre || attendee.name || 'Invitado Especial', infoY + 28, '#45f573');
       drawField('FECHA OFICIAL:', 'Viernes, 30 de octubre de 2026', infoY + 78);
       drawField('HORARIO DEL EVENTO:', '08:00 — 12:30 hrs', infoY + 128);
       drawField('SEDE & LOCALIZACIÓN:', 'Biblioteca RETOS, Instituto RETOS • La Libertad', infoY + 178);
@@ -1194,7 +1199,7 @@ const QREngine = (() => {
       // 10. Descargar archivo PNG
       try {
         const link = document.createElement('a');
-        link.download = `pase-${attendee.code || 'retos-showcase-2026'}.png`;
+        link.download = `pase-${attendee.codigo || attendee.code || 'retos-showcase-2026'}.png`;
         link.href = canvas.toDataURL('image/png');
         link.click();
         if (typeof Toast !== 'undefined' && Toast.show) {
@@ -1223,16 +1228,18 @@ const RSVPModule = (() => {
   const resultCard = document.getElementById('rsvp-result-card');
 
   const errName = document.getElementById('err-name');
-  const errEmail = document.getElementById('err-email');
+  const errRole = document.getElementById('err-role');
   const errAttendance = document.getElementById('err-attendance');
 
   let pendingPayload = null;
   let lastResult = null;
   let attendeeData = {
-    name: '',
-    email: '',
-    attendance: '',
-    code: ''
+    nombre: '',
+    asistencia: '',
+    rol: '',
+    organizacion: null,
+    codigo: '',
+    origen: 'web_showcase_2026'
   };
 
   const isLocalEnvironment = () => {
@@ -1243,14 +1250,47 @@ const RSVPModule = (() => {
 
   const clearErrors = () => {
     DOM.safeText(errName, '');
-    DOM.safeText(errEmail, '');
+    DOM.safeText(errRole, '');
     DOM.safeText(errAttendance, '');
     const errorBanner = document.getElementById('submission-error-banner');
     if (errorBanner) DOM.hide(errorBanner);
     if (form) {
       if (form.name) form.name.removeAttribute('aria-invalid');
-      if (form.email) form.email.removeAttribute('aria-invalid');
+      if (form.role) form.role.removeAttribute('aria-invalid');
     }
+  };
+
+  const getRoleLabel = (roleKey, lang) => {
+    const currentL = lang || (window.getCurrentLang && window.getCurrentLang()) || 'en';
+    const roleMap = {
+      en: {
+        estudiante: 'Student',
+        docente: 'Teacher / Faculty',
+        empresa: 'Company Representative',
+        familiar: 'Family Member',
+        invitado: 'Special Guest'
+      },
+      es: {
+        estudiante: 'Estudiante',
+        docente: 'Docente',
+        empresa: 'Representante de empresa',
+        familiar: 'Familiar',
+        invitado: 'Invitado'
+      }
+    };
+    const map = roleMap[currentL] || roleMap.en;
+    return map[roleKey] || roleKey;
+  };
+
+  const generateConfirmationCode = () => {
+    const charset = '23456789ABCDEFGHJKLMNPQRSTUVWXYZ';
+    const randValues = new Uint8Array(6);
+    window.crypto.getRandomValues(randValues);
+    let codeSuffix = '';
+    for (let i = 0; i < 6; i++) {
+      codeSuffix += charset[randValues[i] % charset.length];
+    }
+    return `RETOS-${codeSuffix}`;
   };
 
   const validate = () => {
@@ -1261,9 +1301,9 @@ const RSVPModule = (() => {
     if (!form) return null;
     const lang = (window.getCurrentLang && window.getCurrentLang()) || 'en';
     const name = form.name ? form.name.value.trim() : '';
-    const email = form.email ? form.email.value.trim().toLowerCase() : '';
+    const role = form.role ? form.role.value.trim().toLowerCase() : '';
     const attendance = form.attendance ? form.attendance.value : '';
-    const notes = form.notes ? form.notes.value.trim() : '';
+    const organization = form.organization ? form.organization.value.trim() : '';
     const website = form.website ? form.website.value.trim() : '';
 
     if (name.length < 2 || name.length > 120) {
@@ -1275,13 +1315,13 @@ const RSVPModule = (() => {
       }
     }
 
-    const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
-    if (email.length > 254 || !emailRegex.test(email)) {
+    const validRoles = ['estudiante', 'docente', 'empresa', 'familiar', 'invitado'];
+    if (!validRoles.includes(role)) {
       hasError = true;
-      DOM.safeText(errEmail, lang === 'en' ? '⚠ Please enter a valid email address (max 254 chars).' : '⚠ Ingresa un correo electrónico válido (máx. 254 caracteres).');
-      if (form.email) {
-        form.email.setAttribute('aria-invalid', 'true');
-        if (!firstInvalid) firstInvalid = form.email;
+      DOM.safeText(errRole, lang === 'en' ? '⚠ Please select your role from the list.' : '⚠ Por favor, selecciona tu rol de la lista.');
+      if (form.role) {
+        form.role.setAttribute('aria-invalid', 'true');
+        if (!firstInvalid) firstInvalid = form.role;
       }
     }
 
@@ -1292,9 +1332,9 @@ const RSVPModule = (() => {
       if (!firstInvalid) firstInvalid = firstRadio;
     }
 
-    if (notes.length > 500) {
+    if (organization.length > 120) {
       hasError = true;
-      Toast.show(lang === 'en' ? '⚠ Additional notes must not exceed 500 characters.' : '⚠ Las notas adicionales no deben exceder 500 caracteres.');
+      Toast.show(lang === 'en' ? '⚠ Organization must not exceed 120 characters.' : '⚠ La organización no debe exceder 120 caracteres.');
     }
 
     if (hasError) {
@@ -1304,93 +1344,143 @@ const RSVPModule = (() => {
     }
 
     return {
-      name,
-      email,
-      attendance,
-      notes,
-      website
+      nombre: name,
+      asistencia: attendance,
+      rol: role,
+      organizacion: organization.length > 0 ? organization : null,
+      codigo: generateConfirmationCode(),
+      origen: 'web_showcase_2026',
+      isHoneypot: website.length > 0
     };
   };
 
-  const submitData = async (payload) => {
-    // 1. Simulación demostrativa exclusivamente bajo protocolo file:// (apertura directa sin servidor)
-    if (window.location.protocol === 'file:') {
-      await new Promise(resolve => setTimeout(resolve, EVENT_META.latenciaSimuladaMs || 800));
-      return {
-        success: true,
-        demoMode: true,
-        message: "Modo demostrativo local (protocolo file://). Los datos fueron validados satisfactoriamente.",
-        code: `DEMO-${Math.floor(1000 + Math.random() * 9000)}-${payload.attendance.toUpperCase()}`
-      };
-    }
-
-    // 2. Envío real a la función serverless de producción con timeout estricto de 10 segundos
+  /**
+   * Envía los datos a la API de RSVP con exactamente 6 claves:
+   * nombre, asistencia, rol, organizacion, codigo, origen.
+   */
+  const saveRsvp = async (payload) => {
     const endpoint = EVENT_META.rsvpEndpoint || '/api/rsvp';
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 10000);
+    const dataToSend = {
+      nombre: payload.nombre,
+      asistencia: payload.asistencia,
+      rol: payload.rol,
+      organizacion: payload.organizacion && payload.organizacion.trim().length > 0 ? payload.organizacion.trim() : null,
+      codigo: payload.codigo,
+      origen: payload.origen || 'web_showcase_2026'
+    };
 
-    try {
-      const response = await fetch(endpoint, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify({
-          nombre: payload.name,
-          email: payload.email,
-          asistencia: payload.attendance,
-          notas: payload.notes,
-          website: payload.website
-        }),
-        signal: controller.signal
-      });
+    let attempts = 0;
+    const maxAttempts = 3;
 
-      clearTimeout(timeoutId);
+    while (attempts < maxAttempts) {
+      attempts++;
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 10000);
 
-      let resJson = null;
       try {
-        resJson = await response.json();
-      } catch (_) {
-        resJson = null;
-      }
+        const response = await fetch(endpoint, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify(dataToSend),
+          signal: controller.signal
+        });
 
-      if (!response.ok) {
-        const errorDetail = (resJson && resJson.error)
-          ? resJson.error
-          : `Error en el servidor de confirmaciones (HTTP ${response.status}).`;
-        throw new Error(errorDetail);
-      }
+        clearTimeout(timeoutId);
 
-      if (!resJson || !resJson.ok || !resJson.code) {
-        throw new Error((resJson && resJson.error) || "Respuesta incompleta del servidor.");
-      }
+        let resJson = null;
+        try {
+          resJson = await response.json();
+        } catch (_) {
+          resJson = null;
+        }
 
-      return {
-        success: true,
-        demoMode: false,
-        message: "Confirmación guardada correctamente en el sistema institucional.",
-        code: resJson.code
-      };
+        // Si hay error de unicidad (23505), regenerar código y reintentar hasta 3 veces
+        if (response.status === 409 || (resJson && (resJson.code === '23505' || (resJson.error && resJson.error.includes('23505'))))) {
+          console.warn(`[RSVP Unicidad 23505]: Colisión de código. Regenerando y reintentando (intento ${attempts}/${maxAttempts})...`);
+          dataToSend.codigo = generateConfirmationCode();
+          payload.codigo = dataToSend.codigo;
+          continue;
+        }
 
-    } catch (err) {
-      clearTimeout(timeoutId);
+        if (!response.ok) {
+          if (isLocalEnvironment()) {
+            console.warn(`[RSVP Local Dev]: Servidor local sin backend serverless activo o base de datos en migración (HTTP ${response.status}). Activando simulación demostrativa.`);
+            return {
+              success: true,
+              demoMode: true,
+              message: "Modo demostrativo local.",
+              code: dataToSend.codigo
+            };
+          }
+          const errorDetail = (resJson && resJson.error)
+            ? resJson.error
+            : `Error en el servidor de confirmaciones (HTTP ${response.status}).`;
+          throw new Error(errorDetail);
+        }
 
-      if (err.name === 'AbortError') {
-        throw new Error('La solicitud tardó más de 10 segundos en responder. Por favor, reintenta.');
-      }
+        if (!resJson || !resJson.ok || !resJson.code) {
+          throw new Error((resJson && resJson.error) || "Respuesta incompleta del servidor.");
+        }
 
-      if (isLocalEnvironment() && (err.message.includes('HTTP 404') || err.message.includes('HTTP 405') || err.message.includes('HTTP 501') || err.message.includes('Failed to fetch') || err.message.includes('NetworkError'))) {
-        console.warn('[RSVP Local Dev]: Servidor estático local (Live Server / http.server) sin backend serverless activo. Activando simulación demostrativa.');
         return {
           success: true,
-          demoMode: true,
-          message: "Modo demostrativo local (servidor estático sin backend serverless activo).",
-          code: `DEMO-${Math.floor(1000 + Math.random() * 9000)}-${payload.attendance.toUpperCase()}`
+          demoMode: false,
+          message: "Confirmación guardada correctamente en el sistema institucional.",
+          code: resJson.code
         };
-      }
 
-      throw err;
+      } catch (err) {
+        clearTimeout(timeoutId);
+        if (attempts >= maxAttempts || err.name === 'AbortError') {
+          if (err.name === 'AbortError') {
+            throw new Error('La solicitud tardó más de 10 segundos en responder. Por favor, reintenta.');
+          }
+          if (isLocalEnvironment()) {
+            console.warn('[RSVP Local Dev]: Servidor local sin conexión de red. Activando simulación demostrativa.');
+            return {
+              success: true,
+              demoMode: true,
+              message: "Modo demostrativo local.",
+              code: dataToSend.codigo
+            };
+          }
+          throw err;
+        }
+      }
+    }
+  };
+
+  const renderVerifySummaryUI = (payload) => {
+    if (!payload) return;
+    const currentLang = (window.getCurrentLang && window.getCurrentLang()) || 'en';
+    const statusLabels = {
+      en: {
+        'si': 'Attendance Confirmed (In-Person)',
+        'no': 'Non-Attendance Recorded'
+      },
+      es: {
+        'si': 'Asistencia Confirmada (Presencial)',
+        'no': 'Inasistencia Registrada (Cupo Liberado)'
+      }
+    };
+    const currentStatusLabels = statusLabels[currentLang] || statusLabels.en;
+
+    DOM.safeText('#verify-summary-name', payload.nombre);
+    DOM.safeText('#verify-summary-status', currentStatusLabels[payload.asistencia] || payload.asistencia);
+    DOM.safeText('#verify-summary-role', getRoleLabel(payload.rol, currentLang));
+    DOM.safeText('#verify-summary-code', payload.codigo);
+
+    const orgRow = document.getElementById('verify-summary-org-row');
+    if (orgRow) {
+      if (payload.organizacion) {
+        DOM.safeText('#verify-summary-org', payload.organizacion);
+        DOM.show(orgRow);
+      } else {
+        DOM.hide(orgRow);
+      }
     }
   };
 
@@ -1402,6 +1492,8 @@ const RSVPModule = (() => {
 
     pendingPayload = payload;
     SoundEngine.click();
+
+    renderVerifySummaryUI(pendingPayload);
 
     DOM.hide(step1);
     DOM.show(step2);
@@ -1438,13 +1530,32 @@ const RSVPModule = (() => {
     DOM.safeText(btnText, currentLang === 'en' ? 'CONFIRMING...' : 'CONFIRMANDO...');
 
     try {
-      const result = await submitData(pendingPayload);
+      let result;
+      // Honeypot: si trae valor, descartar el envío en silencio sin tocar backend
+      if (pendingPayload.isHoneypot) {
+        result = {
+          success: true,
+          demoMode: true,
+          code: pendingPayload.codigo
+        };
+      } else if (window.location.protocol === 'file:') {
+        await new Promise(resolve => setTimeout(resolve, EVENT_META.latenciaSimuladaMs || 800));
+        result = {
+          success: true,
+          demoMode: true,
+          code: pendingPayload.codigo
+        };
+      } else {
+        result = await saveRsvp(pendingPayload);
+      }
 
       attendeeData = {
-        name: pendingPayload.name,
-        email: pendingPayload.email,
-        attendance: pendingPayload.attendance,
-        code: result.code
+        nombre: pendingPayload.nombre,
+        asistencia: pendingPayload.asistencia,
+        rol: pendingPayload.rol,
+        organizacion: pendingPayload.organizacion,
+        codigo: result.code || pendingPayload.codigo,
+        origen: pendingPayload.origen
       };
       lastResult = result;
 
@@ -1488,7 +1599,7 @@ const RSVPModule = (() => {
   };
 
   const renderReceiptUI = (attendee, isDemo) => {
-    if (!attendee || !attendee.code) return;
+    if (!attendee || !attendee.codigo) return;
     const currentLang = (window.getCurrentLang && window.getCurrentLang()) || 'en';
     const statusLabels = {
       en: {
@@ -1502,10 +1613,20 @@ const RSVPModule = (() => {
     };
     const currentStatusLabels = statusLabels[currentLang] || statusLabels.en;
 
-    DOM.safeText('#res-attendee-name', attendee.name);
-    DOM.safeText('#res-attendee-email', attendee.email);
-    DOM.safeText('#res-attendee-status', currentStatusLabels[attendee.attendance] || attendee.attendance);
-    DOM.safeText('#res-attendee-code', attendee.code);
+    DOM.safeText('#res-attendee-name', attendee.nombre);
+    DOM.safeText('#res-attendee-status', currentStatusLabels[attendee.asistencia] || attendee.asistencia);
+    DOM.safeText('#res-attendee-role', getRoleLabel(attendee.rol, currentLang));
+    DOM.safeText('#res-attendee-code', attendee.codigo);
+
+    const orgRow = document.getElementById('res-org-row');
+    if (orgRow) {
+      if (attendee.organizacion) {
+        DOM.safeText('#res-attendee-org', attendee.organizacion);
+        DOM.show(orgRow);
+      } else {
+        DOM.hide(orgRow);
+      }
+    }
 
     const resBadgeEl = document.getElementById('result-badge-text');
     const resTitleEl = document.getElementById('result-title-text');
@@ -1513,9 +1634,9 @@ const RSVPModule = (() => {
     const qrContainerEl = document.getElementById('result-qr-container');
     const qrWrapperEl = document.getElementById('rsvp-qr-code-wrapper');
 
-    if (attendee.attendance === 'si') {
+    if (attendee.asistencia === 'si') {
       if (qrWrapperEl) {
-        qrWrapperEl.innerHTML = QREngine.generateSVG(attendee.code, 168);
+        qrWrapperEl.innerHTML = QREngine.generateSVG(attendee.codigo, 168);
       }
       if (qrContainerEl) DOM.show(qrContainerEl);
 
@@ -1548,8 +1669,8 @@ const RSVPModule = (() => {
       }
       if (resMsgEl) {
         resMsgEl.textContent = currentLang === 'en'
-          ? 'We have recorded that you will be unable to attend this time. If your availability changes before October 30, you may return with this email to confirm your attendance.'
-          : 'Hemos registrado que no podrás acompañarnos en esta ocasión y liberado el cupo. Si tu disponibilidad cambia antes del 30 de octubre, puedes volver a ingresar con este mismo correo para confirmar tu asistencia.';
+          ? 'We have recorded that you will be unable to attend this time. If your availability changes before October 30, you may return to update your response.'
+          : 'Hemos registrado que no podrás acompañarnos en esta ocasión y liberado el cupo. Si tu disponibilidad cambia antes del 30 de octubre, puedes volver a ingresar para actualizar tu respuesta.';
       }
     }
   };
@@ -1560,8 +1681,18 @@ const RSVPModule = (() => {
     }
     clearErrors();
     pendingPayload = null;
-    attendeeData = { name: '', email: '', attendance: '', code: '' };
+    attendeeData = {
+      nombre: '',
+      asistencia: '',
+      rol: '',
+      organizacion: null,
+      codigo: '',
+      origen: 'web_showcase_2026'
+    };
     VerificationModule.reset();
+
+    const verifySummaryCard = document.getElementById('verify-summary-card');
+    if (verifySummaryCard) DOM.hide(verifySummaryCard);
 
     if (resultCard) DOM.hide(resultCard);
     const qrContainerEl = document.getElementById('result-qr-container');
@@ -1606,7 +1737,7 @@ const RSVPModule = (() => {
       const btnDownloadPass = document.getElementById('btn-download-pass');
       if (btnDownloadPass) {
         btnDownloadPass.addEventListener('click', () => {
-          if (attendeeData && attendeeData.code) {
+          if (attendeeData && attendeeData.codigo) {
             QREngine.downloadPass(attendeeData);
           }
         });
@@ -1621,10 +1752,12 @@ const RSVPModule = (() => {
           }
         });
       }
-      if (form && form.email) {
-        form.email.addEventListener('input', () => {
-          DOM.safeText(errEmail, '');
-          form.email.removeAttribute('aria-invalid');
+      if (form && form.role) {
+        form.role.addEventListener('change', () => {
+          if (form.role.value) {
+            DOM.safeText(errRole, '');
+            form.role.removeAttribute('aria-invalid');
+          }
         });
       }
       if (form) {
@@ -1637,7 +1770,10 @@ const RSVPModule = (() => {
     },
     reset,
     getAttendee: () => attendeeData,
-    updateReceipt: () => renderReceiptUI(attendeeData, lastResult ? lastResult.demoMode : false)
+    updateReceipt: () => {
+      if (pendingPayload) renderVerifySummaryUI(pendingPayload);
+      if (attendeeData && attendeeData.codigo) renderReceiptUI(attendeeData, lastResult ? lastResult.demoMode : false);
+    }
   };
 })();
 
@@ -2034,8 +2170,9 @@ const NavigationEngine = (() => {
     const msg = document.getElementById('closing-personalized-message');
 
     let displayName = '';
-    if (attendee && attendee.name) {
-      const parts = attendee.name.trim().split(/\s+/);
+    if (attendee && (attendee.nombre || attendee.name)) {
+      const rawName = attendee.nombre || attendee.name;
+      const parts = rawName.trim().split(/\s+/);
       const titlePattern = /^(dr|dra|ing|prof|lic|msc|phd|sr|sra|srta)\.?$/i;
       if (parts.length > 1 && titlePattern.test(parts[0])) {
         displayName = parts[1];
@@ -2370,11 +2507,11 @@ window.addEventListener('retos:langchange', (e) => {
     CountdownEngine.update();
   }
   const attendee = (typeof RSVPModule !== 'undefined' && RSVPModule.getAttendee) ? RSVPModule.getAttendee() : null;
-  if (attendee && attendee.name) {
+  if (attendee && (attendee.nombre || attendee.name)) {
     NavigationEngine.updateClosingPersonalization(attendee);
-    if (RSVPModule && RSVPModule.updateReceipt) {
-      RSVPModule.updateReceipt();
-    }
+  }
+  if (RSVPModule && RSVPModule.updateReceipt) {
+    RSVPModule.updateReceipt();
   }
   if (NavigationEngine && NavigationEngine.updateHudSceneName) {
     NavigationEngine.updateHudSceneName();
