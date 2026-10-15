@@ -1485,8 +1485,8 @@ const RSVPModule = (() => {
     }
   };
 
-  // Paso 1: Valida el formulario y avanza al Paso 2 (verificación visual)
-  const handleStep1Submit = (e) => {
+  // 1-Step Direct Registration: Valida y envía directamente
+  const handleDirectSubmit = async (e) => {
     if (e && e.preventDefault) e.preventDefault();
     const payload = validate();
     if (!payload) return;
@@ -1494,37 +1494,15 @@ const RSVPModule = (() => {
     pendingPayload = payload;
     SoundEngine.click();
 
-    renderVerifySummaryUI(pendingPayload);
-
-    DOM.hide(step1);
-    DOM.show(step2);
-    VerificationModule.start();
-  };
-
-  // Paso 2: Volver al Paso 1 para corregir datos
-  const handleBackToStep1 = () => {
-    SoundEngine.click();
-    VerificationModule.reset();
-    DOM.hide(step2);
-    DOM.show(step1);
-  };
-
-  // Paso 2 -> Paso 3: Confirmación definitiva y envío a Supabase / backend
-  const handleConfirmAttendance = async () => {
-    if (!pendingPayload) {
-      handleBackToStep1();
-      return;
-    }
-
     const errorBannerEl = document.getElementById('submission-error-banner');
     if (errorBannerEl) DOM.hide(errorBannerEl);
 
-    const spinner = btnConfirmAttendance ? btnConfirmAttendance.querySelector('.btn-spinner') : null;
-    const btnText = btnConfirmAttendance ? btnConfirmAttendance.querySelector('.btn-text') : null;
+    const spinner = btnSubmitStep1 ? btnSubmitStep1.querySelector('.btn-spinner') : null;
+    const btnText = btnSubmitStep1 ? btnSubmitStep1.querySelector('.btn-text') : null;
 
-    if (btnConfirmAttendance) {
-      btnConfirmAttendance.disabled = true;
-      btnConfirmAttendance.setAttribute('aria-busy', 'true');
+    if (btnSubmitStep1) {
+      btnSubmitStep1.disabled = true;
+      btnSubmitStep1.setAttribute('aria-busy', 'true');
     }
     DOM.show(spinner);
     const currentLang = (window.getCurrentLang && window.getCurrentLang()) || 'en';
@@ -1562,11 +1540,11 @@ const RSVPModule = (() => {
 
       renderReceiptUI(attendeeData, result.demoMode);
 
+      // Ocultar formulario y mostrar inmediatamente el pase QR y contenedor post-rsvp
+      if (form) DOM.hide(form);
       if (resultCard) DOM.show(resultCard);
-
-      // Transición a Paso 3 (Pantalla final)
-      DOM.hide(step2);
-      DOM.show(step3);
+      const postRsvpEl = document.getElementById('post-rsvp-container');
+      if (postRsvpEl) DOM.show(postRsvpEl);
 
       NavigationEngine.updateClosingPersonalization(attendeeData);
 
@@ -1589,13 +1567,13 @@ const RSVPModule = (() => {
       }
 
     } finally {
-      if (btnConfirmAttendance) {
-        btnConfirmAttendance.disabled = false;
-        btnConfirmAttendance.removeAttribute('aria-busy');
+      if (btnSubmitStep1) {
+        btnSubmitStep1.disabled = false;
+        btnSubmitStep1.removeAttribute('aria-busy');
       }
       DOM.hide(spinner);
       const currentLangFinal = (window.getCurrentLang && window.getCurrentLang()) || 'en';
-      DOM.safeText(btnText, currentLangFinal === 'en' ? 'Confirm attendance' : 'Confirmar asistencia');
+      DOM.safeText(btnText, currentLangFinal === 'en' ? 'Confirm Attendance' : 'Confirmar asistencia');
     }
   };
 
@@ -1679,6 +1657,7 @@ const RSVPModule = (() => {
   const reset = () => {
     if (form) {
       form.reset();
+      DOM.show(form);
     }
     clearErrors();
     pendingPayload = null;
@@ -1696,14 +1675,13 @@ const RSVPModule = (() => {
     if (verifySummaryCard) DOM.hide(verifySummaryCard);
 
     if (resultCard) DOM.hide(resultCard);
+    const postRsvpEl = document.getElementById('post-rsvp-container');
+    if (postRsvpEl) DOM.hide(postRsvpEl);
+
     const qrContainerEl = document.getElementById('result-qr-container');
     if (qrContainerEl) DOM.hide(qrContainerEl);
     const qrWrapperEl = document.getElementById('rsvp-qr-code-wrapper');
     if (qrWrapperEl) qrWrapperEl.innerHTML = '';
-
-    DOM.hide(step2);
-    DOM.hide(step3);
-    DOM.show(step1);
   };
 
   return {
@@ -1717,20 +1695,14 @@ const RSVPModule = (() => {
         }
       }
 
-      // Paso 1: Envío de formulario
-      if (form) form.addEventListener('submit', handleStep1Submit);
-
-      // Paso 2: Volver a modificar datos
-      if (btnBackToStep1) btnBackToStep1.addEventListener('click', handleBackToStep1);
-
-      // Paso 2: Confirmación definitiva
-      if (btnConfirmAttendance) btnConfirmAttendance.addEventListener('click', handleConfirmAttendance);
+      // Registro directo en 1 paso
+      if (form) form.addEventListener('submit', handleDirectSubmit);
 
       // Reintento en el banner de error
       const btnRetry = document.getElementById('btn-retry-rsvp');
       if (btnRetry) {
         btnRetry.addEventListener('click', () => {
-          handleConfirmAttendance();
+          handleDirectSubmit();
         });
       }
 
@@ -1990,32 +1962,26 @@ const NavigationEngine = (() => {
 
   const routeDisplayNames = {
     es: {
-      'bienvenida': 'Portada y Bienvenida',
-      'proposito': 'Propósito y Experiencia',
-      'coordenadas': 'Coordenadas y Logística',
-      'programa': 'Programa y Ejes',
+      'bienvenida': 'Contexto y Esencia',
+      'logistica': 'Fecha, Sede y Logística',
       'rsvp': 'Confirmación de Asistencia',
-      'init': 'Portada y Bienvenida',
-      'acceso': 'Portada y Bienvenida',
-      'evento': 'Propósito y Experiencia',
-      'institucion': 'Propósito y Experiencia',
-      'agenda': 'Programa y Ejes',
-      'ejes': 'Programa y Ejes',
-      'cierre': 'Confirmación de Asistencia'
+      // Alias de compatibilidad
+      'contexto': 'Contexto y Esencia',
+      'proposito': 'Contexto y Esencia',
+      'coordenadas': 'Fecha, Sede y Logística',
+      'programa': 'Fecha, Sede y Logística',
+      'agenda': 'Fecha, Sede y Logística'
     },
     en: {
-      'bienvenida': 'Cover & Welcome',
-      'proposito': 'Purpose & Experience',
-      'coordenadas': 'Coordinates & Logistics',
-      'programa': 'Schedule & Pillars',
+      'bienvenida': 'Context & Essence',
+      'logistica': 'Date, Venue & Logistics',
       'rsvp': 'Attendance Confirmation',
-      'init': 'Cover & Welcome',
-      'acceso': 'Cover & Welcome',
-      'evento': 'Purpose & Experience',
-      'institucion': 'Purpose & Experience',
-      'agenda': 'Schedule & Pillars',
-      'ejes': 'Schedule & Pillars',
-      'cierre': 'Attendance Confirmation'
+      // Alias de compatibilidad
+      'contexto': 'Context & Essence',
+      'proposito': 'Context & Essence',
+      'coordenadas': 'Date, Venue & Logistics',
+      'programa': 'Date, Venue & Logistics',
+      'agenda': 'Date, Venue & Logistics'
     }
   };
 
@@ -2175,9 +2141,8 @@ const NavigationEngine = (() => {
     if (attendee && (attendee.nombre || attendee.name)) {
       const rawName = attendee.nombre || attendee.name;
       const parts = rawName.trim().split(/\s+/);
-      const titlePattern = /^(dr|dra|ing|prof|lic|msc|phd|sr|sra|srta)\.?$/i;
-      if (parts.length > 1 && titlePattern.test(parts[0])) {
-        displayName = parts[1];
+      if (parts.length > 1) {
+        displayName = parts[0,1];
       } else {
         displayName = parts[0];
       }
@@ -2320,6 +2285,7 @@ const NavigationEngine = (() => {
           Toast.show(isMuted ? '🔇 Audio silenciado' : '🔊 Audio activado');
         } else if (e.key === 'Escape') {
           closeHelpModal();
+          closeAgendaModal();
         }
       });
 
@@ -2369,6 +2335,120 @@ if (helpModal) {
   });
 }
 
+// Scene 01: Tarjeta interactiva desplegable "Descubre RETOS Showcase"
+const btnDiscoverToggle = document.getElementById('btn-discover-toggle');
+const discoverPreviewCard = document.getElementById('discover-preview-card');
+const discoverExpandedContent = document.getElementById('discover-expanded-content');
+
+function toggleDiscoverCard() {
+  if (!discoverExpandedContent) return;
+  const willOpen = !discoverExpandedContent.classList.contains('is-open');
+  discoverExpandedContent.classList.toggle('is-open', willOpen);
+  discoverExpandedContent.classList.toggle('is-hidden', !willOpen);
+  discoverExpandedContent.setAttribute('aria-hidden', willOpen ? 'false' : 'true');
+
+  if (btnDiscoverToggle) {
+    btnDiscoverToggle.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
+    const lang = (window.getCurrentLang && window.getCurrentLang()) || 'en';
+    const dict = (window.i18nDict && window.i18nDict[lang]) || {};
+    const btnSpan = btnDiscoverToggle.querySelector('.btn-text') || btnDiscoverToggle;
+    if (btnSpan) {
+      btnSpan.textContent = willOpen 
+        ? (dict.s1DiscoverBtnClose || (lang === 'en' ? 'Close details' : 'Ocultar detalles'))
+        : (dict.s1DiscoverBtn || (lang === 'en' ? 'Explore RETOS Showcase' : 'Conocer RETOS Showcase'));
+    }
+  }
+
+  if (discoverPreviewCard) {
+    discoverPreviewCard.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
+  }
+
+  SoundEngine.click();
+}
+
+if (btnDiscoverToggle) {
+  btnDiscoverToggle.addEventListener('click', (e) => {
+    e.stopPropagation();
+    toggleDiscoverCard();
+  });
+}
+if (discoverPreviewCard) {
+  discoverPreviewCard.addEventListener('click', toggleDiscoverCard);
+  discoverPreviewCard.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      toggleDiscoverCard();
+    }
+  });
+}
+
+// Scene 02: Tarjetas de Acción Directa
+const btnActionCalendar = document.getElementById('btn-action-calendar');
+const actionTileCalendar = document.getElementById('action-tile-calendar');
+if (btnActionCalendar) {
+  btnActionCalendar.addEventListener('click', (e) => {
+    e.stopPropagation();
+    CalendarService.downloadICS();
+  });
+}
+if (actionTileCalendar) {
+  actionTileCalendar.addEventListener('click', () => {
+    CalendarService.downloadICS();
+  });
+  actionTileCalendar.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      CalendarService.downloadICS();
+    }
+  });
+}
+
+// Scene 02: Modal de Agenda bajo demanda
+const agendaModal = document.getElementById('agenda-modal');
+const btnOpenAgendaModal = document.getElementById('btn-open-agenda-modal');
+const actionTileAgenda = document.getElementById('action-tile-agenda');
+const modalAgendaClose = document.getElementById('modal-agenda-close');
+const modalAgendaAccept = document.getElementById('modal-agenda-accept');
+
+function openAgendaModal() {
+  if (agendaModal) {
+    DOM.show(agendaModal);
+    if (modalAgendaClose) modalAgendaClose.focus();
+    SoundEngine.click();
+  }
+}
+
+function closeAgendaModal() {
+  if (agendaModal) {
+    DOM.hide(agendaModal);
+    if (btnOpenAgendaModal) btnOpenAgendaModal.focus();
+    SoundEngine.click();
+  }
+}
+
+if (btnOpenAgendaModal) {
+  btnOpenAgendaModal.addEventListener('click', (e) => {
+    e.stopPropagation();
+    openAgendaModal();
+  });
+}
+if (actionTileAgenda) {
+  actionTileAgenda.addEventListener('click', openAgendaModal);
+  actionTileAgenda.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      openAgendaModal();
+    }
+  });
+}
+if (modalAgendaClose) modalAgendaClose.addEventListener('click', closeAgendaModal);
+if (modalAgendaAccept) modalAgendaAccept.addEventListener('click', closeAgendaModal);
+if (agendaModal) {
+  agendaModal.addEventListener('click', (e) => {
+    if (e.target === agendaModal) closeAgendaModal();
+  });
+}
+
 // Botón de alternar audio
 const audioToggleBtn = document.getElementById('audio-toggle');
 const audioIconOn = document.querySelector('.audio-icon-on');
@@ -2387,49 +2467,11 @@ if (audioToggleBtn) {
   });
 }
 
-// Acciones de Calendario y Mapas
+// Acciones de Calendario (.ics)
 const btnDownloadIcs = document.getElementById('btn-download-ics');
 const btnClosingIcs = document.getElementById('btn-closing-ics');
 if (btnDownloadIcs) btnDownloadIcs.addEventListener('click', CalendarService.downloadICS);
 if (btnClosingIcs) btnClosingIcs.addEventListener('click', CalendarService.downloadICS);
-
-// Navegación GPS hacia la sede (Escena 05: Google Maps, Waze, Apple Maps)
-const mapsButtonsContainer = document.querySelector('.details-cta-banner .cta-banner-buttons');
-if (mapsButtonsContainer) {
-  // Delegación de eventos para mayor rendimiento y resiliencia ante recargas de escena
-  mapsButtonsContainer.addEventListener('click', (e) => {
-    const trigger = e.target.closest('[data-map]');
-    if (!trigger) return;
-
-    // Si es un <button> o enlace sin href absoluto, ejecutamos la navegación programática
-    if (trigger.tagName === 'BUTTON' || !trigger.getAttribute('href') || trigger.getAttribute('href') === '#') {
-      e.preventDefault();
-      const service = trigger.dataset.map;
-      if (service && typeof CalendarService.openMap === 'function') {
-        CalendarService.openMap(service);
-      }
-    } else {
-      // Para enlaces semánticos <a> con target="_blank", disparamos el feedback de audio HUD
-      SoundEngine.click();
-    }
-  });
-} else {
-  // Respaldo por ID individual si no se encuentra el contenedor
-  const btnGoogle = document.getElementById('btn-map-google') || document.getElementById('btn-open-maps');
-  const btnWaze = document.getElementById('btn-map-waze');
-  const btnApple = document.getElementById('btn-map-apple');
-  if (btnGoogle) btnGoogle.addEventListener('click', () => CalendarService.openGoogleMaps());
-  if (btnWaze) btnWaze.addEventListener('click', () => CalendarService.openWaze());
-  if (btnApple) btnApple.addEventListener('click', () => CalendarService.openAppleMaps());
-}
-
-// Omitir verificación en escena 02
-const btnSkipVerify = document.getElementById('btn-skip-verify');
-if (btnSkipVerify) {
-  btnSkipVerify.addEventListener('click', () => {
-    VerificationModule.skip();
-  });
-}
 
 // Compartir invitación
 const btnShare = document.getElementById('btn-share-invite');
@@ -2464,7 +2506,6 @@ if (btnRestart) {
   btnRestart.addEventListener('click', () => {
     SoundEngine.click();
     RSVPModule.reset();
-    VerificationModule.reset();
     NavigationEngine.goTo(0);
     Toast.show('↺ Experiencia reiniciada');
   });
@@ -2518,15 +2559,18 @@ window.addEventListener('retos:langchange', (e) => {
   if (NavigationEngine && NavigationEngine.updateHudSceneName) {
     NavigationEngine.updateHudSceneName();
   }
-  const step2El = document.getElementById('rsvp-step-2');
-  if (step2El && !step2El.classList.contains('is-hidden') && VerificationModule) {
-    const grantBanner = document.getElementById('access-grant-banner');
-    if (grantBanner && grantBanner.classList.contains('show')) {
-      VerificationModule.reset();
-      VerificationModule.skip();
-    } else {
-      VerificationModule.reset();
-      VerificationModule.start();
+  // Sincronizar texto dinámico del botón de descubrir
+  const discoverContent = document.getElementById('discover-expanded-content');
+  const discoverBtn = document.getElementById('btn-discover-toggle');
+  if (discoverContent && discoverBtn) {
+    const isOpen = discoverContent.classList.contains('is-open');
+    const lang = (window.getCurrentLang && window.getCurrentLang()) || 'en';
+    const dict = (window.i18nDict && window.i18nDict[lang]) || {};
+    const btnSpan = discoverBtn.querySelector('.btn-text') || discoverBtn;
+    if (btnSpan) {
+      btnSpan.textContent = isOpen
+        ? (dict.s1DiscoverBtnClose || (lang === 'en' ? 'Close details' : 'Ocultar detalles'))
+        : (dict.s1DiscoverBtn || (lang === 'en' ? 'Explore RETOS Showcase' : 'Conocer RETOS Showcase'));
     }
   }
 });

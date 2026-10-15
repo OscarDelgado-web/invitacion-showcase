@@ -1,4 +1,115 @@
 {
+  "evento": {
+    "codigo": "RETOS-SHOWCASE-2026 - 2nd Edition",
+    "titulo": {
+      "en": "RETOS Showcase 2026 - 2nd Edition",
+      "es": "RETOS Showcase 2026 - 2nd Edition"
+    },
+    "fecha": "2026-10-30",
+    "horario": "08:00 - 12:30",
+    "sede": {
+      "en": "RETOS / FTS Institute Library",
+      "es": "Biblioteca de Instituto RETOS / FTS"
+    }
+  },
+  "escenas": {
+    "escena1": {
+      "que_esperar": [
+        {
+          "en": "English Certification",
+          "es": "Certificación de inglés"
+        },
+        {
+          "en": "Career-Based Projects",
+          "es": "Proyectos por carrera"
+        },
+        {
+          "en": "100% English Environment",
+          "es": "Ambiente 100% en inglés"
+        }
+      ],
+      "descubrir": {
+        "gancho": {
+          "en": "Want to know more about our Showcase?",
+          "es": "¿Quieres saber más de nuestro Showcase?"
+        },
+        "titulo": {
+          "en": "Discover RETOS Showcase",
+          "es": "Descubre RETOS Showcase"
+        },
+        "subtitulo": {
+          "en": "Learn about RETOS Showcase, our vision, and mission.",
+          "es": "Conoce el RETOS Showcase, nuestra visión y misión."
+        },
+        "definicion": {
+          "en": "RETOS Showcase 2026 - 2nd Edition is a space where our students in Mechatronics, Industrial Maintenance, Logistics, and Software Development demonstrate their English communication skills applied to real-world technical environments.",
+          "es": "RETOS Showcase 2026 - 2nd Edition es un espacio donde nuestros estudiantes de Mecatrónica, Mantenimiento Industrial, Logística y Desarrollo de Software demuestran sus competencias comunicativas en inglés aplicadas a entornos técnicos reales."
+        },
+        "mision": {
+          "en": "To foster a space of learning, exchange, and certification that strengthens students’ communicative competence in English.",
+          "es": "Promover un espacio de aprendizaje, intercambio y certificación que fortalezca las competencias comunicativas en inglés de los estudiantes."
+        },
+        "vision": {
+          "en": "To be a flagship event promoting academic exchange in English and showcasing student talent toward national and international opportunities.",
+          "es": "Ser un evento que impulse el intercambio académico en inglés y proyecte el talento de los estudiantes hacia oportunidades nacionales e internacionales."
+        }
+      }
+    },
+    "escena2": {
+      "datos_clave": {
+        "fecha": {
+          "en": "Friday, October 30, 2026",
+          "es": "Viernes, 30 de octubre de 2026"
+        },
+        "horario": "08:00 – 12:30",
+        "sede": {
+          "en": "RETOS / FTS Institute Library",
+          "es": "Biblioteca de Instituto RETOS / FTS"
+        }
+      },
+      "acciones": [
+        {
+          "id": "calendario",
+          "titulo": {
+            "en": "Add to Calendar",
+            "es": "Agendar en mi calendario"
+          },
+          "descripcion": {
+            "en": "Save the date and time to your calendar.",
+            "es": "Guarda la fecha y la hora del evento."
+          }
+        },
+        {
+          "id": "mapas",
+          "titulo": {
+            "en": "Get Directions",
+            "es": "Cómo llegar"
+          },
+          "descripcion": {
+            "en": "Open location in Google Maps or Waze.",
+            "es": "Abre la ubicación en Google Maps o Waze."
+          }
+        },
+        {
+          "id": "agenda",
+          "titulo": {
+            "en": "View Event Agenda",
+            "es": "Consultar agenda"
+          },
+          "descripcion": {
+            "en": "Discover schedules and presentations by career.",
+            "es": "Descubre los horarios y las presentaciones por carrera."
+          }
+        }
+      ]
+    },
+    "escena3": {
+      "titulo": {
+        "en": "Secure your accreditation",
+        "es": "Asegura tu acreditación"
+      }
+    }
+  },
   "agenda": [
     {
       "inicio": "08:00",

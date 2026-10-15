@@ -30,7 +30,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="styles.css?v=2">
+  <link rel="stylesheet" href="styles.css?v=3">
 </head>
 <body>
   <!-- Canvas background for kinetic particles and ambient grid -->
@@ -51,29 +51,21 @@
       </div>
     </div>
 
-    <!-- 5-step dynamic progress indicator -->
+    <!-- 3-step dynamic progress indicator -->
     <nav class="hud-progress-wrapper" aria-label="Experience progress" data-i18n-attr="aria-label:step1Aria">
-      <!-- Horizontal stepper for desktop screens -->
+      <!-- Horizontal stepper for desktop screens (Strictly 3 Scenes: 01, 02, 03) -->
       <ol class="hud-stepper" id="hud-stepper">
-        <li class="step-node active" data-step="0" role="button" tabindex="0" aria-label="Scene 1 of 5: Welcome" data-i18n-attr="aria-label:step1Aria">
+        <li class="step-node active" data-step="0" role="button" tabindex="0" aria-label="Scene 1 of 3: Context and essence" data-i18n-attr="aria-label:step1Aria">
           <span class="step-num">01</span>
           <span class="step-tag" data-i18n="step1">Welcome</span>
         </li>
-        <li class="step-node" data-step="1" role="button" tabindex="0" aria-label="Scene 2 of 5: Purpose" data-i18n-attr="aria-label:step2Aria">
+        <li class="step-node" data-step="1" role="button" tabindex="0" aria-label="Scene 2 of 3: Logistics and agenda" data-i18n-attr="aria-label:step2Aria">
           <span class="step-num">02</span>
-          <span class="step-tag" data-i18n="step2">Purpose</span>
+          <span class="step-tag" data-i18n="step2">Logistics</span>
         </li>
-        <li class="step-node" data-step="2" role="button" tabindex="0" aria-label="Scene 3 of 5: Logistics" data-i18n-attr="aria-label:step3Aria">
+        <li class="step-node" data-step="2" role="button" tabindex="0" aria-label="Scene 3 of 3: Confirmation and QR pass" data-i18n-attr="aria-label:step3Aria">
           <span class="step-num">03</span>
-          <span class="step-tag" data-i18n="step3">Logistics</span>
-        </li>
-        <li class="step-node" data-step="3" role="button" tabindex="0" aria-label="Scene 4 of 5: Schedule" data-i18n-attr="aria-label:step4Aria">
-          <span class="step-num">04</span>
-          <span class="step-tag" data-i18n="step4">Schedule</span>
-        </li>
-        <li class="step-node" data-step="4" role="button" tabindex="0" aria-label="Scene 5 of 5: RSVP" data-i18n-attr="aria-label:step5Aria">
-          <span class="step-num">05</span>
-          <span class="step-tag" data-i18n="step5">RSVP</span>
+          <span class="step-tag" data-i18n="step3">Confirmation</span>
         </li>
       </ol>
 
@@ -87,19 +79,17 @@
         </span>
       </button>
 
-      <!-- Mobile dropdown menu: numbered squares -->
+      <!-- Mobile dropdown menu: strictly 3 numbered squares -->
       <div class="hud-mobile-menu" id="hud-mobile-menu" role="menu" aria-label="Scene navigation" aria-hidden="true" data-i18n-attr="aria-label:mobileMenuAria">
         <div class="mobile-menu-grid">
           <button type="button" class="step-node mobile-step-square active" data-step="0" role="menuitem" aria-label="Scene 1" data-i18n-attr="aria-label:mobileStep1Aria">01</button>
           <button type="button" class="step-node mobile-step-square" data-step="1" role="menuitem" aria-label="Scene 2" data-i18n-attr="aria-label:mobileStep2Aria">02</button>
           <button type="button" class="step-node mobile-step-square" data-step="2" role="menuitem" aria-label="Scene 3" data-i18n-attr="aria-label:mobileStep3Aria">03</button>
-          <button type="button" class="step-node mobile-step-square" data-step="3" role="menuitem" aria-label="Scene 4" data-i18n-attr="aria-label:mobileStep4Aria">04</button>
-          <button type="button" class="step-node mobile-step-square" data-step="4" role="menuitem" aria-label="Scene 5" data-i18n-attr="aria-label:mobileStep5Aria">05</button>
         </div>
       </div>
     </nav>
 
-    <!-- Discreet fixed language toggle for scenes 2 to 7 (hidden in scene 1) -->
+    <!-- Discreet fixed language toggle for scenes 2 and 3 (hidden in scene 1) -->
     <div class="hud-lang-fixed is-hidden" id="hud-lang-fixed" role="group" aria-label="Language selector / Selector de idioma" aria-hidden="true" data-i18n-attr="aria-label:langSelectorAria">
       <button type="button" class="lang-btn active" data-lang="en" aria-pressed="true" aria-label="Switch language to English" data-i18n-attr="aria-label:langEnAria">EN</button>
       <span class="lang-sep" aria-hidden="true">|</span>
@@ -135,9 +125,10 @@
   <main id="stage" class="hud-stage" role="main">
 
     <!-- ========================================== -->
-    <!-- SCENE 01: COVER AND WELCOME                -->
+    <!-- ESCENA 1: CONTEXTO Y ESENCIA               -->
+    <!-- (Objetivo: Entender qué es el evento en 5s)-->
     <!-- ========================================== -->
-    <section class="scene active" id="scene-0" aria-label="Scene 1 of 5: Cover and welcome" data-index="0" data-route="bienvenida" data-i18n-attr="aria-label:scene0Aria">
+    <section class="scene active" id="scene-0" aria-label="Scene 1 of 3: Context and essence" data-index="0" data-route="bienvenida" data-i18n-attr="aria-label:scene0Aria">
       <div class="scene-inner">
         <!-- Top telemetry bar -->
         <header class="hud-meta-bar">
@@ -177,12 +168,12 @@
         </div>
 
         <!-- ========================================== -->
-        <!-- BLOCK: WHAT TO EXPECT                      -->
+        <!-- BLOCK: WHAT TO EXPECT (MINIMALISTA)        -->
         <!-- ========================================== -->
         <section class="what-to-expect-block" aria-labelledby="wte-block-title">
           <header class="wte-header">
             <div class="wte-heading-group">
-              <h2 class="wte-title" id="wte-block-title" data-i18n="wteTitle">What to expect</h2>
+              <h2 class="wte-title" id="wte-block-title" data-i18n="wteTitle">WHAT TO EXPECT</h2>
             </div>
             <div class="wte-header-line" aria-hidden="true"></div>
           </header>
@@ -201,10 +192,9 @@
                 </div>
               </div>
               <h3 class="wte-card-title" data-i18n="wteCard1Title">English Certification</h3>
-              <p class="wte-card-desc" data-i18n="wteCard1Desc">Through <strong>Neo Study</strong>, aligned with the <strong>Common European Framework of Reference for Languages (CEFR)</strong>.</p>
             </article>
 
-            <!-- 2. Career Based Project -->
+            <!-- 2. Career-Based Projects -->
             <article class="wte-card" id="wte-card-2">
               <div class="wte-card-top">
                 <span class="wte-badge">✔ ACCESS</span>
@@ -217,11 +207,10 @@
                   </svg>
                 </div>
               </div>
-              <h3 class="wte-card-title" data-i18n="wteCard2Title">Career Based Project</h3>
-              <p class="wte-card-desc" data-i18n="wteCard2Desc">Showcase of technical and professional skills acquired throughout the cycle.</p>
+              <h3 class="wte-card-title" data-i18n="wteCard2Title">Career-Based Projects</h3>
             </article>
 
-            <!-- 3. English Environment Only -->
+            <!-- 3. 100% English Environment -->
             <article class="wte-card" id="wte-card-3">
               <div class="wte-card-top">
                 <span class="wte-badge">✔ ACCESS</span>
@@ -232,34 +221,97 @@
                   </svg>
                 </div>
               </div>
-              <h3 class="wte-card-title" data-i18n="wteCard3Title">English Environment Only</h3>
-              <p class="wte-card-desc" data-i18n="wteCard3Desc">Role plays and interactive activities in a fully immersive English environment.</p>
+              <h3 class="wte-card-title" data-i18n="wteCard3Title">100% English Environment</h3>
             </article>
           </div>
+        </section>
 
-          <!-- Brief footer note below cards -->
-          <footer class="wte-footer-note">
-            <svg class="wte-note-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <circle cx="12" cy="12" r="10"/>
-              <line x1="12" y1="16" x2="12" y2="12"/>
-              <line x1="12" y1="8" x2="12.01" y2="8"/>
-            </svg>
-            <span class="wte-note-text" data-i18n="wteFooterNote">During the event, all communication will be in English.</span>
-          </footer>
+        <!-- ========================================== -->
+        <!-- BLOCK: DESCUBRE RETOS SHOWCASE (OPCIONAL)  -->
+        <!-- ========================================== -->
+        <section class="showcase-discover-wrapper" aria-labelledby="discover-card-title">
+          <div class="discover-hook-label" data-i18n="s1DiscoverHook">¿Quieres saber más de nuestro Showcase?</div>
+
+          <article class="discover-preview-card" id="discover-preview-card" role="button" tabindex="0" aria-expanded="false" aria-controls="discover-expanded-content">
+            <div class="discover-card-info">
+              <div class="discover-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                </svg>
+              </div>
+              <div class="discover-text-group">
+                <h3 class="discover-title" id="discover-card-title" data-i18n="s1DiscoverTitle">Descubre RETOS Showcase</h3>
+                <p class="discover-subtitle" data-i18n="s1DiscoverSubtitle">Conoce el RETOS Showcase, nuestra visión y misión.</p>
+              </div>
+            </div>
+
+            <button type="button" class="btn btn-secondary btn-discover-toggle" id="btn-discover-toggle" aria-expanded="false" aria-controls="discover-expanded-content">
+              <span class="btn-text" data-i18n="s1DiscoverBtn">Conocer RETOS Showcase</span>
+              <svg class="discover-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </button>
+          </article>
+
+          <!-- Contenido Desplegable: Definición, Misión y Visión íntegras -->
+          <div class="discover-expanded-content is-hidden" id="discover-expanded-content" aria-hidden="true">
+            <div class="discover-lead-box">
+              <p class="scene-lead" id="inst-lead" data-i18n="s2Lead">
+                RETOS Showcase 2026 - 2nd Edition es un espacio donde nuestros estudiantes de Mecatrónica, Mantenimiento Industrial, Logística y Desarrollo de Software demuestran sus competencias comunicativas en inglés aplicadas a entornos técnicos reales.
+              </p>
+            </div>
+
+            <div class="mision-vision-grid">
+              <!-- Misión -->
+              <article class="mv-card mission-card">
+                <header class="mv-card-header">
+                  <span class="mv-badge" data-i18n="s2MissionBadge">PROPÓSITO FORMATIVO</span>
+                  <div class="mv-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                      <circle cx="12" cy="12" r="10"/>
+                      <circle cx="12" cy="12" r="6"/>
+                      <circle cx="12" cy="12" r="2"/>
+                    </svg>
+                  </div>
+                </header>
+                <h4 class="mv-title" data-i18n="s2MissionTitle">Nuestra Misión</h4>
+                <p class="mv-body" id="inst-mision" data-i18n="s2MissionBody">
+                  Promover un espacio de aprendizaje, intercambio y certificación que fortalezca las competencias comunicativas en inglés de los estudiantes.
+                </p>
+              </article>
+
+              <!-- Visión -->
+              <article class="mv-card vision-card">
+                <header class="mv-card-header">
+                  <span class="mv-badge" data-i18n="s2VisionBadge">PROYECCIÓN ESTRATÉGICA</span>
+                  <div class="mv-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                      <circle cx="12" cy="12" r="3"/>
+                    </svg>
+                  </div>
+                </header>
+                <h4 class="mv-title" data-i18n="s2VisionTitle">Nuestra Visión</h4>
+                <p class="mv-body" id="inst-vision" data-i18n="s2VisionBody">
+                  Ser un evento que impulse el intercambio académico en inglés y proyecte el talento de los estudiantes hacia oportunidades nacionales e internacionales.
+                </p>
+              </article>
+            </div>
+          </div>
         </section>
 
         <!-- Dominant CTA Button: Start experience -->
         <div class="init-cta-group">
           <button class="btn btn-primary btn-glow" id="btn-start" data-target="1" aria-label="Start experience and proceed to next scene" data-i18n-attr="aria-label:btnStartAria">
             <span class="btn-scan"></span>
-            <span class="btn-text" data-i18n="btnStart">Start experience</span>
+            <span class="btn-text" data-i18n="btnStart">START EXPERIENCE →</span>
             <svg class="btn-icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
               <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
             </svg>
           </button>
         </div>
 
-        <!-- Scene 1 Language Selector: small, secondary, directly under Start button (EN | ES) -->
+        <!-- Scene 1 Language Selector: under Start button (EN | ES) -->
         <div class="scene1-lang-container">
           <div class="scene1-lang-selector" role="group" aria-label="Language selector / Selector de idioma" data-i18n-attr="aria-label:langSelectorAria">
             <button type="button" class="lang-btn active" data-lang="en" aria-pressed="true" aria-label="Switch language to English" data-i18n-attr="aria-label:langEnAria">
@@ -275,92 +327,24 @@
     </section>
 
     <!-- ========================================== -->
-    <!-- SCENE 02: PURPOSE AND EXPERIENCE           -->
+    <!-- ESCENA 2: LOGÍSTICA Y AGENDA ACCIONABLE    -->
+    <!-- (Objetivo: Ubicarse y organizarse sin leer)-->
     <!-- ========================================== -->
-    <section class="scene" id="scene-1" aria-label="Scene 2 of 5: Purpose and experience" data-index="1" data-route="proposito" data-i18n-attr="aria-label:scene1Aria">
-      <div class="scene-inner">
-        <header class="hud-meta-bar">
-          <span class="hud-badge" data-i18n="s2Badge">IDENTITY &amp; PURPOSE</span>
-          <span class="hud-coords" data-i18n="s2Coords">RETOS / FTS // ENGLISH PROGRAM</span>
-          <span class="hud-tag">SEC-02//PURPOSE</span>
-        </header>
-
-        <div class="institucion-layout">
-          <header class="scene-header">
-            <span class="scene-tag-kicker" data-i18n="s2Kicker">02 / PURPOSE AND EXPERIENCE</span>
-            <h2 class="scene-title" tabindex="-1" data-i18n="s2Title">A space for connection and <span class="text-gradient">talent</span></h2>
-            <p class="scene-lead" data-i18n="s2Lead">RETOS Showcase 2026 - 2nd Edition is a space where our students in Mechanics, Mechatronics, Industrial Maintenance, Logistics, and Software Development demonstrate their English communication skills applied to real-world technical environments.</p>
-          </header>
-
-          <!-- Mission and Vision Mosaic -->
-          <div class="mision-vision-grid">
-            <!-- Mission -->
-            <article class="mv-card mission-card">
-              <header class="mv-card-header">
-                <span class="mv-badge" data-i18n="s2MissionBadge">EDUCATIONAL PURPOSE</span>
-                <div class="mv-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                    <circle cx="12" cy="12" r="10"/>
-                    <circle cx="12" cy="12" r="6"/>
-                    <circle cx="12" cy="12" r="2"/>
-                  </svg>
-                </div>
-              </header>
-              <h3 class="mv-title" data-i18n="s2MissionTitle">Our Mission</h3>
-              <p class="mv-body" id="inst-mision" data-i18n="s2MissionBody">
-                To foster a space of learning, exchange, and certification that strengthens students’ communicative competence in English.
-              </p>
-            </article>
-
-            <!-- Vision -->
-            <article class="mv-card vision-card">
-              <header class="mv-card-header">
-                <span class="mv-badge" data-i18n="s2VisionBadge">STRATEGIC PROJECTION</span>
-                <div class="mv-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-                    <circle cx="12" cy="12" r="3"/>
-                  </svg>
-                </div>
-              </header>
-              <h3 class="mv-title" data-i18n="s2VisionTitle">Our Vision</h3>
-              <p class="mv-body" id="inst-vision" data-i18n="s2VisionBody">
-                To be a flagship event promoting academic exchange in English and showcasing student talent toward national and international opportunities.
-              </p>
-            </article>
-          </div>
-
-          <footer class="scene-nav-actions">
-            <button class="btn btn-ghost" data-target="0">
-              <span data-i18n="s2BtnBack">← Back to cover</span>
-            </button>
-            <button class="btn btn-primary" data-target="2">
-              <span class="btn-text" data-i18n="s2BtnNext">View coordinates &amp; logistics →</span>
-            </button>
-          </footer>
-        </div>
-      </div>
-    </section>
-
-    <!-- ========================================== -->
-    <!-- SCENE 03: COORDINATES AND LOGISTICS        -->
-    <!-- ========================================== -->
-    <section class="scene" id="scene-2" aria-label="Scene 3 of 5: Coordinates and logistics" data-index="2" data-route="coordenadas" data-i18n-attr="aria-label:scene2Aria">
+    <section class="scene" id="scene-1" aria-label="Scene 2 of 3: Logistics and actionable agenda" data-index="1" data-route="logistica" data-i18n-attr="aria-label:scene1Aria">
       <div class="scene-inner">
         <header class="hud-meta-bar">
           <span class="hud-badge" data-i18n="s3Badge">CONFIRMED LOGISTICS</span>
-          <span class="hud-coords" data-i18n="s3Coords">COORDINATES // LOCATION</span>
-          <span class="hud-tag">SEC-03//DETAILS</span>
+          <span class="hud-coords" data-i18n="s3Coords">RETOS / FTS // VENUE &amp; LOGISTICS</span>
+          <span class="hud-tag">SEC-02//LOGISTICS</span>
         </header>
 
         <div class="details-layout">
           <header class="scene-header">
-            <span class="scene-tag-kicker" data-i18n="s3Kicker">03 / EVENT COORDINATES</span>
+            <span class="scene-tag-kicker" data-i18n="s3Kicker">02 / DATE, VENUE &amp; LOGISTICS</span>
             <h2 class="scene-title" tabindex="-1" data-i18n="s3Title">Date, venue and <span class="text-gradient">logistics</span></h2>
-            <p class="scene-lead" data-i18n="s3Lead">Review all essential information to plan your attendance and synchronize it with your calendar.</p>
           </header>
 
-          <!-- Specification HUD Cards -->
+          <!-- 3 Specification HUD Cards (Direct Data Only, No Subtexts, Clean &) -->
           <div class="details-grid">
             <!-- Card 1: Date -->
             <article class="detail-card">
@@ -375,7 +359,6 @@
               <div class="dc-content">
                 <span class="dc-tag" data-i18n="s3CardDateTag">EVENT DATE</span>
                 <strong class="dc-headline" id="detail-date" data-i18n="s3CardDateVal"><time datetime="2026-10-30">Friday, October 30, 2026</time></strong>
-                <span class="dc-sub" id="detail-date-sub" data-i18n="s3CardDateSub">Official gathering for academic year 2026</span>
               </div>
             </article>
 
@@ -390,11 +373,10 @@
               <div class="dc-content">
                 <span class="dc-tag" data-i18n="s3CardTimeTag">OFFICIAL TIME</span>
                 <strong class="dc-headline" id="detail-time" data-i18n="s3CardTimeVal">08:00 – 12:30</strong>
-                <span class="dc-sub" data-i18n="s3CardTimeSub">Continuous morning program</span>
               </div>
             </article>
 
-            <!-- Card 3: Venue -->
+            <!-- Card 3: Venue & Address -->
             <article class="detail-card">
               <div class="dc-icon-wrapper" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
@@ -405,79 +387,114 @@
               <div class="dc-content">
                 <span class="dc-tag" data-i18n="s3CardVenueTag">VENUE &amp; ADDRESS</span>
                 <strong class="dc-headline" id="detail-venue" data-i18n="s3CardVenueVal">RETOS / FTS Institute Library</strong>
-                <span class="dc-sub" id="detail-address" data-i18n="s3CardVenueSub">RETOS Institute • La Libertad</span>
-              </div>
-            </article>
-
-            <!-- Card 4: Audience & Access -->
-            <article class="detail-card">
-              <div class="dc-icon-wrapper" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-                  <circle cx="9" cy="7" r="4"/>
-                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-                  <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-                </svg>
-              </div>
-              <div class="dc-content">
-                <span class="dc-tag" data-i18n="s3CardAudienceTag">AUDIENCE &amp; ACCREDITATION</span>
-                <strong class="dc-headline" id="detail-audience" data-i18n="s3CardAudienceVal">RETOS / FTS Community, enterprises, institutions, and honored guests.</strong>
-                <span class="dc-sub" id="detail-audience-sub" data-i18n="s3CardAudienceSub">In-person morning session. RSVP is kindly requested to support our students.</span>
               </div>
             </article>
           </div>
 
-          <!-- Functional CTA Banner -->
-          <article class="details-cta-banner">
-            <div class="cta-banner-text">
-              <strong data-i18n="s3BannerTitle">How to get there and synchronize the event?</strong>
-              <span data-i18n="s3BannerSub">Open the navigation map or add the event to your personal calendar:</span>
-            </div>
-            <div class="cta-banner-buttons" role="group" aria-label="Navigation and calendar options">
-              <a
-                class="btn btn-secondary"
-                id="btn-map-google"
-                data-map="google"
-                href="https://www.google.com/maps/search/?api=1&amp;query=Instituto+Tecnol%C3%B3gico+RETOS+de+la+Libertad%2C+El+Salvador"
-                target="_blank"
-                rel="noopener noreferrer"
-                role="button"
-                aria-label="Open location in Google Maps (opens in new tab)"
-                data-i18n-attr="aria-label:s3BtnGoogleAria"
-              >
+          <!-- 3 Tarjetas de Acción Directa -->
+          <div class="action-cards-grid">
+            <!-- 1. Agendar en mi calendario -->
+            <article class="action-tile" id="action-tile-calendar" role="button" tabindex="0">
+              <div class="at-top">
+                <div class="at-icon-wrapper" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                    <line x1="16" y1="2" x2="16" y2="6"/>
+                    <line x1="8" y1="2" x2="8" y2="6"/>
+                    <line x1="3" y1="10" x2="21" y2="10"/>
+                    <path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01M16 18h.01"/>
+                  </svg>
+                </div>
+                <span class="at-badge">.ICS</span>
+              </div>
+              <h3 class="at-title" data-i18n="actCardCalTitle">Agendar en mi calendario</h3>
+              <p class="at-desc" data-i18n="actCardCalDesc">Guarda la fecha y la hora del evento.</p>
+              <button type="button" class="btn btn-secondary at-btn" id="btn-action-calendar" aria-label="Add to calendar">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="btn-inline-icon" aria-hidden="true">
-                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-                  <circle cx="12" cy="10" r="3"/>
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                  <polyline points="7 10 12 15 17 10"/>
+                  <line x1="12" y1="15" x2="12" y2="3"/>
                 </svg>
-                <span class="btn-text" data-i18n="s3BtnGoogle">Open in Google Maps</span>
-              </a>
+                <span data-i18n="actCardCalBtn">Descargar .ics</span>
+              </button>
+            </article>
 
-              <a
-                class="btn btn-secondary"
-                id="btn-map-waze"
-                data-map="waze"
-                href="https://waze.com/ul?q=Instituto+Tecnol%C3%B3gico+RETOS+de+la+Libertad%2C+El+Salvador&amp;navigate=yes"
-                target="_blank"
-                rel="noopener noreferrer"
-                role="button"
-                aria-label="Open direct navigation in Waze (opens in new tab)"
-                data-i18n-attr="aria-label:s3BtnWazeAria"
-              >
+            <!-- 2. Cómo llegar -->
+            <article class="action-tile" id="action-tile-directions">
+              <div class="at-top">
+                <div class="at-icon-wrapper" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                    <polygon points="3 11 22 2 13 21 11 13 3 11"/>
+                  </svg>
+                </div>
+                <span class="at-badge">GPS</span>
+              </div>
+              <h3 class="at-title" data-i18n="actCardMapTitle">Cómo llegar</h3>
+              <p class="at-desc" data-i18n="actCardMapDesc">Abre la ubicación en Google Maps o Waze.</p>
+              <div class="at-actions-row">
+                <a
+                  class="btn btn-secondary at-sub-btn"
+                  id="btn-map-google"
+                  data-map="google"
+                  href="https://www.google.com/maps/search/?api=1&amp;query=Instituto+Tecnol%C3%B3gico+RETOS+de+la+Libertad%2C+El+Salvador"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  role="button"
+                  aria-label="Google Maps"
+                  data-i18n-attr="aria-label:s3BtnGoogleAria"
+                >
+                  <span data-i18n="s3BtnGoogle">Google Maps ↗</span>
+                </a>
+
+                <a
+                  class="btn btn-secondary at-sub-btn"
+                  id="btn-map-waze"
+                  data-map="waze"
+                  href="https://waze.com/ul?q=Instituto+Tecnol%C3%B3gico+RETOS+de+la+Libertad%2C+El+Salvador&amp;navigate=yes"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  role="button"
+                  aria-label="Waze"
+                  data-i18n-attr="aria-label:s3BtnWazeAria"
+                >
+                  <span data-i18n="s3BtnWaze">Waze ↗</span>
+                </a>
+              </div>
+            </article>
+
+            <!-- 3. Consultar agenda -->
+            <article class="action-tile" id="action-tile-agenda" role="button" tabindex="0">
+              <div class="at-top">
+                <div class="at-icon-wrapper" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                    <circle cx="12" cy="12" r="10"/>
+                    <polyline points="12 6 12 12 16 14"/>
+                  </svg>
+                </div>
+                <span class="at-badge" data-i18n="s4BlocksCount">22 BLOQUES</span>
+              </div>
+              <h3 class="at-title" data-i18n="actCardAgendaTitle">Consultar agenda</h3>
+              <p class="at-desc" data-i18n="actCardAgendaDesc">Descubre los horarios y las presentaciones por carrera.</p>
+              <button type="button" class="btn btn-primary at-btn" id="btn-open-agenda-modal" aria-label="View event agenda">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="btn-inline-icon" aria-hidden="true">
-                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-                  <circle cx="12" cy="10" r="3"/>
+                  <line x1="8" y1="6" x2="21" y2="6"/>
+                  <line x1="8" y1="12" x2="21" y2="12"/>
+                  <line x1="8" y1="18" x2="21" y2="18"/>
+                  <line x1="3" y1="6" x2="3.01" y2="6"/>
+                  <line x1="3" y1="12" x2="3.01" y2="12"/>
+                  <line x1="3" y1="18" x2="3.01" y2="18"/>
                 </svg>
-                <span class="btn-text" data-i18n="s3BtnWaze">Open in Waze</span>
-              </a>
-            </div>
-          </article>
+                <span data-i18n="actCardAgendaBtn">Ver cronograma ↗</span>
+              </button>
+            </article>
+          </div>
 
           <footer class="scene-nav-actions">
-            <button class="btn btn-ghost" data-target="1">
-              <span data-i18n="s3BtnBack">← Purpose and experience</span>
+            <button class="btn btn-ghost" data-target="0">
+              <span data-i18n="s2BtnBack">← Volver al inicio</span>
             </button>
-            <button class="btn btn-primary" data-target="3">
-              <span class="btn-text" data-i18n="s3BtnNext">Explore schedule →</span>
+            <button class="btn btn-primary" data-target="2">
+              <span class="btn-text" data-i18n="s2BtnNext">Confirmar asistencia →</span>
             </button>
           </footer>
         </div>
@@ -485,437 +502,270 @@
     </section>
 
     <!-- ========================================== -->
-    <!-- SCENE 04: SCHEDULE AND CRONOGRAM           -->
+    <!-- ESCENA 3: CONFIRMACIÓN Y PASE QR           -->
+    <!-- (Objetivo: Registrarse en un solo paso)    -->
     <!-- ========================================== -->
-    <section class="scene" id="scene-3" aria-label="Scene 4 of 5: Event schedule" data-index="3" data-route="programa" data-i18n-attr="aria-label:scene3Aria">
-      <div class="scene-inner">
-        <header class="hud-meta-bar">
-          <span class="hud-badge pulse-cyan" data-i18n="s4Badge">OFFICIAL SCHEDULE</span>
-          <span class="hud-coords" id="agenda-date-coord">30 OCT 2026 // 08:00 - 12:30 HRS</span>
-          <span class="hud-tag">SEC-04//SCHEDULE</span>
-        </header>
-
-        <div class="agenda-layout">
-          <header class="scene-header">
-            <span class="scene-tag-kicker" data-i18n="s4Kicker">04 / EVENT SCHEDULE</span>
-            <h2 class="scene-title" tabindex="-1" data-i18n="s4Title">Formal agenda and <span class="text-gradient">schedule</span></h2>
-            <p class="scene-lead" data-i18n="s4Lead">Chronological schedule of the morning session, student presentations in technical contexts, certification awards, and institutional networking.</p>
-          </header>
-
-          <!-- Day metadata summary -->
-          <aside class="agenda-meta-summary" aria-label="Schedule summary">
-            <div class="ams-item">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="agenda-time-icon" width="16" height="16" aria-hidden="true">
-                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
-                <line x1="16" y1="2" x2="16" y2="6"/>
-                <line x1="8" y1="2" x2="8" y2="6"/>
-                <line x1="3" y1="10" x2="21" y2="10"/>
-              </svg>
-              <span><span data-i18n="s4SummaryDateLabel">DATE:</span> <strong id="agenda-summary-date"><time datetime="2026-10-30">Friday, October 30, 2026</time></strong></span>
-            </div>
-            <div class="ams-item">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="agenda-time-icon" width="16" height="16" aria-hidden="true">
-                <circle cx="12" cy="12" r="10"/>
-                <polyline points="12 6 12 12 16 14"/>
-              </svg>
-              <span><span data-i18n="s4SummaryTimeLabel">TIME:</span> <strong id="agenda-summary-time" data-i18n="s4SummaryTimeVal">08:00 — 12:30 hrs</strong></span>
-            </div>
-            <div class="ams-item">
-              <span class="hud-badge" id="agenda-blocks-count" data-i18n="s4BlocksCount">22 CONFIRMED BLOCKS</span>
-            </div>
-          </aside>
-
-          <!-- Redesigned minimal agenda timeline: ul with li cards -->
-          <ul class="agenda-timeline" id="agenda-container" aria-label="Official event schedule" data-i18n-attr="aria-label:agendaTimelineAria">
-            <!-- Dynamically injected via UIRenderer.renderFormalAgenda() -->
-          </ul>
-
-          <footer class="scene-nav-actions">
-            <button class="btn btn-ghost" data-target="2">
-              <span data-i18n="s4BtnBack">← Coordinates and logistics</span>
-            </button>
-            <button class="btn btn-primary" data-target="4">
-              <span class="btn-text" data-i18n="s4BtnNext">Confirm attendance →</span>
-            </button>
-          </footer>
-        </div>
-      </div>
-    </section>
-
-    <!-- ========================================== -->
-    <!-- SCENE 05: RSVP AND ATTENDANCE CONFIRMATION -->
-    <!-- (3 PANELS: FORM -> VERIFICATION -> CLOSING)-->
-    <!-- ========================================== -->
-    <section class="scene" id="scene-4" aria-label="Scene 5 of 5: Attendance confirmation" data-index="4" data-route="rsvp" data-i18n-attr="aria-label:scene4Aria">
+    <section class="scene" id="scene-2" aria-label="Scene 3 of 3: Attendance confirmation" data-index="2" data-route="rsvp" data-i18n-attr="aria-label:scene2Aria">
       <div class="scene-inner">
 
-        <!-- STEP 1: RSVP Form -->
-        <div class="rsvp-step-panel" id="rsvp-step-1">
+        <div class="rsvp-layout">
           <header class="hud-meta-bar">
             <span class="hud-badge pulse-cyan" data-i18n="s5Step1Badge">REGISTRATION TERMINAL</span>
-            <span class="hud-coords" data-i18n="s5Step1Coords">RSVP PROTOCOL // STEP 1 OF 3</span>
-            <span class="hud-tag">SEC-05//FORM</span>
+            <span class="hud-coords" data-i18n="s5Step1Coords">Confirmation PROTOCOL // OFFICIAL ACCESS</span>
+            <span class="hud-tag">SEC-03//CONFIRMATION</span>
           </header>
 
-          <div class="rsvp-layout">
-            <header class="scene-header">
-              <span class="scene-tag-kicker" data-i18n="s5Step1Kicker">05 / ATTENDANCE CONFIRMATION</span>
-              <h2 class="scene-title" tabindex="-1" data-i18n="s5Step1Title">Secure your <span class="text-gradient">accreditation</span></h2>
-              <p class="scene-lead" data-i18n="s5Step1Lead">Fill in your official details to reserve your seat at the institutional event.</p>
-            </header>
+          <header class="scene-header">
+            <span class="scene-tag-kicker" data-i18n="s5Step1Kicker">03 / CONFIRMACIÓN DE ASISTENCIA</span>
+            <h2 class="scene-title" tabindex="-1" data-i18n="s5Step1Title">Asegura tu <span class="text-gradient">acreditación</span></h2>
+          </header>
 
-            <!-- Local Demo Mode Notice (Hidden in production) -->
-            <aside class="demo-integration-notice is-hidden" id="demo-mode-notice">
-              <div class="notice-badge" data-i18n="s5DemoNoticeBadge">LOCAL DEMO MODE</div>
-              <p class="notice-text" data-i18n="s5DemoNoticeText">
-                Local demonstration environment. Confirmations generate a simulated receipt to validate the interface. In production, they connect to Supabase via a serverless function.
-              </p>
-            </aside>
+          <!-- Local Demo Mode Notice (Hidden by default in production) -->
+          <aside class="demo-integration-notice is-hidden" id="demo-mode-notice">
+            <div class="notice-badge" data-i18n="s5DemoNoticeBadge">MODO DEMOSTRATIVO LOCAL</div>
+            <p class="notice-text" data-i18n="s5DemoNoticeText">
+              Entorno local de demostración. Las confirmaciones generan un pase validado localmente. En producción se conectan a Supabase mediante la función serverless.
+            </p>
+          </aside>
 
-            <!-- RSVP Form -->
-            <form class="rsvp-form" id="rsvp-form" novalidate>
-              <!-- Anti-spam honeypot field -->
-              <div class="form-group-hp" style="position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; pointer-events: none; overflow: hidden;" aria-hidden="true">
-                <label for="rsvp-website">Institutional Website</label>
-                <input type="text" id="rsvp-website" name="website" tabindex="-1" autocomplete="off">
-              </div>
-
-              <!-- Field: Full Name -->
-              <div class="form-group">
-                <label for="rsvp-name" class="form-label">
-                  <span data-i18n="s5FieldNameLabel">FULL NAME *</span>
-                  <span class="form-hint" data-i18n="s5FieldNameHint">At least 2 characters</span>
-                </label>
-                <div class="input-wrapper">
-                  <input type="text" id="rsvp-name" name="name" class="form-input" placeholder="E.g. Mr. John Doe" data-i18n-attr="placeholder:s5FieldNamePlaceholder" autocomplete="name" required aria-required="true" aria-describedby="err-name" maxlength="120">
-                  <span class="input-focus-line" aria-hidden="true"></span>
-                </div>
-                <div class="field-error" id="err-name" role="alert"></div>
-              </div>
-
-              <!-- Field: Institutional Role -->
-              <div class="form-group">
-                <label for="rsvp-role" class="form-label">
-                  <span data-i18n="s5FieldRoleLabel">YOUR ROLE *</span>
-                  <span class="form-hint" data-i18n="s5FieldRoleHint">Select institutional profile</span>
-                </label>
-                <div class="input-wrapper">
-                  <select id="rsvp-role" name="role" class="form-input form-select" required aria-required="true" aria-describedby="err-role">
-                    <option value="" disabled selected data-i18n="s5RolePlaceholder">Select your role...</option>
-                    <option value="estudiante" data-i18n="s5RoleEstudiante">Student</option>
-                    <option value="docente" data-i18n="s5RoleDocente">Teacher / Faculty</option>
-                    <option value="empresa" data-i18n="s5RoleEmpresa">Company Representative</option>
-                    <option value="familiar" data-i18n="s5RoleFamiliar">Family Member</option>
-                    <option value="invitado" data-i18n="s5RoleInvitado">Special Guest</option>
-                  </select>
-                  <span class="input-focus-line" aria-hidden="true"></span>
-                </div>
-                <div class="field-error" id="err-role" role="alert"></div>
-              </div>
-
-              <!-- Field: Attendance Status -->
-              <fieldset class="form-fieldset">
-                <legend class="form-label">
-                  <span data-i18n="s5FieldAttLabel">ATTENDANCE STATUS *</span>
-                  <span class="form-hint" data-i18n="s5FieldAttHint">Select your response</span>
-                </legend>
-                <div class="attendance-options" role="radiogroup" aria-describedby="err-attendance" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
-                  <label class="radio-card">
-                    <input type="radio" name="attendance" value="si" required>
-                    <div class="radio-card-ui">
-                      <span class="rc-indicator"></span>
-                      <div class="rc-texts">
-                        <strong class="rc-title" data-i18n="s5AttYesTitle">Yes, I will attend</strong>
-                        <span class="rc-desc" data-i18n="s5AttYesDesc">Reserve official seat</span>
-                      </div>
-                    </div>
-                  </label>
-
-                  <label class="radio-card">
-                    <input type="radio" name="attendance" value="no">
-                    <div class="radio-card-ui">
-                      <span class="rc-indicator"></span>
-                      <div class="rc-texts">
-                        <strong class="rc-title" data-i18n="s5AttNoTitle">I cannot attend</strong>
-                      </div>
-                    </div>
-                  </label>
-                </div>
-                <div class="field-error" id="err-attendance" role="alert"></div>
-              </fieldset>
-
-              <!-- Optional Field: Organization / Institution -->
-              <div class="form-group">
-                <label for="rsvp-organization" class="form-label">
-                  <span data-i18n="s5FieldOrgLabel">ORGANIZATION / INSTITUTION (OPTIONAL)</span>
-                </label>
-                <div class="input-wrapper">
-                  <input type="text" id="rsvp-organization" name="organization" class="form-input" placeholder="E.g. Company, University, or Institution" maxlength="120" data-i18n-attr="placeholder:s5FieldOrgPlaceholder">
-                  <span class="input-focus-line" aria-hidden="true"></span>
-                </div>
-              </div>
-
-              <!-- Submit Button -->
-              <footer class="form-actions">
-                <button type="submit" class="btn btn-primary btn-submit" id="btn-submit-rsvp">
-                  <span class="btn-text" data-i18n="s5BtnSubmit">Submit Form</span>
-                  <svg class="btn-icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                    <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
-                  </svg>
-                </button>
-              </footer>
-
-              <!-- Data Privacy Notice -->
-              <p class="form-privacy-notice" id="rsvp-privacy-notice" data-i18n="s5PrivacyNotice" style="margin-top: 16px; font-size: 0.75rem; color: var(--tx-muted); line-height: 1.5; text-align: center;">
-                🔒 <strong>Privacy notice:</strong> Provided information (name, role, attendance, and organization) is strictly used for official accreditation and organization of RETOS Showcase 2026 - 2nd Edition.
-              </p>
-            </form>
-
-            <footer class="scene-nav-actions" style="margin-top: 24px;">
-              <button type="button" class="btn btn-ghost" data-target="3">
-                <span data-i18n="s5BtnBackToProg">← Back to schedule</span>
-              </button>
-            </footer>
+          <!-- Error banner -->
+          <div class="demo-integration-notice is-hidden" id="submission-error-banner" role="alert" aria-live="assertive" style="border-color: var(--c-alert-red, #ff4d6d); background: rgba(255, 77, 109, 0.08); margin-top: 14px; margin-bottom: 16px;">
+            <div class="notice-badge" data-i18n="s5ErrorBadge" style="color: var(--c-alert-red, #ff4d6d);">ERROR AL ENVIAR CONFIRMACIÓN</div>
+            <p class="notice-text" id="submission-error-text" style="color: var(--tx-primary); margin-bottom: 12px;"></p>
+            <button type="button" class="btn btn-secondary" id="btn-retry-rsvp" data-i18n="s5BtnRetry" style="width: auto; padding: 8px 18px; font-size: 0.82rem;">Reintentar envío</button>
           </div>
-        </div>
 
-        <!-- STEP 2: Intermediate Verification Sequence -->
-        <div class="rsvp-step-panel is-hidden" id="rsvp-step-2">
-          <header class="hud-meta-bar">
-            <span class="hud-badge pulse-cyan" data-i18n="s5Step2Badge">VERIFICATION PROTOCOL</span>
-            <span class="hud-coords" data-i18n="s5Step2Coords">ENCRYPTED CHANNEL // STEP 2 OF 3</span>
-            <span class="hud-tag">SEC-05//VERIFY</span>
-          </header>
+          <!-- Confirmation Direct Form (1-Step Registration) -->
+          <form class="rsvp-form" id="rsvp-form" novalidate>
+            <!-- Anti-spam honeypot field -->
+            <div class="form-group-hp" style="position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; pointer-events: none; overflow: hidden;" aria-hidden="true">
+              <label for="rsvp-website">Institutional Website</label>
+              <input type="text" id="rsvp-website" name="website" tabindex="-1" autocomplete="off">
+            </div>
 
-          <div class="verify-layout">
-            <header class="scene-header">
-              <span class="scene-tag-kicker" data-i18n="s5Step2Kicker">STEP 02 / CREDENTIAL VERIFICATION</span>
-              <h2 class="scene-title" tabindex="-1" data-i18n="s5Step2Title">Verifying <span class="text-gradient">accreditation</span></h2>
-              <p class="scene-lead" data-i18n="s5Step2Lead">Synchronizing credentials prior to definitive institutional registration.</p>
-            </header>
-
-            <article class="verify-terminal">
-              <header class="terminal-header">
-                <div class="terminal-dots" aria-hidden="true">
-                  <span class="tdot red"></span>
-                  <span class="tdot yellow"></span>
-                  <span class="tdot green"></span>
-                </div>
-                <span class="terminal-title">AUTH_CONSOLE://RETOS-ENDPOINT</span>
-                <span class="terminal-status" id="verify-status-indicator" data-i18n="s5TerminalProcessing">PROCESSING...</span>
-              </header>
-
-              <ul class="terminal-log" id="verification-log" aria-live="polite" aria-label="Verification log" data-i18n-attr="aria-label:verificationLogAria">
-                <!-- Dynamically generated -->
-              </ul>
-
-              <!-- Progress bar -->
-              <div class="terminal-meter-wrapper" aria-hidden="true">
-                <div class="terminal-meter-bar">
-                  <div class="terminal-meter-fill" id="verification-progress-fill"></div>
-                </div>
-                <div class="terminal-meter-labels">
-                  <span class="t-label" data-i18n="s5TerminalSyncLabel">ACCESS SYNCHRONIZATION</span>
-                  <span class="t-percent" id="verification-percent">0%</span>
-                </div>
+            <!-- Field: Full Name -->
+            <div class="form-group">
+              <label for="rsvp-name" class="form-label">
+                <span data-i18n="s5FieldNameLabel">NOMBRE Y APELLIDO *</span>
+                <span class="form-hint" data-i18n="s5FieldNameHint">Mínimo 2 caracteres</span>
+              </label>
+              <div class="input-wrapper">
+                <input type="text" id="rsvp-name" name="name" class="form-input" placeholder="Ej. Lic. Juan Pacheco" data-i18n-attr="placeholder:s5FieldNamePlaceholder" autocomplete="name" required aria-required="true" aria-describedby="err-name" maxlength="120">
+                <span class="input-focus-line" aria-hidden="true"></span>
               </div>
-            </article>
+              <div class="field-error" id="err-name" role="alert"></div>
+            </div>
 
-            <!-- ACCESS GRANTED banner -->
-            <div class="access-grant-display" id="access-grant-banner" role="status" aria-live="assertive">
-              <div class="grant-ring" aria-hidden="true">
-                <svg viewBox="0 0 100 100" fill="none">
-                  <circle cx="50" cy="50" r="46" stroke="var(--c-green)" stroke-width="2" stroke-dasharray="10 5" class="grant-ring-spin"/>
-                  <path d="M30 50 L44 64 L72 36" stroke="var(--c-green)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" class="grant-check-path"/>
-                </svg>
+            <!-- Field: Institutional Role -->
+            <div class="form-group">
+              <label for="rsvp-role" class="form-label">
+                <span data-i18n="s5FieldRoleLabel">TU ROL *</span>
+                <span class="form-hint" data-i18n="s5FieldRoleHint">Selecciona tu perfil institucional</span>
+              </label>
+              <div class="input-wrapper">
+                <select id="rsvp-role" name="role" class="form-input form-select" required aria-required="true" aria-describedby="err-role">
+                  <option value="" disabled selected data-i18n="s5RolePlaceholder">Selecciona tu rol...</option>
+                  <option value="estudiante" data-i18n="s5RoleEstudiante">Estudiante</option>
+                  <option value="docente" data-i18n="s5RoleDocente">Docente</option>
+                  <option value="empresa" data-i18n="s5RoleEmpresa">Representante de empresa</option>
+                  <option value="familiar" data-i18n="s5RoleFamiliar">Familiar</option>
+                  <option value="invitado" data-i18n="s5RoleInvitado">Invitado</option>
+                </select>
+                <span class="input-focus-line" aria-hidden="true"></span>
               </div>
-              <div class="grant-text-group">
-                <div class="grant-title" data-i18n="s5GrantTitle">ACCESS GRANTED</div>
-                <p class="grant-subtitle" data-i18n="s5GrantSubtitle">Credentials validated. Ready to confirm your official registration.</p>
+              <div class="field-error" id="err-role" role="alert"></div>
+            </div>
+
+            <!-- Field: Attendance Status -->
+            <fieldset class="form-fieldset">
+              <legend class="form-label">
+                <span data-i18n="s5FieldAttLabel">ESTADO DE ASISTENCIA *</span>
+                <span class="form-hint" data-i18n="s5FieldAttHint">Selecciona tu respuesta</span>
+              </legend>
+              <div class="attendance-options" role="radiogroup" aria-describedby="err-attendance" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+                <label class="radio-card">
+                  <input type="radio" name="attendance" value="si" required>
+                  <div class="radio-card-ui">
+                    <span class="rc-indicator"></span>
+                    <div class="rc-texts">
+                      <strong class="rc-title" data-i18n="s5AttYesTitle">Sí, asistiré</strong>
+                      <span class="rc-desc" data-i18n="s5AttYesDesc">Reservar lugar oficial</span>
+                    </div>
+                  </div>
+                </label>
+
+                <label class="radio-card">
+                  <input type="radio" name="attendance" value="no">
+                  <div class="radio-card-ui">
+                    <span class="rc-indicator"></span>
+                    <div class="rc-texts">
+                      <strong class="rc-title" data-i18n="s5AttNoTitle">No podré asistir</strong>
+                    </div>
+                  </div>
+                </label>
+              </div>
+              <div class="field-error" id="err-attendance" role="alert"></div>
+            </fieldset>
+
+            <!-- Optional Field: Organization / Institution -->
+            <div class="form-group">
+              <label for="rsvp-organization" class="form-label">
+                <span data-i18n="s5FieldOrgLabel">ORGANIZACIÓN / INSTITUCIÓN (OPCIONAL)</span>
+              </label>
+              <div class="input-wrapper">
+                <input type="text" id="rsvp-organization" name="organization" class="form-input" placeholder="Ej. Empresa, Universidad o Institución" maxlength="120" data-i18n-attr="placeholder:s5FieldOrgPlaceholder">
+                <span class="input-focus-line" aria-hidden="true"></span>
               </div>
             </div>
 
-            <!-- Step 2 Verification Summary -->
-            <div class="result-telemetry is-hidden" id="verify-summary-card" style="margin: 20px auto 16px; max-width: 480px;">
-              <div><span data-i18n="s5LabelHolder">NAME:</span> <strong id="verify-summary-name">-</strong></div>
-              <div><span data-i18n="s5LabelResponse">RESPONSE:</span> <strong id="verify-summary-status">-</strong></div>
-              <div><span data-i18n="s5LabelRole">ROLE:</span> <strong id="verify-summary-role">-</strong></div>
-              <div id="verify-summary-org-row"><span data-i18n="s5LabelOrg">ORGANIZATION:</span> <strong id="verify-summary-org">-</strong></div>
-              <div><span data-i18n="s5LabelCode">CONFIRMATION CODE:</span> <strong id="verify-summary-code">-</strong></div>
-            </div>
-
-            <!-- Error banner -->
-            <div class="demo-integration-notice is-hidden" id="submission-error-banner" role="alert" aria-live="assertive" style="border-color: var(--c-alert-red, #ff4d6d); background: rgba(255, 77, 109, 0.08); margin-top: 16px; margin-bottom: 0;">
-              <div class="notice-badge" data-i18n="s5ErrorBadge" style="color: var(--c-alert-red, #ff4d6d);">ERROR SUBMITTING CONFIRMATION</div>
-              <p class="notice-text" id="submission-error-text" style="color: var(--tx-primary); margin-bottom: 12px;"></p>
-              <button type="button" class="btn btn-secondary" id="btn-retry-rsvp" data-i18n="s5BtnRetry" style="width: auto; padding: 8px 18px; font-size: 0.82rem;">Retry submission</button>
-            </div>
-
-            <!-- Verification actions -->
-            <footer class="verify-actions">
-              <button type="button" class="btn btn-ghost" id="btn-back-to-step1">
-                <span class="btn-text" data-i18n="s5BtnModifyData">← Edit information</span>
-              </button>
-              <button type="button" class="btn btn-secondary" id="btn-skip-verify">
-                <span class="btn-text" data-i18n="s5BtnSkipAnim">Skip animation</span>
-              </button>
-              <button type="button" class="btn btn-primary is-hidden" id="btn-confirm-attendance">
+            <!-- Submit Button (Direct 1-step confirm) -->
+            <footer class="form-actions">
+              <button type="submit" class="btn btn-primary btn-submit" id="btn-submit-rsvp">
                 <span class="btn-spinner is-hidden" aria-hidden="true"></span>
-                <span class="btn-text" data-i18n="s5BtnConfirmAttendance">Confirm attendance</span>
+                <span class="btn-text" data-i18n="s5BtnSubmit">Confirmar asistencia</span>
                 <svg class="btn-icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                   <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
                 </svg>
               </button>
             </footer>
-          </div>
-        </div>
 
-        <!-- STEP 3: Access and Session Completed -->
-        <div class="rsvp-step-panel is-hidden" id="rsvp-step-3">
-          <header class="hud-meta-bar">
-            <span class="hud-coords" data-i18n="s5Step3Coords">THANK YOU FOR YOUR RSVP</span>
-            <span class="hud-tag">SEC-05//CLOSING</span>
-          </header>
+            <!-- Data Privacy Notice -->
+            <p class="form-privacy-notice" id="rsvp-privacy-notice" data-i18n="s5PrivacyNotice" style="margin-top: 16px; font-size: 0.75rem; color: var(--tx-muted); line-height: 1.5; text-align: center;">
+              🔒 <strong>Aviso de privacidad:</strong> La información proporcionada se utiliza estrictamente para la acreditación oficial y logística del RETOS Showcase 2026 - 2nd Edition.
+            </p>
+          </form>
 
-          <div class="closing-layout">
-            <!-- Geometric closing emblem -->
-            <div class="closing-emblem" aria-hidden="true">
-              <svg viewBox="0 0 180 180" fill="none">
-                <circle cx="90" cy="90" r="82" stroke="rgba(0, 255, 136, 0.2)" stroke-width="1.5" stroke-dasharray="4 6"/>
-                <circle cx="90" cy="90" r="70" stroke="var(--c-cyan)" stroke-width="2" stroke-dasharray="40 10 20 10" class="closing-ring-spin"/>
-                <circle cx="90" cy="90" r="54" stroke="var(--c-green)" stroke-width="1.5"/>
-                <path d="M60 92 L80 112 L122 70" stroke="var(--c-green)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- DIGITAL PASS RECEIPT & QR CODE (Shown immediately upon registration) -->
+          <article class="rsvp-result-card is-hidden" id="rsvp-result-card" role="region" aria-live="polite" tabindex="-1" style="margin-bottom: 24px;">
+            <div class="result-status-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                <polyline points="22 4 12 14.01 9 11.01"/>
               </svg>
             </div>
+            <div class="result-body">
+              <span class="result-badge" id="result-badge-text" data-i18n="s5ResultBadgeCompleted">REGISTRO COMPLETADO</span>
+              <h3 class="result-title" id="result-title-text" data-i18n="s5ResultTitleReceived">Confirmación recibida</h3>
+              <p class="result-msg" id="result-message-text"></p>
+              <div class="result-telemetry">
+                <div><span data-i18n="s5LabelHolder">TITULAR:</span> <strong id="res-attendee-name">-</strong></div>
+                <div><span data-i18n="s5LabelResponse">RESPUESTA:</span> <strong id="res-attendee-status">-</strong></div>
+                <div><span data-i18n="s5LabelRole">ROL:</span> <strong id="res-attendee-role">-</strong></div>
+                <div id="res-org-row"><span data-i18n="s5LabelOrg">ORGANIZACIÓN:</span> <strong id="res-attendee-org">-</strong></div>
+                <div><span data-i18n="s5LabelCode">CÓDIGO DE CONFIRMACIÓN:</span> <strong id="res-attendee-code">RETOS-2026-XXXX</strong></div>
+              </div>
 
-            <article class="closing-content">
-              <span class="closing-kicker" data-i18n="s5Step3Kicker">05 / ACCESS &amp; SESSION COMPLETED</span>
-
-              <h1 class="closing-title" id="closing-headline" tabindex="-1" data-i18n="s5ClosingHeadline">
-                Session <span class="text-gradient">completed.</span>
-              </h1>
-
-              <p class="closing-message" id="closing-personalized-message" data-i18n="s5ClosingMessage">
-                Your presence is a great motivation for our students. We look forward to having your valuable company.
-              </p>
-
-              <!-- Digital pass receipt with QR code -->
-              <article class="rsvp-result-card is-hidden" id="rsvp-result-card" role="region" aria-live="polite" tabindex="-1" style="margin-bottom: 28px;">
-                <div class="result-status-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
-                    <polyline points="22 4 12 14.01 9 11.01"/>
+              <!-- QR pass section for affirmative attendees -->
+              <div class="result-qr-section is-hidden" id="result-qr-container" style="display: flex; flex-direction: column; align-items: center; margin-top: 22px; padding: 18px 20px; background: rgba(0, 0, 0, 0.45); border: 1px solid var(--b-cyan, rgba(0, 229, 255, 0.35)); border-radius: 8px; width: 100%; box-sizing: border-box;">
+                <span data-i18n="s5QrSectionTitle" style="font-family: var(--f-mono); font-size: 0.72rem; letter-spacing: 0.12em; color: var(--c-cyan, #00e5ff); margin-bottom: 12px; font-weight: 700;">PASE DIGITAL DE ACREDITACIÓN</span>
+                <div id="rsvp-qr-code-wrapper" style="background: #ffffff; padding: 14px; border-radius: 8px; box-shadow: 0 0 20px rgba(0, 229, 255, 0.25); display: flex; justify-content: center; align-items: center; width: 196px; height: 196px; box-sizing: border-box;">
+                  <!-- Injected SVG QR Code -->
+                </div>
+                <p data-i18n="s5QrSectionDesc" style="font-size: 0.76rem; color: var(--tx-secondary); margin-top: 12px; margin-bottom: 14px; text-align: center; line-height: 1.45;">
+                  Presenta este código QR desde tu teléfono o impreso en la entrada de la Biblioteca RETOS.
+                </p>
+                <button type="button" class="btn btn-secondary" id="btn-download-pass" style="width: 100%; font-size: 0.82rem; padding: 10px 16px; display: inline-flex; align-items: center; justify-content: center; gap: 8px;">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 16px; height: 16px;" aria-hidden="true">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                    <polyline points="7 10 12 15 17 10"/>
+                    <line x1="12" y1="15" x2="12" y2="3"/>
                   </svg>
-                </div>
-                <div class="result-body">
-                  <span class="result-badge" id="result-badge-text" data-i18n="s5ResultBadgeCompleted">REGISTRATION COMPLETED</span>
-                  <h3 class="result-title" id="result-title-text" data-i18n="s5ResultTitleReceived">Confirmation received</h3>
-                  <p class="result-msg" id="result-message-text"></p>
-                  <div class="result-telemetry">
-                    <div><span data-i18n="s5LabelHolder">NAME:</span> <strong id="res-attendee-name">-</strong></div>
-                    <div><span data-i18n="s5LabelResponse">RESPONSE:</span> <strong id="res-attendee-status">-</strong></div>
-                    <div><span data-i18n="s5LabelRole">ROLE:</span> <strong id="res-attendee-role">-</strong></div>
-                    <div id="res-org-row"><span data-i18n="s5LabelOrg">ORGANIZATION:</span> <strong id="res-attendee-org">-</strong></div>
-                    <div><span data-i18n="s5LabelCode">CONFIRMATION CODE:</span> <strong id="res-attendee-code">RETOS-2026-XXXX</strong></div>
-                  </div>
+                  <span data-i18n="s5BtnDownloadPass">DESCARGAR PASE DIGITAL (PNG)</span>
+                </button>
+              </div>
+            </div>
+          </article>
 
-                  <!-- QR pass section for affirmative attendees -->
-                  <div class="result-qr-section is-hidden" id="result-qr-container" style="display: flex; flex-direction: column; align-items: center; margin-top: 22px; padding: 18px 20px; background: rgba(0, 0, 0, 0.45); border: 1px solid var(--b-cyan, rgba(0, 229, 255, 0.35)); border-radius: 8px; width: 100%; box-sizing: border-box;">
-                    <span data-i18n="s5QrSectionTitle" style="font-family: var(--f-mono); font-size: 0.72rem; letter-spacing: 0.12em; color: var(--c-cyan, #00e5ff); margin-bottom: 12px; font-weight: 700;">DIGITAL ACCREDITATION PASS</span>
-                    <div id="rsvp-qr-code-wrapper" style="background: #ffffff; padding: 14px; border-radius: 8px; box-shadow: 0 0 20px rgba(0, 229, 255, 0.25); display: flex; justify-content: center; align-items: center; width: 196px; height: 196px; box-sizing: border-box;">
-                      <!-- Injected SVG QR Code -->
-                    </div>
-                    <p data-i18n="s5QrSectionDesc" style="font-size: 0.76rem; color: var(--tx-secondary); margin-top: 12px; margin-bottom: 14px; text-align: center; line-height: 1.45;">
-                      Present this QR code from your mobile device or printed at the entrance of the RETOS Library.
-                    </p>
-                    <button type="button" class="btn btn-secondary" id="btn-download-pass" style="width: 100%; font-size: 0.82rem; padding: 10px 16px; display: inline-flex; align-items: center; justify-content: center; gap: 8px;">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 16px; height: 16px;" aria-hidden="true">
-                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-                        <polyline points="7 10 12 15 17 10"/>
-                        <line x1="12" y1="15" x2="12" y2="3"/>
-                      </svg>
-                      <span data-i18n="s5BtnDownloadPass">DOWNLOAD DIGITAL PASS (PNG)</span>
-                    </button>
-                  </div>
-                </div>
-              </article>
+          <!-- Post-Confirmation Summary, Countdown and Utility Actions -->
+          <div class="post-rsvp-container is-hidden" id="post-rsvp-container">
+            <h3 class="closing-title" id="closing-headline" tabindex="-1" data-i18n="s5ClosingHeadline" style="text-align: center; margin-bottom: 8px;">
+              Sesión <span class="text-gradient">completada.</span>
+            </h3>
+            <p class="closing-message" id="closing-personalized-message" data-i18n="s5ClosingMessage" style="text-align: center; margin-bottom: 24px; color: var(--tx-secondary);">
+              Su presencia es una gran motivación para nuestros estudiantes. Esperamos contar con su valioso acompañamiento.
+            </p>
 
-              <!-- Official Event Countdown -->
-              <section class="closing-countdown-card" aria-label="Official countdown towards the event">
-                <header class="countdown-header">
-                  <span class="countdown-tag pulse-cyan" id="countdown-status-label" data-i18n="s5CountdownStatus">TIME REMAINING UNTIL START</span>
-                  <span class="countdown-target-label" id="countdown-live-badge" data-i18n="s5CountdownLive">STANDBY // 30 OCT 2026</span>
-                </header>
+            <!-- Official Event Countdown -->
+            <section class="closing-countdown-card" aria-label="Official countdown towards the event" style="margin-bottom: 24px;">
+              <header class="countdown-header">
+                <span class="countdown-tag pulse-cyan" id="countdown-status-label" data-i18n="s5CountdownStatus">TIEMPO RESTANTE PARA EL INICIO</span>
+                <span class="countdown-target-label" id="countdown-live-badge" data-i18n="s5CountdownLive">EN ESPERA // 30 OCT 2026</span>
+              </header>
 
-                <div class="countdown-grid" id="countdown-timer-display" role="timer" aria-live="polite">
-                  <div class="countdown-unit">
-                    <span class="countdown-num" id="cd-days">00</span>
-                    <span class="countdown-lbl" data-i18n="s5CdDays">DAYS</span>
-                  </div>
-                  <span class="countdown-sep" aria-hidden="true">:</span>
-                  <div class="countdown-unit">
-                    <span class="countdown-num" id="cd-hours">00</span>
-                    <span class="countdown-lbl" data-i18n="s5CdHours">HOURS</span>
-                  </div>
-                  <span class="countdown-sep" aria-hidden="true">:</span>
-                  <div class="countdown-unit">
-                    <span class="countdown-num" id="cd-minutes">00</span>
-                    <span class="countdown-lbl" data-i18n="s5CdMin">MIN</span>
-                  </div>
-                  <span class="countdown-sep" aria-hidden="true">:</span>
-                  <div class="countdown-unit">
-                    <span class="countdown-num" id="cd-seconds">00</span>
-                    <span class="countdown-lbl" data-i18n="s5CdSec">SEC</span>
-                  </div>
+              <div class="countdown-grid" id="countdown-timer-display" role="timer" aria-live="polite">
+                <div class="countdown-unit">
+                  <span class="countdown-num" id="cd-days">00</span>
+                  <span class="countdown-lbl" data-i18n="s5CdDays">DÍAS</span>
                 </div>
-
-                <footer class="countdown-footer">
-                  <span class="countdown-badge-date">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="cd-calendar-icon" aria-hidden="true">
-                      <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
-                      <line x1="16" y1="2" x2="16" y2="6"/>
-                      <line x1="8" y1="2" x2="8" y2="6"/>
-                      <line x1="3" y1="10" x2="21" y2="10"/>
-                    </svg>
-                    <time datetime="2026-10-30T08:00:00" id="countdown-date-full" data-i18n="s5CdFullDate">Friday, October 30, 2026 // 08:00 hrs</time>
-                  </span>
-                </footer>
-              </section>
-
-              <div class="closing-meta-card">
-                <div class="cm-row">
-                  <span class="cm-key" data-i18n="s5MetaEventKey">EVENT</span>
-                  <span class="cm-val" id="closing-event-name">RETOS Showcase 2026 - 2nd Edition</span>
+                <span class="countdown-sep" aria-hidden="true">:</span>
+                <div class="countdown-unit">
+                  <span class="countdown-num" id="cd-hours">00</span>
+                  <span class="countdown-lbl" data-i18n="s5CdHours">HORAS</span>
                 </div>
-                <div class="cm-row">
-                  <span class="cm-key" data-i18n="s5MetaDateKey">DATE &amp; VENUE</span>
-                  <span class="cm-val" id="closing-event-date" data-i18n="s5MetaDateVal">RETOS / FTS Institute Library • La Libertad</span>
+                <span class="countdown-sep" aria-hidden="true">:</span>
+                <div class="countdown-unit">
+                  <span class="countdown-num" id="cd-minutes">00</span>
+                  <span class="countdown-lbl" data-i18n="s5CdMin">MIN</span>
                 </div>
-                <div class="cm-row">
-                  <span class="cm-key" data-i18n="s5MetaAccredKey">ACREDITATION</span>
-                  <span class="cm-val text-green" data-i18n="s5MetaAccredVal">Active in system</span>
+                <span class="countdown-sep" aria-hidden="true">:</span>
+                <div class="countdown-unit">
+                  <span class="countdown-num" id="cd-seconds">00</span>
+                  <span class="countdown-lbl" data-i18n="s5CdSec">SEG</span>
                 </div>
               </div>
 
-              <!-- Utility actions -->
-              <footer class="closing-actions">
-                <button class="btn btn-secondary" id="btn-share-invite">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="btn-inline-icon" aria-hidden="true">
-                    <circle cx="18" cy="5" r="3"/>
-                    <circle cx="6" cy="12" r="3"/>
-                    <circle cx="18" cy="19" r="3"/>
-                    <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
-                    <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+              <footer class="countdown-footer">
+                <span class="countdown-badge-date">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="cd-calendar-icon" aria-hidden="true">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                    <line x1="16" y1="2" x2="16" y2="6"/>
+                    <line x1="8" y1="2" x2="8" y2="6"/>
+                    <line x1="3" y1="10" x2="21" y2="10"/>
                   </svg>
-                  <span class="btn-text" data-i18n="s5BtnShare">Share our invitation</span>
-                </button>
-
-                <button class="btn btn-ghost" id="btn-restart-experience">
-                  <span class="btn-text" data-i18n="s5BtnRestart">↺ Back to start</span>
-                </button>
+                  <time datetime="2026-10-30T08:00:00" id="countdown-date-full" data-i18n="s5CdFullDate">Viernes, 30 de octubre de 2026 // 08:00 hrs</time>
+                </span>
               </footer>
-            </article>
+            </section>
+
+            <div class="closing-meta-card" style="margin-bottom: 24px;">
+              <div class="cm-row">
+                <span class="cm-key" data-i18n="s5MetaEventKey">EVENTO</span>
+                <span class="cm-val" id="closing-event-name">RETOS Showcase 2026 - 2nd Edition</span>
+              </div>
+              <div class="cm-row">
+                <span class="cm-key" data-i18n="s5MetaDateKey">FECHA &amp; SEDE</span>
+                <span class="cm-val" id="closing-event-date" data-i18n="s5MetaDateVal">Biblioteca de Instituto RETOS / FTS • La Libertad</span>
+              </div>
+              <div class="cm-row">
+                <span class="cm-key" data-i18n="s5MetaAccredKey">ACREDITACIÓN</span>
+                <span class="cm-val text-green" data-i18n="s5MetaAccredVal">Activa en sistema</span>
+              </div>
+            </div>
+
+            <!-- Utility actions -->
+            <footer class="closing-actions">
+              <button class="btn btn-secondary" id="btn-share-invite">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="btn-inline-icon" aria-hidden="true">
+                  <circle cx="18" cy="5" r="3"/>
+                  <circle cx="6" cy="12" r="3"/>
+                  <circle cx="18" cy="19" r="3"/>
+                  <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
+                  <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+                </svg>
+                <span class="btn-text" data-i18n="s5BtnShare">Comparte nuestra invitación</span>
+              </button>
+
+              <button class="btn btn-ghost" id="btn-restart-experience">
+                <span class="btn-text" data-i18n="s5BtnRestart">↺ Volver al inicio</span>
+              </button>
+            </footer>
           </div>
+
+          <footer class="scene-nav-actions" id="rsvp-nav-actions" style="margin-top: 24px;">
+            <button type="button" class="btn btn-ghost" data-target="1">
+              <span data-i18n="s5BtnBackToProg">← Volver a logística</span>
+            </button>
+          </footer>
         </div>
 
       </div>
@@ -923,36 +773,83 @@
 
   </main>
 
+  <!-- MODAL: AGENDA Y CRONOGRAMA OFICIAL (22 BLOQUES BAJO DEMANDA) -->
+  <div class="hud-modal-overlay is-hidden" id="agenda-modal" role="dialog" aria-modal="true" aria-labelledby="modal-agenda-title">
+    <div class="hud-modal-box agenda-modal-box">
+      <header class="modal-header">
+        <div class="modal-header-titles">
+          <span class="hud-badge pulse-cyan" data-i18n="agendaModalBadge">PROGRAMA OFICIAL</span>
+          <h3 id="modal-agenda-title" data-i18n="agendaModalTitle">Agenda y Cronograma Oficial</h3>
+        </div>
+        <button class="modal-close-btn" id="modal-agenda-close" aria-label="Close agenda modal" data-i18n-attr="aria-label:agendaModalCloseAria">&times;</button>
+      </header>
+
+      <div class="agenda-modal-body">
+        <!-- Day metadata summary -->
+        <aside class="agenda-meta-summary" aria-label="Schedule summary">
+          <div class="ams-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="agenda-time-icon" width="16" height="16" aria-hidden="true">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+              <line x1="16" y1="2" x2="16" y2="6"/>
+              <line x1="8" y1="2" x2="8" y2="6"/>
+              <line x1="3" y1="10" x2="21" y2="10"/>
+            </svg>
+            <span><span data-i18n="s4SummaryDateLabel">FECHA:</span> <strong id="agenda-summary-date"><time datetime="2026-10-30">Viernes, 30 de octubre de 2026</time></strong></span>
+          </div>
+          <div class="ams-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="agenda-time-icon" width="16" height="16" aria-hidden="true">
+              <circle cx="12" cy="12" r="10"/>
+              <polyline points="12 6 12 12 16 14"/>
+            </svg>
+            <span><span data-i18n="s4SummaryTimeLabel">HORARIO:</span> <strong id="agenda-summary-time" data-i18n="s4SummaryTimeVal">08:00 — 12:30 hrs</strong></span>
+          </div>
+          <div class="ams-item">
+            <span class="hud-badge" id="agenda-blocks-count" data-i18n="s4BlocksCount">22 BLOQUES CONFIRMADOS</span>
+          </div>
+        </aside>
+
+        <!-- Dynamic Agenda Timeline List: 22 Blocks -->
+        <ul class="agenda-timeline" id="agenda-container" aria-label="Official event schedule" data-i18n-attr="aria-label:agendaTimelineAria">
+          <!-- Dynamically injected via UIRenderer.renderFormalAgenda() -->
+        </ul>
+      </div>
+
+      <footer class="modal-footer">
+        <button class="btn btn-secondary" id="modal-agenda-accept" data-i18n="modalAgendaAccept">Cerrar Agenda</button>
+      </footer>
+    </div>
+  </div>
+
   <!-- KEYBOARD SHORTCUTS & HELP MODAL -->
   <div class="hud-modal-overlay is-hidden" id="help-modal" role="dialog" aria-modal="true" aria-labelledby="modal-help-title">
     <div class="hud-modal-box">
       <header class="modal-header">
-        <h3 id="modal-help-title" data-i18n="modalTitle">Keyboard Shortcuts &amp; Navigation Guide</h3>
+        <h3 id="modal-help-title" data-i18n="modalTitle">Atajos de Teclado &amp; Guía de Navegación</h3>
         <button class="modal-close-btn" id="modal-help-close" aria-label="Close modal window" data-i18n-attr="aria-label:modalCloseAria">&times;</button>
       </header>
       <div class="modal-body">
-        <p class="modal-intro" data-i18n="modalIntro">This interactive web invitation allows seamless navigation across 5 scenes using keyboard or on-screen touch controls:</p>
+        <p class="modal-intro" data-i18n="modalIntro">Esta invitación web interactiva permite navegación fluida en 3 secciones mediante teclado o controles táctiles en pantalla:</p>
         <ul class="shortcuts-list">
           <li>
             <kbd>→</kbd> / <kbd>Space</kbd>
-            <span data-i18n="modalNext">Advance to next scene</span>
+            <span data-i18n="modalNext">Avanzar a la siguiente escena</span>
           </li>
           <li>
             <kbd>←</kbd>
-            <span data-i18n="modalPrev">Go back to previous scene</span>
+            <span data-i18n="modalPrev">Retroceder a la escena anterior</span>
           </li>
           <li>
             <kbd>M</kbd>
-            <span data-i18n="modalAudio">Enable / Mute audio effects</span>
+            <span data-i18n="modalAudio">Activar / Silenciar efectos de audio</span>
           </li>
           <li>
             <kbd>Esc</kbd>
-            <span data-i18n="modalEsc">Close this window</span>
+            <span data-i18n="modalEsc">Cerrar esta ventana</span>
           </li>
         </ul>
       </div>
       <footer class="modal-footer">
-        <button class="btn btn-secondary" id="modal-help-accept" data-i18n="modalAccept">Understood</button>
+        <button class="btn btn-secondary" id="modal-help-accept" data-i18n="modalAccept">Entendido</button>
       </footer>
     </div>
   </div>
