@@ -55,10 +55,8 @@
       s1DiscoverBtnClose: 'Close details',
       s2Lead: 'RETOS Showcase is a space where students from each career demonstrate their English communication skills in real-world technical environments and showcase their progress toward English language accreditation according to the Common European Framework of Reference for Languages (CEFR).',
       s2MissionBadge: 'EDUCATIONAL PURPOSE',
-      s2MissionTitle: 'Our Mission',
       s2MissionBody: 'To foster a space of learning, exchange, and certification that strengthens students’ communicative competence in English.',
       s2VisionBadge: 'STRATEGIC PROJECTION',
-      s2VisionTitle: 'Our Vision',
       s2VisionBody: 'To be a flagship event promoting academic exchange in English and showcasing student talent toward national and international opportunities.',
 
       btnStart: 'START EXPERIENCE ',
@@ -224,10 +222,8 @@
       s1DiscoverBtnClose: 'Ocultar detalles',
       s2Lead: 'RETOS Showcase es un espacio donde los estudiantes de cada carrera demuestran sus habilidades de comunicación en inglés aplicadas a entornos técnicos del mundo real y evidencian sus avances hacia la acreditación del idioma inglés, de acuerdo con el Marco Común Europeo de Referencia para las Lenguas (MCER).',
       s2MissionBadge: 'PROPÓSITO FORMATIVO',
-      s2MissionTitle: 'Nuestra misión',
       s2MissionBody: 'Fomentar un espacio de aprendizaje, intercambio y certificación que fortalezca las competencias comunicativas en inglés de nuestros estudiantes.',
       s2VisionBadge: 'PROYECCIÓN ESTRATÉGICA',
-      s2VisionTitle: 'Nuestra visión',
       s2VisionBody: 'Consolidarnos como un evento de referencia que impulse el intercambio académico en inglés y proyecte el talento estudiantil hacia oportunidades nacionales e internacionales.',
 
       btnStart: 'INICIAR EXPERIENCIA',
