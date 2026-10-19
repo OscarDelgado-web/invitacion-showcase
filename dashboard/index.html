@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard RSVP &amp; Control de Acceso • RETOS Showcase 2026</title>
+  <meta name="description" content="Panel de administración, control de acceso óptico y monitoreo de registros RSVP para RETOS Showcase 2026.">
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <meta name="theme-color" content="#000000">
+
+  <!-- PWA & Mobile Web App settings -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="RETOS Check-in">
+
+  <!-- Google Fonts idénticas a la Invitación Principal -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+  <base href="/dashboard/">
+  <link rel="stylesheet" href="/dashboard/styles.css?v=3.0">
+  <link rel="icon" type="image/png" href="/dashboard/assets/favicon.png">
+  <link rel="apple-touch-icon" href="/dashboard/assets/logo-head.png">
+</head>
+<body>
+  <!-- LOGIN OVERLAY TERMINAL (Seguridad de Acceso) -->
+  <div id="login-overlay" class="login-overlay" aria-modal="true" role="dialog">
+    <div class="login-card">
+      <div class="login-header">
+        <div class="login-badge">
+          <span class="status-dot pulsating"></span>
+          <span>TERMINAL DE ACCESO RESTRINGIDO</span>
+        </div>
+        <img src="/dashboard/assets/logo-head.png" alt="RETOS Logo" class="login-logo" onerror="this.style.display='none'">
+        <h2 class="login-title">RETOS Showcase 2026</h2>
+        <p class="login-subtitle">Ingresa la contraseña de autorización para acceder al panel de asistencia y escáner óptico de acreditación.</p>
+      </div>
+
+      <form id="form-login" class="login-form">
+        <div class="form-group">
+          <label for="input-login-password" class="form-label">Contraseña Administrativa</label>
+          <div class="password-input-wrap">
+            <input 
+              type="password" 
+              id="input-login-password" 
+              class="form-control mono-input" 
+              placeholder="Introduce clave de acceso..." 
+              autocomplete="current-password"
+              required
+            >
+            <button type="button" id="btn-toggle-password" class="btn-password-toggle" title="Mostrar/ocultar contraseña" tabindex="-1">
+              <svg id="eye-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="icon-svg">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <div id="login-error-alert" class="login-error-alert" style="display: none;">
+          <span class="error-icon">✕</span>
+          <span id="login-error-text">Contraseña incorrecta. Acceso denegado.</span>
+        </div>
+
+        <button type="submit" id="btn-submit-login" class="btn btn-primary btn-block btn-login">
+          <span>Desbloquear Terminal</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 16px; height: 16px;">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </button>
+
+        <div class="login-footer-info">
+          <span class="hud-mono-tag">SESIÓN CRIPTOGRÁFICA HMAC • 12 HORAS</span>
+          <a href="/" class="login-return-link">← Volver a la Invitación Principal</a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Ambient laser scanline técnico -->
+  <div class="hud-scanline" aria-hidden="true"></div>
+
+  <!-- Ambient background glow effects en paleta RETOS -->
+  <div class="ambient-glow glow-top-left" aria-hidden="true"></div>
+  <div class="ambient-glow glow-top-right" aria-hidden="true"></div>
+  <div class="ambient-glow glow-bottom-center" aria-hidden="true"></div>
+
+  <div class="app-container" id="main-app-container">
+    <!-- TOP NAVIGATION BAR -->
+    <header class="top-nav">
+      <div class="brand-group">
+        <img src="/dashboard/assets/logo-head.png" alt="RETOS Logo" class="brand-logo" onerror="this.style.display='none'">
+        <div class="brand-text">
+          <div class="brand-title-wrap">
+            <h1 class="brand-title">RETOS Showcase 2026</h1>
+            <span class="badge-edition">2ND EDITION</span>
+          </div>
+          <p class="brand-subtitle">Panel de Control &amp; Monitoreo de Asistencia (RSVP)</p>
+        </div>
+      </div>
+
+      <div class="nav-controls">
+        <div class="db-status-pill" id="db-status" title="Conexión en vivo con Supabase">
+          <span class="status-dot pulsating"></span>
+          <span class="status-label">Supabase Conectado</span>
+        </div>
+
+        <button id="btn-refresh" class="btn btn-secondary" title="Recargar datos desde la base de datos">
+          <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"/>
+          </svg>
+          <span class="btn-text">Recargar</span>
+        </button>
+
+        <button id="btn-export-csv" class="btn btn-secondary" title="Exportar registros filtrados a formato CSV">
+          <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+          </svg>
+          <span class="btn-text">Exportar CSV</span>
+        </button>
+
+        <button id="btn-open-scanner" class="btn btn-scanner" onclick="window.openScannerModal()" title="Escanear pase o ticket con cámara">
+          <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+            <circle cx="12" cy="13" r="4"></circle>
+          </svg>
+          <span class="btn-text">Escanear QR</span>
+        </button>
+
+        <button id="btn-add-modal" class="btn btn-primary" title="Registrar un nuevo invitado manualmente">
+          <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+          </svg>
+          <span>Nuevo Registro</span>
+        </button>
+
+        <a href="/" class="btn btn-secondary" title="Volver a la invitación pública">
+          <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+          </svg>
+          <span class="btn-text">Invitación</span>
+        </a>
+
+        <button id="btn-logout" class="btn btn-secondary" title="Cerrar sesión de administrador">
+          <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/>
+          </svg>
+          <span class="btn-text">Salir</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- METRICS & KPI CARDS -->
+    <section class="kpi-grid" aria-label="Métricas de asistencia">
+      <!-- Total Registros -->
+      <div class="kpi-card total-card">
+        <div class="kpi-icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+            <circle cx="9" cy="7" r="4"></circle>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+          </svg>
+        </div>
+        <div class="kpi-info">
+          <span class="kpi-label">Total de Registros</span>
+          <div class="kpi-value-row">
+            <span class="kpi-value" id="kpi-total">0</span>
+            <span class="kpi-tag neutral">100% de la base</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Asisten (Card Verde) -->
+      <div class="kpi-card success-card">
+        <div class="kpi-icon-wrap success-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+        </div>
+        <div class="kpi-info">
+          <span class="kpi-label">Asistirán (Confirmados)</span>
+          <div class="kpi-value-row">
+            <span class="kpi-value text-emerald" id="kpi-yes">0</span>
+            <span class="kpi-tag success" id="kpi-yes-pct">0%</span>
+          </div>
+          <span class="kpi-subtext">Representados en tarjetas verdes</span>
+        </div>
+      </div>
+
+      <!-- No Asisten (Card Negra / Roja) -->
+      <div class="kpi-card danger-card">
+        <div class="kpi-icon-wrap danger-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </div>
+        <div class="kpi-info">
+          <span class="kpi-label">No Asistirán (Declinados)</span>
+          <div class="kpi-value-row">
+            <span class="kpi-value text-rose" id="kpi-no">0</span>
+            <span class="kpi-tag danger" id="kpi-no-pct">0%</span>
+          </div>
+          <span class="kpi-subtext">Representados en tarjetas negras/rojas</span>
+        </div>
+      </div>
+
+      <!-- Organizaciones / Entidades -->
+      <div class="kpi-card org-card">
+        <div class="kpi-icon-wrap org-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 21h18M3 7v14M21 7v14M9 3h6v4H9zM9 11h2M9 15h2M13 11h2M13 15h2"/>
+          </svg>
+        </div>
+        <div class="kpi-info">
+          <span class="kpi-label">Organizaciones / Origen</span>
+          <div class="kpi-value-row">
+            <span class="kpi-value text-cyan" id="kpi-orgs">0</span>
+            <span class="kpi-tag cyan">Entidades</span>
+          </div>
+          <span class="kpi-subtext" id="kpi-latest-ts">Cargando datos...</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTROL TOOLBAR: SEARCH, FILTERS & VIEW MODE -->
+    <section class="toolbar-section">
+      <!-- Search input -->
+      <div class="search-box">
+        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input 
+          type="text" 
+          id="search-input" 
+          placeholder="Buscar por nombre, código RETOS o procedencia/organización..." 
+          autocomplete="off"
+        >
+        <button id="btn-clear-search" class="btn-clear-search" title="Limpiar búsqueda" style="display: none;">
+          &times;
+        </button>
+      </div>
+
+      <!-- Filters & View Toggles -->
+      <div class="filters-row">
+        <!-- Attendance Filter (Tabs) -->
+        <div class="segmented-control" role="group" aria-label="Filtro de Asistencia">
+          <button class="seg-btn active" data-filter-attendance="all">
+            Todos (<span id="count-all">0</span>)
+          </button>
+          <button class="seg-btn seg-yes" data-filter-attendance="si">
+            <span class="dot-indicator dot-green"></span>
+            Asisten (<span id="count-yes">0</span>)
+          </button>
+          <button class="seg-btn seg-no" data-filter-attendance="no">
+            <span class="dot-indicator dot-red"></span>
+            No asisten (<span id="count-no">0</span>)
+          </button>
+        </div>
+
+        <!-- Role Filter Dropdown -->
+        <div class="select-wrapper">
+          <label for="filter-role" class="sr-only">Filtrar por Rol</label>
+          <select id="filter-role" class="custom-select">
+            <option value="all">Todos los Roles</option>
+            <option value="estudiante">🎓 Estudiante</option>
+            <option value="docente">👨‍🏫 Docente</option>
+            <option value="empresa">💼 Empresa</option>
+            <option value="familiar">👨‍👩‍👧 Familiar</option>
+            <option value="invitado">🌟 Invitado Especial</option>
+          </select>
+        </div>
+
+        <!-- Sort Order -->
+        <div class="select-wrapper">
+          <label for="sort-order" class="sr-only">Ordenar por</label>
+          <select id="sort-order" class="custom-select">
+            <option value="date-desc">Más recientes primero</option>
+            <option value="date-asc">Más antiguos primero</option>
+            <option value="name-asc">Nombre (A - Z)</option>
+            <option value="name-desc">Nombre (Z - A)</option>
+          </select>
+        </div>
+
+        <!-- View Mode Switcher -->
+        <div class="view-switch-group" role="group" aria-label="Modo de visualización">
+          <button id="view-stack" class="view-btn active" title="Vista de Cards Apiladas en Lista">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="8" y1="6" x2="21" y2="6"></line>
+              <line x1="8" y1="12" x2="21" y2="12"></line>
+              <line x1="8" y1="18" x2="21" y2="18"></line>
+              <line x1="3" y1="6" x2="3.01" y2="6"></line>
+              <line x1="3" y1="12" x2="3.01" y2="12"></line>
+              <line x1="3" y1="18" x2="3.01" y2="18"></line>
+            </svg>
+            <span>Lista de Cards</span>
+          </button>
+
+          <button id="view-grid" class="view-btn" title="Vista de Cards en Cuadrícula">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="3" width="7" height="7"></rect>
+              <rect x="14" y="3" width="7" height="7"></rect>
+              <rect x="14" y="14" width="7" height="7"></rect>
+              <rect x="3" y="14" width="7" height="7"></rect>
+            </svg>
+            <span>Cuadrícula</span>
+          </button>
+
+          <button id="view-table" class="view-btn" title="Vista en Tabla Completa">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 3h18v18H3zM3 9h18M3 15h18M9 3v18M15 3v18"></path>
+            </svg>
+            <span>Tabla</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ACTIVE FILTERS SUMMARY / STATS BAR -->
+    <div class="active-query-bar" id="active-query-bar" style="display: none;">
+      <span class="query-text" id="query-summary-text">Mostrando resultados filtrados</span>
+      <button id="btn-reset-filters" class="btn-reset-filters">Restablecer filtros</button>
+    </div>
+
+    <!-- MAIN DISPLAY CONTAINER -->
+    <main class="main-content" id="main-content">
+      <!-- Loading Skeleton State -->
+      <div id="loading-state" class="state-container">
+        <div class="spinner"></div>
+        <p class="state-title">Cargando registros desde Supabase...</p>
+        <p class="state-desc">Consultando tabla pública rsvp_registros en tiempo real.</p>
+      </div>
+
+      <!-- Empty / No Results State -->
+      <div id="empty-state" class="state-container" style="display: none;">
+        <div class="empty-icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="8" y1="12" x2="16" y2="12"></line>
+          </svg>
+        </div>
+        <h3 class="state-title">No se encontraron registros</h3>
+        <p class="state-desc" id="empty-state-msg">No hay registros que coincidan con los filtros seleccionados.</p>
+        <button class="btn btn-secondary" onclick="window.resetAllFilters()">Ver todos los registros</button>
+      </div>
+
+      <!-- VIEW 1 & 2: CARDS CONTAINER (Stack or Grid via CSS class) -->
+      <div id="cards-container" class="cards-layout mode-stack" style="display: none;">
+        <!-- Rendered dynamically by app.js -->
+      </div>
+
+      <!-- VIEW 3: TABLE CONTAINER -->
+      <div id="table-container" class="table-card-wrapper" style="display: none;">
+        <div class="table-responsive">
+          <table class="records-table">
+            <thead>
+              <tr>
+                <th scope="col" style="width: 140px;">Estado</th>
+                <th scope="col">Nombre Asistente</th>
+                <th scope="col">Rol</th>
+                <th scope="col">Procedencia / Organización</th>
+                <th scope="col">Código Acreditación</th>
+                <th scope="col">Fecha Registro</th>
+                <th scope="col" style="text-align: right; width: 100px;">Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="table-body">
+              <!-- Rendered dynamically by app.js -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer-bar">
+      <div class="footer-left">
+        <span>RETOS Showcase 2026 • 2nd Edition</span>
+        <span class="sep">•</span>
+        <span>Conexión segura con Supabase PostgREST</span>
+      </div>
+      <div class="footer-right">
+        <span id="footer-count">Total: 0 registros</span>
+      </div>
+    </footer>
+  </div>
+
+  <!-- MODAL: REGISTRAR ASISTENTE MANUALMENTE -->
+  <div id="modal-add" class="modal-backdrop" aria-hidden="true">
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modal-add-title">
+      <div class="modal-header">
+        <div>
+          <h2 id="modal-add-title" class="modal-title">Nuevo Registro de Asistencia</h2>
+          <p class="modal-subtitle">Guarda un registro directamente en la base de datos de Supabase</p>
+        </div>
+        <button class="modal-close-btn" id="btn-close-modal" aria-label="Cerrar modal">&times;</button>
+      </div>
+
+      <form id="form-add-attendee" class="modal-body">
+        <!-- Nombre -->
+        <div class="form-group">
+          <label for="input-nombre" class="form-label">Nombre Completo *</label>
+          <input 
+            type="text" 
+            id="input-nombre" 
+            class="form-control" 
+            placeholder="Ej: Ing. Andrea Morales" 
+            required 
+            minlength="2" 
+            maxlength="120"
+          >
+        </div>
+
+        <!-- Asistencia Selector (Visual Sí / No) -->
+        <div class="form-group">
+          <label class="form-label">¿Asistirá al Showcase? *</label>
+          <div class="attendance-radio-group">
+            <label class="attendance-radio-card yes-card-choice">
+              <input type="radio" name="asistencia" value="si" checked>
+              <div class="choice-content">
+                <span class="choice-icon">✓</span>
+                <div class="choice-text">
+                  <strong>Sí Asistirá</strong>
+                  <small>Genera Card Verde</small>
+                </div>
+              </div>
+            </label>
+
+            <label class="attendance-radio-card no-card-choice">
+              <input type="radio" name="asistencia" value="no">
+              <div class="choice-content">
+                <span class="choice-icon">✕</span>
+                <div class="choice-text">
+                  <strong>No Asistirá</strong>
+                  <small>Genera Card Negra / Roja</small>
+                </div>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- Rol -->
+        <div class="form-group">
+          <label for="input-rol" class="form-label">Rol / Perfil *</label>
+          <select id="input-rol" class="form-control" required>
+            <option value="estudiante">🎓 Estudiante</option>
+            <option value="docente">👨‍🏫 Docente</option>
+            <option value="empresa" selected>💼 Empresa / Industria</option>
+            <option value="invitado">🌟 Invitado Especial</option>
+            <option value="familiar">👨‍👩‍👧 Familiar</option>
+          </select>
+        </div>
+
+        <!-- Organización / De dónde viene -->
+        <div class="form-group">
+          <label for="input-org" class="form-label">¿De dónde viene? (Organización / Empresa / Institución)</label>
+          <input 
+            type="text" 
+            id="input-org" 
+            class="form-control" 
+            placeholder="Ej: Microsoft, Stanford University, TechLab..." 
+            maxlength="120"
+          >
+          <span class="form-hint">Opcional. Si se deja en blanco se mostrará como "Independiente".</span>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" id="btn-cancel-modal">Cancelar</button>
+          <button type="submit" class="btn btn-primary" id="btn-submit-record">
+            <span class="btn-text">Guardar Registro</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: DETALLES DE PASE & QR -->
+  <div id="modal-qr" class="modal-backdrop" aria-hidden="true">
+    <div class="modal-card modal-qr-card" role="dialog" aria-modal="true">
+      <div class="modal-header">
+        <div>
+          <h2 class="modal-title" id="qr-modal-name">Pase de Acreditación</h2>
+          <p class="modal-subtitle" id="qr-modal-role">Detalle del registro</p>
+        </div>
+        <button class="modal-close-btn" id="btn-close-qr-modal" aria-label="Cerrar modal">&times;</button>
+      </div>
+
+      <div class="modal-body qr-modal-body">
+        <div class="qr-status-badge" id="qr-modal-status-badge">
+          <!-- Status pill -->
+        </div>
+
+        <!-- QR Display -->
+        <div class="qr-preview-box">
+          <div id="qr-svg-wrapper" class="qr-svg-wrapper"></div>
+          <div class="qr-code-text" id="qr-modal-code">RETOS-XXXXXX</div>
+        </div>
+
+        <div class="qr-details-grid">
+          <div class="qr-detail-item">
+            <span class="qr-detail-label">Procedencia:</span>
+            <strong class="qr-detail-val" id="qr-modal-org">--</strong>
+          </div>
+          <div class="qr-detail-item">
+            <span class="qr-detail-label">Fecha de Registro:</span>
+            <strong class="qr-detail-val" id="qr-modal-date">--</strong>
+          </div>
+          <div class="qr-detail-item">
+            <span class="qr-detail-label">ID Sistema:</span>
+            <span class="qr-detail-mono" id="qr-modal-uuid">--</span>
+          </div>
+          <div class="qr-detail-item">
+            <span class="qr-detail-label">Canal de Origen:</span>
+            <span class="qr-detail-val" id="qr-modal-origin">--</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" id="btn-copy-code-modal" title="Copiar código al portapapeles">
+          <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+          </svg>
+          <span class="btn-text">Copiar Código</span>
+        </button>
+
+        <button type="button" class="btn btn-primary" id="btn-download-pass-modal" title="Descargar credencial digital en PNG">
+          <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+          </svg>
+          <span class="btn-text">Descargar Pase</span>
+        </button>
+
+        <button type="button" class="btn btn-secondary" id="btn-done-qr-modal">
+          Cerrar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: TERMINAL DE ACREDITACIÓN & ESCANEO DE QR -->
+  <div id="modal-scanner" class="modal-backdrop" aria-hidden="true">
+    <div class="modal-card modal-scanner-card" role="dialog" aria-modal="true" aria-labelledby="scanner-modal-title">
+      <div class="modal-header">
+        <div class="scanner-header-info">
+          <div class="scanner-title-badge">
+            <h2 id="scanner-modal-title" class="modal-title">Control de Acceso • Escáner QR</h2>
+            <span class="hud-live-tag"><span class="status-dot pulsating"></span> SENSOR ACTIVO</span>
+          </div>
+          <p class="modal-subtitle">Validación instantánea de tickets y pases de entrada en tiempo real con Supabase</p>
+        </div>
+        <button class="modal-close-btn" id="btn-close-scanner-modal" aria-label="Cerrar escáner">&times;</button>
+      </div>
+
+      <div class="modal-body scanner-modal-body">
+        <div class="scanner-layout">
+          <!-- Columna Izquierda: Visor de Cámara HUD -->
+          <div class="scanner-viewport-col">
+            <div class="scanner-viewfinder-box" id="scanner-viewfinder">
+              <video id="scanner-video" autoplay playsinline muted></video>
+              <canvas id="scanner-canvas" style="display: none;"></canvas>
+
+              <!-- HUD Reticle Overlay -->
+              <div class="scanner-hud-overlay">
+                <!-- Target corners -->
+                <div class="hud-corner top-left"></div>
+                <div class="hud-corner top-right"></div>
+                <div class="hud-corner bottom-left"></div>
+                <div class="hud-corner bottom-right"></div>
+                
+                <!-- Laser line -->
+                <div class="scanner-laser" id="scanner-laser"></div>
+                
+                <!-- Center target reticle -->
+                <div class="scanner-reticle-center"></div>
+              </div>
+
+              <!-- Camera status indicator badge -->
+              <div class="scanner-badge-overlay" id="scanner-cam-status">
+                <span>Iniciando sensor óptico...</span>
+              </div>
+            </div>
+
+            <!-- Controles de Cámara -->
+            <div class="scanner-controls-bar">
+              <button id="btn-switch-camera" class="btn btn-secondary btn-sm" title="Alternar entre cámara trasera y frontal">
+                <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M20 16v4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-4M4 8V4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v4M16 12l-4-4-4 4M12 8v13"/>
+                </svg>
+                <span>Cambiar Lente</span>
+              </button>
+
+              <button id="btn-upload-qr" class="btn btn-secondary btn-sm" title="Escanear desde archivo de imagen o captura">
+                <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/>
+                </svg>
+                <span>Cargar Imagen</span>
+              </button>
+              <input type="file" id="scanner-file-input" accept="image/*" style="display: none;">
+
+              <button id="btn-toggle-sound" class="btn btn-secondary btn-sm" title="Activar o desactivar alertas de audio">
+                <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                  <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                </svg>
+                <span id="sound-status-label">Audio: ON</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Columna Derecha: Panel de Validación & Resultados -->
+          <div class="scanner-result-col">
+            <!-- Manual code entry option -->
+            <form id="form-manual-code" class="manual-code-form">
+              <label for="scanner-manual-input" class="form-label">Validación Rápida por Código</label>
+              <div class="manual-input-wrap">
+                <input 
+                  type="text" 
+                  id="scanner-manual-input" 
+                  class="form-control mono-input" 
+                  placeholder="Ej: RETOS-PGHBM3" 
+                  maxlength="25"
+                  autocomplete="off"
+                >
+                <button type="submit" class="btn btn-secondary" id="btn-validate-manual">
+                  Validar
+                </button>
+              </div>
+            </form>
+
+            <!-- Contenedor dinámico de resultado -->
+            <div id="scanner-result-container" class="scanner-result-box empty-result">
+              <div class="result-placeholder">
+                <div class="radar-pulse"></div>
+                <h4 class="placeholder-title">Esperando Escaneo</h4>
+                <p class="placeholder-text">Apunta el lector óptico hacia el código QR impreso o en pantalla del invitado.</p>
+                <span class="hud-hint">Compatible con códigos directos RETOS-XXXXXX o URL del pase</span>
+              </div>
+            </div>
+
+            <!-- Stats de la sesión de escaneo -->
+            <div class="scanner-session-stats">
+              <div class="stat-pill">
+                <span>Escaneados:</span>
+                <strong id="scan-count-total">0</strong>
+              </div>
+              <div class="stat-pill stat-valid">
+                <span>Válidos:</span>
+                <strong id="scan-count-valid">0</strong>
+              </div>
+              <div class="stat-pill stat-invalid">
+                <span>No Válidos:</span>
+                <strong id="scan-count-invalid">0</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" id="btn-clear-scan-result">
+          Limpiar Resultado
+        </button>
+        <button type="button" class="btn btn-primary" id="btn-done-scanner-modal">
+          Cerrar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION CONTAINER -->
+  <div id="toast-container" class="toast-container" aria-live="polite"></div>
+
+  <!-- Motor Offline de Decodificación QR (Fallback universal) -->
+  <script src="/dashboard/assets/jsqr.min.js"></script>
+  <script src="/dashboard/app.js?v=3.0"></script>
+</body>
+</html>

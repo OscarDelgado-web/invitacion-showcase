@@ -19,6 +19,8 @@ const http = require('http');
 const fs = require('fs');
 const path = require('path');
 const rsvpHandler = require('./api/rsvp.js');
+const authHandler = require('./api/auth.js');
+const registrosHandler = require('./api/registros.js');
 
 // 1. Cargar archivo .env local si existe (sin dependencias externas)
 const envPath = path.join(__dirname, '.env');
@@ -59,59 +61,73 @@ const MIME_TYPES = {
   '.svg': 'image/svg+xml',
   '.ico': 'image/x-icon',
   '.ics': 'text/calendar; charset=utf-8',
-  '.webp': 'image/webp'
+  '.webp': 'image/webp',
+  '.txt': 'text/plain; charset=utf-8',
+  '.webmanifest': 'application/manifest+json'
 };
 
-const PORT = process.env.PORT || 3000;
+const PORT = parseInt(process.env.PORT || '3000', 10);
+const HOST = process.env.HOST || '0.0.0.0';
 
 const server = http.createServer(async (req, res) => {
   const parsedUrl = new URL(req.url, `http://${req.headers.host || 'localhost'}`);
   let pathname = parsedUrl.pathname;
 
-  // 3. Enrutador para la API de RSVP (/api/rsvp)
+  // Helper methods tipo Vercel / Express
+  res.status = function (code) {
+    res.statusCode = code;
+    return res;
+  };
+  res.json = function (data) {
+    res.setHeader('Content-Type', 'application/json; charset=utf-8');
+    res.end(JSON.stringify(data));
+    return res;
+  };
+
+  // Helper para ejecutar handlers serverless con parsing de body
+  const executeServerlessHandler = (handlerFn) => {
+    let bodyData = '';
+    req.on('data', chunk => { bodyData += chunk; });
+    req.on('end', async () => {
+      try {
+        req.body = bodyData ? JSON.parse(bodyData) : {};
+      } catch (_) {
+        req.body = bodyData;
+      }
+      try {
+        await handlerFn(req, res);
+      } catch (err) {
+        console.error('[dev-server Handler Error]:', err);
+        if (!res.headersSent) {
+          res.writeHead(500, { 'Content-Type': 'application/json' });
+          res.end(JSON.stringify({ ok: false, error: 'Error interno en el servidor.' }));
+        }
+      }
+    });
+  };
+
+  // 3. Enrutadores para las APIs Serverless
   if (pathname === '/api/rsvp') {
-    if (req.method === 'POST') {
-      let bodyData = '';
-      req.on('data', chunk => { bodyData += chunk; });
-      req.on('end', async () => {
-        try {
-          req.body = bodyData ? JSON.parse(bodyData) : {};
-        } catch (_) {
-          req.body = bodyData;
-        }
-
-        // Simular métodos helper de respuesta tipo Vercel/Express
-        res.status = function (code) {
-          res.statusCode = code;
-          return res;
-        };
-        res.json = function (data) {
-          res.setHeader('Content-Type', 'application/json; charset=utf-8');
-          res.end(JSON.stringify(data));
-          return res;
-        };
-
-        try {
-          await rsvpHandler(req, res);
-        } catch (err) {
-          console.error('[dev-server RSVP Handler Error]:', err);
-          if (!res.headersSent) {
-            res.writeHead(500, { 'Content-Type': 'application/json' });
-            res.end(JSON.stringify({ ok: false, error: 'Error interno en el handler de desarrollo.' }));
-          }
-        }
-      });
-      return;
-    } else {
-      res.writeHead(405, { 'Content-Type': 'application/json', 'Allow': 'POST' });
-      res.end(JSON.stringify({ ok: false, error: 'Método no permitido. Solo se acepta POST.' }));
-      return;
-    }
+    return executeServerlessHandler(rsvpHandler);
   }
 
-  // 4. Servidor de archivos estáticos
+  if (pathname === '/api/auth') {
+    return executeServerlessHandler(authHandler);
+  }
+
+  if (pathname === '/api/registros') {
+    return executeServerlessHandler(registrosHandler);
+  }
+
+  // 4. Servidor de archivos estáticos y rutas web
   if (pathname === '/' || pathname === '') {
     pathname = '/index.html';
+  } else if (pathname === '/dashboard') {
+    res.writeHead(302, { 'Location': '/dashboard/' });
+    res.end();
+    return;
+  } else if (pathname === '/dashboard/') {
+    pathname = '/dashboard/index.html';
   }
 
   // Normalizar ruta para evitar path traversal
@@ -138,10 +154,12 @@ const server = http.createServer(async (req, res) => {
   });
 });
 
-server.listen(PORT, '127.0.0.1', () => {
+server.listen(PORT, HOST, () => {
   console.log('\n======================================================');
-  console.log(` RETOS Showcae 2026 - 2nd Edition — Servidor Local Activo`);
-  console.log(` URL: http://127.0.0.1:${PORT}/`);
-  console.log(` Endpoint RSVP: http://127.0.0.1:${PORT}/api/rsvp`);
+  console.log(` 🚀 RETOS Showcase 2026 — Servidor Unificado Activo`);
+  console.log(` 🌐 Invitación Principal: http://localhost:${PORT}/`);
+  console.log(` 📊 Dashboard Acreditación: http://localhost:${PORT}/dashboard`);
+  console.log(` 📡 Endpoint RSVP:         http://localhost:${PORT}/api/rsvp`);
+  console.log(` 🔒 Endpoint Registros:    http://localhost:${PORT}/api/registros`);
   console.log('======================================================\n');
 });
