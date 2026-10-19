@@ -955,6 +955,7 @@ body::before {
   padding: 1.35rem 1.6rem;
   display: flex;
   flex-direction: column;
+  
   gap: 1.15rem;
   box-shadow: 0 10px 28px rgba(0, 0, 0, 0.6);
   transition: all 0.3s var(--ease-smooth);
@@ -1410,11 +1411,13 @@ body::before {
 }
 
 .modal-body {
-  padding: 1.5rem 1.75rem;
+  padding: 1.25rem 1.5rem;
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
-  overflow-y: auto;
+  gap: 1.15rem;
+  flex: 1 1 auto;
+  min-height: 0 !important;
+  overflow-y: auto !important;
   -webkit-overflow-scrolling: touch;
   overscroll-behavior: contain;
 }
@@ -1538,14 +1541,16 @@ body::before {
 }
 
 .modal-footer {
-  flex-shrink: 0;
+  flex-shrink: 0 !important;
   display: flex;
   align-items: center;
   justify-content: flex-end;
   gap: 0.75rem;
-  padding: 1.15rem 1.75rem max(1.15rem, env(safe-area-inset-bottom));
+  padding: 0.85rem 1.5rem max(0.85rem, env(safe-area-inset-bottom));
   border-top: 1px solid var(--b-subtle);
-  background: rgba(3, 10, 8, 0.85);
+  background: rgba(3, 10, 8, 0.95);
+  position: relative;
+  z-index: 10;
 }
 
 /* ==============================================================================
@@ -1702,7 +1707,10 @@ body::before {
    ============================================================================== */
 .modal-scanner-card {
   max-width: 900px;
-  width: 95%;
+  width: 96%;
+  height: min(90dvh, 760px);
+  display: flex;
+  flex-direction: column;
 }
 
 .scanner-header-info {
@@ -1734,7 +1742,11 @@ body::before {
 }
 
 .scanner-modal-body {
-  padding: 1.5rem 1.75rem;
+  padding: 1.25rem 1.5rem;
+  flex: 1 1 auto;
+  min-height: 0 !important;
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch;
 }
 
 .scanner-layout {
@@ -2171,31 +2183,63 @@ body::before {
   }
 
   .modal-backdrop {
-    padding: 0.75rem;
-    align-items: flex-end; /* Mobile Bottom Sheet */
+    padding: 0.5rem;
+    align-items: center;
+    justify-content: center;
   }
 
-  .modal-card {
-    max-height: calc(100dvh - env(safe-area-inset-top) - 1rem);
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
+  .modal-scanner-card {
+    width: 98%;
+    height: calc(100dvh - env(safe-area-inset-top) - env(safe-area-inset-bottom) - 1rem);
+    max-height: calc(100dvh - env(safe-area-inset-top) - env(safe-area-inset-bottom) - 1rem);
+    border-radius: 18px;
   }
 
   .scanner-viewfinder-box {
-    height: 250px;
-    --scan-travel: 207px;
+    height: 185px;
+    --scan-travel: 142px;
+  }
+
+  .scanner-modal-body {
+    padding: 0.75rem 0.85rem;
+    gap: 0.75rem;
   }
 
   .scanner-controls-bar {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 0.4rem;
+    gap: 0.35rem;
   }
 
   .scanner-controls-bar .btn {
+    min-height: 40px;
+    padding: 0.35rem 0.2rem;
+    font-size: 0.72rem;
+  }
+
+  .scanner-result-box {
+    min-height: 140px;
+    padding: 0.85rem;
+  }
+
+  .val-attendee-name {
+    font-size: 1.15rem;
+  }
+
+  .val-details-list {
+    margin: 0.4rem 0;
+    padding: 0.6rem;
+    gap: 0.35rem;
+    font-size: 0.78rem;
+  }
+
+  .modal-footer {
+    padding: 0.65rem 0.85rem max(0.65rem, env(safe-area-inset-bottom));
+  }
+
+  .modal-footer .btn {
+    flex: 1;
     min-height: 44px;
-    padding: 0.5rem 0.25rem;
-    font-size: 0.75rem;
   }
 
   .btn-password-toggle {
