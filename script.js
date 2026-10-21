@@ -150,8 +150,8 @@ const FALLBACK_CONTENT = {
       "inicio": "10:20",
       "fin": "10:35",
       "titulo": {
-        "en": "Mechatronics Project: Pick and Place",
-        "es": "Proyecto de Mecatrónica: Pick and Place"
+        "en": "Mechatronics Project — Pick and Place, Automated Attendance System and RETOS Vending Machine",
+        "es": "Proyecto de Mecatrónica — Pick and Place, Sistema Automatizado de Asistencia y Máquina Expendedora RETOS"
       }
     },
     {
